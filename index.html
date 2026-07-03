@@ -1,0 +1,4367 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Berzerk</title>
+  <link rel="icon" type="image/avif" href="logoheader.avif" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --gray-muted: #6b6b6b;
+      --gray-text: #999999;
+      --card-bg: #1a1a1a;
+      --border: #2e2e2e;
+      --border-light: #3a3a3a;
+      --announcement-bg: #ffffff;
+      --nav-height-desktop: 58px;
+      --nav-height-mobile: 56px;
+      --announcement-height: 38px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── ANNOUNCEMENT BAR ─── */
+    .announcement-bar {
+      background: var(--announcement-bg);
+      color: #111;
+      text-align: center;
+      padding: 0 16px;
+      height: var(--announcement-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-family: 'Barlow', sans-serif;
+      letter-spacing: 0.01em;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .announcement-bar strong {
+      font-weight: 700;
+    }
+
+    /* ─── HEADER / NAV ─── */
+    .header {
+      background: var(--black);
+      position: sticky;
+      top: var(--announcement-height);
+      z-index: 999;
+      border-bottom: 1px solid #1a1a1a;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-height-desktop);
+      padding: 0 24px;
+      max-width: 1440px;
+      margin: 0 auto;
+      gap: 16px;
+    }
+
+    /* Logo */
+    .logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 46px;
+      width: auto;
+      transition: opacity 0.2s;
+    }
+
+    .logo:hover img { opacity: 0.8; }
+
+    /* Desktop nav links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      list-style: none;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 13.5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 6px 10px;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover { opacity: 0.6; }
+
+    /* Right icons */
+    .nav-icons {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .icon-btn {
+      position: relative;
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.2s;
+    }
+
+    .icon-btn:hover { opacity: 0.6; }
+
+    .icon-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .search-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.62);
+      z-index: 10050;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 86px 20px 20px;
+    }
+
+    .search-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .search-panel {
+      width: min(680px, 100%);
+      max-height: min(680px, calc(100vh - 112px));
+      background: #fff;
+      color: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+      transform: translateY(-10px);
+      transition: transform 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .search-overlay.open .search-panel {
+      transform: translateY(0);
+    }
+
+    .search-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .search-head svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      stroke: #111;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      color: #111;
+      font-family: 'Barlow', sans-serif;
+      font-size: 17px;
+      min-width: 0;
+    }
+
+    .search-input::placeholder {
+      color: #777;
+    }
+
+    .search-close {
+      width: 36px;
+      height: 36px;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      background: #fff;
+      color: #111;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .search-close:hover {
+      background: #f3f3f3;
+      border-color: #ccc;
+    }
+
+    .search-results {
+      overflow-y: auto;
+      padding: 8px;
+    }
+
+    .search-result {
+      width: 100%;
+      border: none;
+      background: #fff;
+      color: #111;
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.18s;
+    }
+
+    .search-result:hover {
+      background: #f4f4f4;
+    }
+
+    .search-result img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 6px;
+      background: #eee;
+    }
+
+    .search-result-name {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .search-result-meta {
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .search-result-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .search-empty {
+      padding: 24px 16px;
+      color: #666;
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    @media (max-width: 480px) {
+      .search-overlay {
+        padding: 72px 12px 12px;
+      }
+
+      .search-head {
+        padding: 12px;
+        gap: 8px;
+      }
+
+      .search-result {
+        grid-template-columns: 56px 1fr;
+      }
+
+      .search-result img {
+        width: 56px;
+        height: 56px;
+      }
+
+      .search-result-price {
+        grid-column: 2;
+        font-size: 16px;
+      }
+    }
+
+    .badge {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: var(--white);
+      color: var(--black);
+      font-size: 9px;
+      font-weight: 700;
+      font-family: 'Barlow', sans-serif;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    /* Hamburger — hidden on desktop */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      padding: 8px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* Logo centered on mobile */
+    .logo-mobile {
+      display: none;
+    }
+
+    /* ─── MOBILE DRAWER ─── */
+    .drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .drawer-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: min(320px, 85vw);
+      background: #111111;
+      z-index: 1200;
+      transform: translateX(-100%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 20px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .drawer-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .drawer-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .drawer-close:hover { opacity: 1; }
+
+    .drawer-close svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+    }
+
+    .drawer-nav {
+      list-style: none;
+      flex: 1;
+    }
+
+    .drawer-nav li {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .drawer-nav li a {
+      display: block;
+      padding: 18px 20px;
+      color: var(--white);
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: background 0.15s, padding-left 0.15s;
+    }
+
+    .drawer-nav li a:hover {
+      background: #1a1a1a;
+      padding-left: 28px;
+    }
+
+    .drawer-nav .favoritos a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-family: 'Barlow', sans-serif;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 400;
+      color: #ccc;
+    }
+
+    .drawer-nav .favoritos svg {
+      width: 18px;
+      height: 18px;
+      stroke: #ccc;
+      fill: none;
+      stroke-width: 1.6;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - var(--announcement-height) - var(--nav-height-desktop));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-bg picture,
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      padding: 60px 24px;
+      animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-subtitle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      letter-spacing: 0.28em;
+      color: var(--gray-muted);
+      text-transform: uppercase;
+      animation: fadeUp 0.9s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(60px, 10vw, 120px);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      text-transform: uppercase;
+      animation: fadeUp 0.9s 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    /* Price Card */
+    .price-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 22px 48px 24px;
+      text-align: center;
+      animation: fadeUp 0.9s 0.26s cubic-bezier(0.22, 1, 0.36, 1) both;
+      min-width: 260px;
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.35s ease,
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+      pointer-events: none;
+    }
+
+    .price-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.35);
+      box-shadow: 0 0 30px rgba(255,255,255,0.08), 0 16px 40px rgba(0,0,0,0.4);
+    }
+
+    .price-card:hover::before {
+      transform: translateX(200%);
+    }
+
+    .price-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      color: #888;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .price-value {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      color: var(--white);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 8px;
+      line-height: 1;
+    }
+
+    .price-currency {
+      font-size: 56px;
+      font-weight: 900;
+      margin-bottom: 6px;
+      padding-right: 10px;
+    }
+
+    .price-main {
+      font-size: 76px;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      padding-right: 2px;
+    }
+
+    .price-cents {
+      font-size: 26px;
+      font-weight: 900;
+      align-self: flex-start;
+      padding-top: 8px;
+      color: var(--white);
+    }
+
+    /* Pill CTA */
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 13px 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.35s ease,
+                  border-color 0.35s ease,
+                  box-shadow 0.35s ease;
+      animation: fadeUp 0.9s 0.34s cubic-bezier(0.22, 1, 0.36, 1) both;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.1) 50%, transparent 65%);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+      pointer-events: none;
+      border-radius: 100px;
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-3px) scale(1.03);
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.3);
+      box-shadow: 0 0 20px rgba(255,255,255,0.07), 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+    .hero-cta:hover::before {
+      transform: translateX(200%);
+    }
+
+    /* Cashback badge */
+    .cashback-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #ccc;
+      animation: fadeUp 0.9s 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+                  background 0.3s ease,
+                  border-color 0.3s ease,
+                  box-shadow 0.3s ease,
+                  color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cashback-badge::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.1) 50%, transparent 65%);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+      pointer-events: none;
+      border-radius: 100px;
+    }
+
+    .cashback-badge:hover {
+      transform: translateY(-3px) scale(1.04);
+      background: rgba(255,255,255,0.14);
+      border-color: rgba(255,255,255,0.3);
+      box-shadow: 0 0 20px rgba(255,255,255,0.07), 0 10px 30px rgba(0,0,0,0.35);
+      color: #fff;
+    }
+
+    .cashback-badge:hover::before {
+      transform: translateX(200%);
+    }
+
+    .cashback-badge strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* Hero logo */
+    .hero-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeUp 0.9s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+      margin-top: 8px;
+    }
+
+    .hero-logo img {
+      height: 52px;
+      width: auto;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .logo { display: none; }
+      .hamburger { display: flex; }
+      .logo-mobile {
+        display: flex;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .nav-inner {
+        padding: 0 12px;
+        height: var(--nav-height-mobile);
+        position: relative;
+      }
+
+      .hero {
+        min-height: 60vh;
+      }
+
+      .hero-content {
+        padding: 36px 20px;
+        gap: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .price-card { padding: 18px 32px 20px; min-width: 220px; }
+      .price-value { font-size: 52px; }
+      .price-currency { font-size: 30px; }
+      .price-cents { font-size: 22px; }
+      .hero-cta { font-size: 11px; padding: 11px 20px; letter-spacing: 0.1em; }
+      .cashback-badge { font-size: 12px; padding: 8px 16px; }
+    }
+    /* ─── FOOTER ─── */
+    .footer {
+      background: #0a0a0a;
+      color: #fff;
+      padding: 56px 60px 0;
+    }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+    }
+
+    .footer-col-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: #fff; }
+
+    .footer-promo-links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-promo-links a svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .social-btn:hover {
+      border-color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .social-btn svg { width: 18px; height: 18px; }
+
+    .footer-seals {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .seal-img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid #222;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0 24px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-copy {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .footer-payments {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pay-badge {
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .pay-badge img {
+      height: 24px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .footer-credit {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      color: #555;
+      text-align: right;
+    }
+
+    .footer-credit strong {
+      color: #888;
+    }
+
+    @media (max-width: 900px) {
+      .footer { padding: 40px 20px 0; }
+      .footer-main { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .footer-credit { text-align: left; }
+    }
+
+    /* ─── TECH SECTION ─── */
+    .tech-section {
+      background: #fff;
+      padding: 60px 40px 64px;
+    }
+
+    .tech-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .tech-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 38px;
+      color: #111;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .tech-subtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #555;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+      max-width: 1100px;
+    }
+
+    .tech-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .tech-tab {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 24px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      background: #fff;
+      color: #111;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .tech-tab.active {
+      background: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    .tech-tab:not(.active):hover {
+      border-color: #999;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      transition: opacity 0.3s ease;
+    }
+
+    .tech-grid.hidden {
+      display: none;
+    }
+
+    .tech-card {
+      flex: 0 0 calc(25% - 12px);
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.25s;
+    }
+
+    .tech-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+
+    .tech-card:hover .tech-img img {
+      transform: scale(1.05);
+    }
+
+    .tech-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #111;
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      z-index: 2;
+      letter-spacing: 0.04em;
+    }
+
+    .tech-img {
+      background: #f5f5f5;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tech-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .tech-info {
+      padding: 14px 16px 18px;
+      text-align: center;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tech-name {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #111;
+      margin-bottom: 6px;
+      min-height: 34px;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tech-price {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .tech-price s {
+      color: #aaa;
+      font-size: 13px;
+      margin-right: 4px;
+    }
+
+    .tech-price strong {
+      color: #111;
+      font-weight: 700;
+    }
+
+    .tech-installment {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .tech-cashback {
+      display: inline-block;
+      background: #c8f0d0;
+      color: #1a6b35;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-top: auto;
+    }
+
+    .tech-mobile-nav {
+      display: none;
+    }
+
+    @media (max-width: 900px) {
+      .tech-section { padding: 48px 0 52px; }
+      .tech-header { padding: 0 16px; }
+      .tech-title { font-size: 28px; }
+      .tech-subtitle { max-width: 100%; }
+      .products-subtitle { max-width: 100%; }
+
+      .tech-mobile-nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 16px 0;
+      }
+
+      .tech-mobile-nav.hidden { display: none; }
+
+      .tech-progress-bg {
+        flex: 1;
+        height: 2px;
+        background: #ccc;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .tech-progress-fill {
+        height: 100%;
+        background: #111;
+        border-radius: 2px;
+        width: 0%;
+        transition: width 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      .tech-grid {
+        display: flex;
+        overflow: hidden;
+        gap: 0;
+        touch-action: pan-y;
+      }
+
+      .tech-grid .tech-card {
+        flex: 0 0 80vw;
+        margin-right: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .tech-title { font-size: 24px; }
+      .tech-subtitle { font-size: 13px; }
+      .tech-grid .tech-card { flex: 0 0 85vw; }
+    }
+
+    /* Tech section — carousel layout (cards mesmo tamanho do Oversized) */
+    .tech-section .products-viewport { padding: 0 24px; }
+    .tech-section .products-footer   { padding: 24px 24px 0; }
+    .tech-section .tech-card         { flex: 0 0 calc(25% - 12px); }
+
+    @media (max-width: 900px) {
+      .tech-section .products-viewport { padding: 0 16px; }
+      .tech-section .products-footer   { padding: 20px 16px 0; }
+      .tech-section .tech-card         { flex: 0 0 75vw; }
+    }
+    @media (max-width: 480px) {
+      .tech-section .tech-card { flex: 0 0 85vw; }
+    }
+
+    /* ─── PRODUTOS ─── */
+    .products-section {
+      background: #ebebeb;
+      padding: 56px 0 40px;
+    }
+
+    .products-header {
+      text-align: center;
+      padding: 0 24px 36px;
+    }
+
+    .products-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 36px;
+      color: #111;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .products-subtitle {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #555;
+      margin: 0 auto;
+      line-height: 1.5;
+      max-width: 1100px;
+    }
+
+    .products-viewport {
+      overflow: hidden;
+      padding: 0 24px;
+    }
+
+    .products-track {
+      display: flex;
+      gap: 16px;
+      transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform;
+    }
+
+    .prod-card {
+      flex: 0 0 calc(25% - 12px);
+      background: #fff;
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.25s;
+    }
+
+    .prod-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+    }
+
+    .prod-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #111;
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 4px 8px;
+      border-radius: 3px;
+      z-index: 2;
+      letter-spacing: 0.04em;
+    }
+
+    .prod-img {
+      background: #f5f5f5;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .prod-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .prod-card:hover .prod-img img {
+      transform: scale(1.05);
+    }
+
+    .prod-info {
+      padding: 14px 16px 18px;
+      text-align: center;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .prod-name {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #111;
+      margin-bottom: 6px;
+      min-height: 34px;
+      line-height: 1.2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .prod-price {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .prod-price s {
+      color: #999;
+      font-size: 13px;
+      margin-right: 4px;
+    }
+
+    .prod-price strong {
+      color: #111;
+      font-weight: 700;
+    }
+
+    .prod-installment {
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 10px;
+    }
+
+    .prod-cashback {
+      display: inline-block;
+      background: #c8f0d0;
+      color: #1a6b35;
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-top: auto;
+    }
+
+    /* Footer: barra + setas */
+    .products-footer {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 24px 24px 0;
+    }
+
+    .progress-bar-wrap {
+      flex: 1;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 2px;
+      background: #ccc;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: #111;
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.45s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .products-arrows {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .arrow-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      background: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .arrow-btn:hover {
+      background: #111;
+      border-color: #111;
+    }
+
+    .arrow-btn:hover svg {
+      stroke: #fff;
+    }
+
+    .arrow-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: #111;
+      transition: stroke 0.2s;
+    }
+
+    .arrow-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+
+    .arrow-btn:disabled:hover {
+      background: #fff;
+      border-color: #ccc;
+    }
+
+    .arrow-btn:disabled:hover svg { stroke: #111; }
+
+    @media (max-width: 900px) {
+      .prod-card { flex: 0 0 75vw; }
+      .products-viewport { padding: 0 16px; }
+      .products-footer { padding: 20px 16px 0; }
+    }
+
+    @media (max-width: 480px) {
+      .prod-card { flex: 0 0 85vw; }
+      .products-title { font-size: 26px; }
+    }
+
+    /* Botao flutuante de voltar ao topo */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 58px;
+      height: 58px;
+      background: #111;
+      border: 1px solid rgba(255,255,255,0.72);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.07);
+      z-index: 9999;
+      transition: transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.25s ease;
+    }
+
+    .back-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.2);
+    }
+
+    .back-to-top svg {
+      width: 24px;
+      height: 24px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    @media (max-width: 480px) {
+      .back-to-top {
+        width: 42px;
+        height: 42px;
+        bottom: 18px;
+        right: auto;
+        left: 16px;
+      }
+      .back-to-top svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* WhatsApp nav button */
+    .nav-wa {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 100px;
+      padding: 8px 18px 8px 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-wa:hover { opacity: 0.85; transform: translateY(-1px); }
+    .nav-wa svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    @media (max-width: 900px) { .nav-wa { display: none; } }
+
+    /* WhatsApp drawer item — especificidade alta para sobrescrever .drawer-nav li a */
+    .drawer-nav li a.drawer-wa,
+    .drawer-nav li a.drawer-wa:hover {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 20px;
+      background: #fff;
+      color: #000;
+      padding-left: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: opacity 0.15s;
+    }
+
+    .drawer-nav li a.drawer-wa:hover { opacity: 0.88; }
+    .drawer-nav li a.drawer-wa svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    /* ─── PRODUCT MODAL ─── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.52);
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal-container {
+      background: #fff;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 1120px;
+      max-height: calc(100vh - 48px);
+      position: relative;
+      display: flex;
+      overflow: hidden;
+      transform: translateY(24px) scale(0.98);
+      transition: transform 0.38s cubic-bezier(0.22,1,0.36,1);
+      margin: auto;
+    }
+    .modal-overlay.open .modal-container { transform: translateY(0) scale(1); }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: auto;
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,0.92);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 999px;
+      cursor: pointer; z-index: 40;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .modal-close:hover {
+      background: #fff;
+      transform: scale(1.04);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+    }
+    .modal-close svg { width: 18px; height: 18px; stroke: #111; fill: none; stroke-width: 2.4; stroke-linecap: round; }
+
+    .modal-gallery {
+      background: #ebebeb;
+      display: flex;
+      gap: 10px;
+      padding: 18px;
+      flex: 0 0 56%;
+      min-width: 0;
+      min-height: min(560px, calc(100vh - 48px));
+    }
+    .modal-thumbs { display: flex; flex-direction: column; gap: 8px; }
+    .modal-thumb {
+      width: 54px; height: 54px;
+      border-radius: 6px; border: 2px solid transparent;
+      overflow: hidden; cursor: pointer; background: #ddd;
+      transition: border-color 0.2s; flex-shrink: 0;
+    }
+    .modal-thumb.active { border-color: #111; }
+    .modal-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .modal-main-img {
+      flex: 1; position: relative;
+      min-width: 0;
+      border-radius: 8px; overflow: hidden;
+      background: #e0e0e0;
+      display: flex; align-items: center;
+    }
+    .modal-main-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .modal-expand-btn {
+      position: absolute; top: 10px; right: 10px;
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.88); border: none;
+      border-radius: 6px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-expand-btn svg { width: 15px; height: 15px; stroke: #333; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+    .modal-info {
+      flex: 1 1 44%;
+      min-width: 0;
+      padding: 28px 32px 32px;
+      overflow-y: auto;
+      max-height: calc(100vh - 48px);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .modal-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 26px;
+      color: #111; margin-bottom: 10px; line-height: 1.1;
+    }
+    .modal-meta {
+      display: flex; align-items: center; gap: 14px;
+      font-family: 'Barlow', sans-serif; font-size: 13px; color: #555;
+      margin-bottom: 14px;
+    }
+    .modal-stars { color: #111; font-size: 13px; letter-spacing: 1px; }
+    .modal-stars b { color: #333; }
+    .modal-live { display: flex; align-items: center; gap: 5px; }
+    .modal-live-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; }
+    .modal-price-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+    .modal-price-old { font-family: 'Barlow', sans-serif; font-size: 14px; color: #aaa; text-decoration: line-through; }
+    .modal-off-badge {
+      background: #111; color: #fff;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12px;
+      padding: 3px 8px; border-radius: 4px; letter-spacing: 0.03em;
+    }
+    .modal-price-main {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+      font-size: 40px; color: #111; line-height: 1; margin-bottom: 4px;
+    }
+    .modal-installments { font-family: 'Barlow', sans-serif; font-size: 13px; color: #555; margin-bottom: 12px; }
+    .modal-cashback-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #c8f0d0; color: #1a6b35;
+      font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600;
+      padding: 7px 14px; border-radius: 100px; margin-bottom: 18px;
+    }
+    .modal-size-row { margin-bottom: 18px; }
+    .modal-size-label { font-family: 'Barlow', sans-serif; font-size: 14px; font-weight: 600; color: #111; margin-bottom: 10px; }
+    .modal-size-label span { font-weight: 400; color: #666; }
+    .modal-sizes { display: flex; gap: 8px; flex-wrap: wrap; }
+    .modal-size-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 1.5px solid #ccc; background: #fff;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; color: #111;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.18s, border-color 0.18s, color 0.18s;
+    }
+    .modal-size-btn.active, .modal-size-btn:hover { background: #111; color: #fff; border-color: #111; }
+    .modal-table-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Barlow', sans-serif; font-size: 13px; color: #555;
+      text-decoration: none; margin-bottom: 18px;
+    }
+    .modal-table-link svg { width: 14px; height: 14px; stroke: #777; fill: none; stroke-width: 1.8; }
+    .modal-wa-btn {
+      width: 100%; background: #111; color: #fff; border: none;
+      border-radius: 8px; padding: 15px 20px;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      gap: 10px; text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s; margin-bottom: 10px;
+    }
+    .modal-wa-btn:hover { opacity: 0.87; transform: translateY(-1px); }
+    .modal-wa-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .modal-shipping { font-family: 'Barlow', sans-serif; font-size: 13px; color: #555; text-align: center; margin-bottom: 20px; }
+    .modal-features {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 14px 8px; padding: 18px 0;
+      border-top: 1px solid #eee; border-bottom: 1px solid #eee; margin-bottom: 0;
+    }
+    .modal-feature { display: flex; flex-direction: column; align-items: center; gap: 5px; text-align: center; }
+    .modal-feature svg { width: 22px; height: 22px; stroke: #111; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .modal-feature-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 9.5px; color: #111; text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.3; }
+    .modal-accordion-item { border-top: 1px solid #eee; }
+    .modal-accordion-btn {
+      width: 100%; background: none; border: none;
+      padding: 16px 0; display: flex; align-items: center; justify-content: space-between;
+      cursor: pointer; font-family: 'Barlow', sans-serif; font-weight: 600; font-size: 15px; color: #111;
+    }
+    .modal-accordion-btn svg { width: 20px; height: 20px; stroke: #111; fill: none; stroke-width: 2; flex-shrink: 0; transition: transform 0.28s; }
+    .modal-accordion-item.open .modal-accordion-btn svg { transform: rotate(45deg); }
+    .modal-accordion-body { font-family: 'Barlow', sans-serif; font-size: 13.5px; color: #444; line-height: 1.75; padding: 0 0 16px; display: none; }
+    .modal-accordion-body p { margin-bottom: 6px; }
+    .modal-accordion-item.open .modal-accordion-body { display: block; }
+    .modal-info-sec { padding-top: 18px; border-top: 1px solid #eee; }
+    .modal-info-sec-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #888; margin-bottom: 14px; }
+    .modal-info-items { display: flex; flex-direction: column; gap: 14px; }
+    .modal-info-item { display: flex; gap: 12px; align-items: flex-start; }
+    .modal-info-item svg { width: 20px; height: 20px; stroke: #111; fill: none; stroke-width: 1.6; flex-shrink: 0; margin-top: 2px; }
+    .modal-info-item-text { font-family: 'Barlow', sans-serif; font-size: 14px; color: #111; line-height: 1.4; }
+    .modal-info-item-text a { display: block; color: #777; font-size: 12.5px; text-decoration: underline; text-underline-offset: 2px; }
+
+    @media (max-width: 900px) {
+      .modal-overlay {
+        padding: 0;
+        align-items: flex-end;
+        overflow: hidden;
+      }
+
+      .modal-container {
+        width: 100%;
+        max-width: none;
+        height: 92dvh;
+        max-height: 92dvh;
+        flex-direction: column;
+        border-radius: 20px 20px 0 0;
+        overflow-y: auto;
+        transform: translateY(100%);
+        margin: 0;
+      }
+
+      .modal-overlay.open .modal-container { transform: translateY(0); }
+
+      .modal-close {
+        top: 12px;
+        left: 12px;
+        width: 38px;
+        height: 38px;
+        z-index: 40;
+      }
+
+      .modal-gallery {
+        width: 100%;
+        flex: none;
+        min-height: auto;
+        flex-direction: column-reverse;
+        padding: 14px;
+        gap: 8px;
+      }
+
+      .modal-thumbs {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .modal-thumb { width: 56px; height: 56px; }
+
+      .modal-main-img {
+        width: 100%;
+        flex: none;
+        aspect-ratio: 1 / 1;
+        max-height: 42dvh;
+        min-height: auto;
+      }
+
+      .modal-main-img img { object-fit: contain; }
+
+      .modal-info {
+        flex: none;
+        padding: 18px 18px 34px;
+        max-height: none;
+        overflow: visible;
+      }
+
+      .modal-title { font-size: 24px; }
+      .modal-meta { flex-wrap: wrap; gap: 8px 12px; }
+      .modal-price-main { font-size: 34px; }
+      .modal-cashback-pill { width: 100%; justify-content: center; text-align: center; }
+      .modal-wa-btn { padding: 14px 16px; }
+    }
+
+    @media (max-width: 480px) {
+      .modal-container {
+        height: 94dvh;
+        max-height: 94dvh;
+      }
+
+      .modal-gallery { padding: 12px; }
+      .modal-main-img { max-height: 38dvh; }
+      .modal-title { font-size: 22px; }
+      .modal-features { grid-template-columns: repeat(2, 1fr); }
+      .modal-size-btn { width: 42px; height: 42px; }
+    }
+
+    /* ─── COLLECTIONS ─── */
+    .collections {
+      background: #f2f2f2;
+    }
+
+    /* Desktop grid */
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .col-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .col-card__img {
+      overflow: hidden;
+      aspect-ratio: 9/11;
+    }
+
+    .col-card__img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .col-card:hover .col-card__img img {
+      transform: scale(1.04);
+    }
+
+
+    /* Dividers between columns */
+    .col-card:not(:last-child) {
+      border-right: 1px solid #e0e0e0;
+    }
+
+    /* Mobile carousel — hidden on desktop */
+    .col-carousel { display: none; }
+
+    @media (max-width: 900px) {
+      .collections-grid { display: none; }
+
+      .col-carousel {
+        display: block;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .col-carousel__track {
+        display: flex;
+        transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
+      }
+
+      .col-carousel__item {
+        flex: 0 0 80%;
+        text-decoration: none;
+        color: inherit;
+        margin-right: 12px;
+      }
+
+      .col-carousel__item .col-card__img {
+        aspect-ratio: 3/4;
+      }
+    }
+
+    /* ─── DEPOIMENTOS ─── */
+    .reviews-section-title {
+      text-align: center;
+      padding: 0 24px;
+      margin-bottom: 32px;
+    }
+
+    .reviews-eyebrow {
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .reviews-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    @media (max-width: 480px) { .reviews-heading { font-size: 32px; } }
+
+    .reviews-section {
+      background: #000;
+      padding: 64px 0 72px;
+      overflow: hidden;
+    }
+
+    .reviews-top {
+      display: flex;
+      justify-content: center;
+      padding: 0 24px;
+      margin-bottom: 44px;
+    }
+
+    .reviews-badge {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: #1a1a1a;
+      border: 1px solid #2e2e2e;
+      border-radius: 16px;
+      padding: 20px 28px;
+    }
+
+    .reviews-score {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 54px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+
+    .reviews-badge-mid {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .reviews-stars-row {
+      color: #f59e0b;
+      font-size: 22px;
+      letter-spacing: 2px;
+    }
+
+    .reviews-source {
+      font-size: 13px;
+      color: #888;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    .reviews-badge-sep {
+      width: 1px;
+      height: 48px;
+      background: #2e2e2e;
+      flex-shrink: 0;
+    }
+
+    .reviews-google-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .reviews-google-col svg { width: 32px; height: 32px; }
+
+    .reviews-google-col span {
+      font-size: 12px;
+      color: #888;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    .reviews-carousel-outer {
+      padding: 0 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .reviews-viewport {
+      overflow: hidden;
+    }
+
+    .reviews-track {
+      display: flex;
+      gap: 20px;
+      transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+      will-change: transform;
+    }
+
+    .review-card {
+      background: #1a1a1a;
+      border: 1px solid #2e2e2e;
+      border-radius: 16px;
+      padding: 24px;
+      flex: 0 0 calc(33.333% - 14px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .reviews-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .reviews-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .reviews-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #333;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s, width 0.2s;
+    }
+
+    .reviews-dot.active {
+      background: #fff;
+      width: 24px;
+      border-radius: 4px;
+    }
+
+    /* Badge como primeiro card no mobile */
+    .review-badge-card {
+      flex: 0 0 calc(33.333% - 14px);
+      background: #1a1a1a;
+      border: 1px solid #2e2e2e;
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .review-badge-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1;
+    }
+
+    /* Desktop: badge card fica no carousel como 1º item normal */
+    /* Mobile: reviews-top some, badge card entra no carousel */
+    @media (max-width: 900px) {
+      .reviews-top      { display: none; }
+      .review-card      { flex: 0 0 80vw; }
+      .review-badge-card{ flex: 0 0 80vw; }
+    }
+
+    @media (max-width: 480px) {
+      .reviews-carousel-outer { padding: 0 16px; }
+      .review-card       { flex: 0 0 calc(100vw - 48px); padding: 20px; }
+      .review-badge-card { flex: 0 0 calc(100vw - 48px); padding: 20px; flex-wrap: wrap; }
+    }
+
+    /* Desktop: esconde badge card no carousel (já aparece no reviews-top acima) */
+    @media (min-width: 901px) {
+      .review-badge-card { display: none; }
+    }
+
+    .review-card-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .review-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .review-author {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .review-author strong { font-size: 15px; font-weight: 600; color: #fff; font-family: 'Barlow', sans-serif; }
+    .review-author span   { font-size: 12px; color: #888; font-family: 'Barlow', sans-serif; }
+    .review-g-icon        { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .review-stars-time { display: flex; align-items: center; gap: 10px; }
+
+    .review-stars { color: #f59e0b; font-size: 16px; letter-spacing: 1px; }
+
+    .review-time { font-size: 12px; color: #555; font-family: 'Barlow', sans-serif; }
+
+    .review-text {
+      font-size: 14px;
+      line-height: 1.65;
+      color: #bbb;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-section {
+      background: #111;
+      padding: 72px 24px;
+    }
+
+    .faq-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .faq-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      color: #fff;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+      margin-bottom: 48px;
+    }
+
+    .faq-item { border-bottom: 1px solid #2e2e2e; }
+
+    .faq-btn {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 0;
+      color: #fff;
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: left;
+    }
+
+    .faq-btn svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      stroke: #666;
+      transition: transform 0.3s;
+    }
+
+    .faq-item.open .faq-btn svg { transform: rotate(180deg); }
+
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+
+    .faq-item.open .faq-body { max-height: 300px; }
+
+    .faq-body p {
+      padding-bottom: 22px;
+      font-size: 14px;
+      line-height: 1.75;
+      color: #888;
+      font-family: 'Barlow', sans-serif;
+    }
+
+    /* ─── CTA FINAL ─── */
+    .cta-section {
+      background: #000;
+      padding: 104px 24px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(255,255,255,0.03) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-bg-word {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(160px, 28vw, 340px);
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .cta-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .cta-urgency {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #bbb;
+    }
+
+    .cta-urgency-dot {
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulseDot 1.8s ease infinite;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(1.6); }
+    }
+
+    .cta-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.92;
+      color: #fff;
+      letter-spacing: -2px;
+    }
+
+    .cta-title-outline {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(255,255,255,0.88);
+    }
+
+    .cta-sub {
+      font-family: 'Barlow', sans-serif;
+      font-size: 16px;
+      color: #999;
+      line-height: 1.65;
+      max-width: 440px;
+    }
+
+    .cta-trust {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .cta-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Barlow', sans-serif;
+      font-size: 12px;
+      color: #888;
+      white-space: nowrap;
+    }
+
+    .cta-trust-item svg {
+      width: 14px;
+      height: 14px;
+      stroke: #777;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    .cta-trust-sep {
+      color: #3a3a3a;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .cta-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .cta-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: #000;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 36px;
+      border-radius: 100px;
+      transition: opacity 0.2s, transform 0.2s, box-shadow 0.3s;
+      position: relative;
+    }
+
+    .cta-wa-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(255,255,255,0.16);
+    }
+
+    .cta-wa-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .cta-btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.4);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 16px 30px;
+      border-radius: 100px;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .cta-btn-secondary:hover {
+      border-color: rgba(255,255,255,0.4);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .cta-btn-secondary svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .cta-social {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cta-avatars {
+      display: flex;
+      align-items: center;
+    }
+
+    .cta-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #000;
+      background: #2a2a2a;
+      margin-left: -8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      color: #aaa;
+      flex-shrink: 0;
+      text-transform: uppercase;
+    }
+
+    .cta-avatar:first-child { margin-left: 0; }
+
+    .cta-social-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 13px;
+      color: #888;
+    }
+
+    .cta-social-text strong {
+      color: #f59e0b;
+      font-weight: 600;
+    }
+
+    @media (max-width: 900px) {
+      .cta-section { padding: 72px 20px 68px; }
+    }
+
+    @media (max-width: 480px) {
+      .cta-sub { font-size: 14px; }
+      .cta-btns { flex-direction: column; width: 100%; }
+      .cta-wa-btn, .cta-btn-secondary { width: 100%; justify-content: center; }
+      .cta-trust-sep { display: none; }
+      .cta-trust { gap: 12px; }
+    }
+
+    @media (max-width: 900px) {
+      .reviews-badge { gap: 14px; padding: 16px 20px; }
+      .reviews-score { font-size: 44px; }
+    }
+
+    @media (max-width: 480px) {
+      .reviews-badge { flex-wrap: wrap; justify-content: center; text-align: center; gap: 12px; }
+      .reviews-badge-sep { display: none; }
+      .review-card { width: 280px; padding: 20px; }
+      .faq-title { font-size: 32px; }
+    }
+
+    /* ─── ANIMAÇÕES & MICRO-INTERAÇÕES ─── */
+    @keyframes rippleAnim {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    @keyframes ctaGlow {
+      0%, 100% { box-shadow: 0 4px 24px rgba(255,255,255,0.08); }
+      50%       { box-shadow: 0 8px 48px rgba(255,255,255,0.2), 0 0 0 8px rgba(255,255,255,0.04); }
+    }
+
+    .header { transition: box-shadow 0.35s; }
+    .header.scrolled { box-shadow: 0 4px 28px rgba(0,0,0,0.7); }
+
+    .cta-wa-btn { animation: ctaGlow 2.8s ease infinite; }
+
+    .prod-card,
+    .tech-card { transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease; cursor: pointer; }
+
+    .review-card { transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), border-color 0.28s ease; }
+
+    .nav-links a { position: relative; }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 14px;
+      right: 14px;
+      height: 1.5px;
+      background: #fff;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.nav-active::after { transform: scaleX(1); }
+    .nav-links a.nav-active { opacity: 1; }
+
+    /* ─── OVERFLOW HIDDEN — base para ripple ─── */
+    .hero-cta, .nav-wa, .cta-wa-btn, .cta-btn-secondary, .back-to-top,
+    .drawer-wa, .arrow-btn, .faq-btn,
+    .icon-btn, .hamburger, .drawer-close,
+    .modal-close, .modal-wa-btn, .modal-size-btn,
+    .tech-tab, .modal-expand-btn { overflow: hidden; }
+
+    /* ─── POSITION RELATIVE — para ripple e efeitos ─── */
+    .hamburger, .drawer-close,
+    .modal-wa-btn, .modal-size-btn,
+    .tech-tab, .modal-expand-btn { position: relative; }
+
+    /* ─── ACTIVE — press feedback em todos os botões ─── */
+    .icon-btn:active,
+    .hamburger:active,
+    .drawer-close:active,
+    .modal-close:active,
+    .modal-expand-btn:active { transform: scale(0.84); transition: transform 0.08s; }
+
+    .hero-cta:active,
+    .nav-wa:active { transform: translateY(0) scale(0.96); transition: transform 0.08s; }
+
+    .cta-wa-btn:active { transform: scale(0.97); transition: transform 0.08s; box-shadow: none; animation: none; }
+    .cta-btn-secondary:active { transform: scale(0.97); transition: transform 0.08s; }
+    .modal-wa-btn:active { transform: translateY(0) scale(0.97); transition: transform 0.08s; }
+    .arrow-btn:active { transform: scale(0.88); transition: transform 0.08s; }
+    .back-to-top:active { transform: scale(0.88); transition: transform 0.08s; }
+    .modal-size-btn:active { transform: scale(0.84); transition: transform 0.08s; }
+    .tech-tab:active { transform: scale(0.96); transition: transform 0.08s; }
+
+    /* ─── ICON BTN — hover suave ─── */
+    .icon-btn { transition: opacity 0.2s, transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.2s; border-radius: 8px; }
+    .icon-btn:hover { opacity: 1; background: rgba(255,255,255,0.07); }
+
+    /* ─── MAGNETIC — transição suave ao sair ─── */
+    .back-to-top { transition: transform 0.45s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s ease; }
+    .arrow-btn { transition: background 0.2s, border-color 0.2s, transform 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+
+    /* ─── TECH TAB — transição aprimorada ─── */
+    .tech-tab { transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s; }
+
+    /* ─── MODAL SIZE BTN — transição ─── */
+    .modal-size-btn { transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.15s; }
+
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       ANNOUNCEMENT BAR
+  ══════════════════════════════════════ -->
+  <div class="announcement-bar">
+    <strong>FRETE GRÁTIS</strong>&nbsp;em compras acima de R$299
+  </div>
+
+  <!-- ══════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════ -->
+  <header class="header">
+    <nav class="nav-inner">
+
+      <!-- Hamburger (mobile only) -->
+      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Logo desktop -->
+      <a href="#" class="logo" aria-label="Berzerk">
+        <img src="logoheader.avif" alt="Berzerk" />
+      </a>
+
+      <!-- Logo mobile (centered) -->
+      <a href="#" class="logo logo-mobile" aria-label="Berzerk">
+        <img src="logoheader.avif" alt="Berzerk" style="height:38px;" />
+      </a>
+
+      <!-- Desktop nav links -->
+      <ul class="nav-links">
+        <li><a href="#oversized">Oversized</a></li>
+        <li><a href="#tech-modal">Tech Modal</a></li>
+        <li><a href="#poliamida">Poliamida Tech</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+
+      <!-- Right icons -->
+      <div class="nav-icons">
+        <!-- Search -->
+        <button class="icon-btn" id="searchOpen" aria-label="Buscar">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        </button>
+        <!-- WhatsApp CTA -->
+        <a href="https://wa.me/SEUNUMERO" class="nav-wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.127 1.528 5.862L0 24l6.294-1.499A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.932 9.932 0 0 1-5.13-1.425l-.37-.22-3.724.977.994-3.633-.243-.382A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm5.47-7.538c-.3-.15-1.775-.877-2.05-.977-.274-.1-.474-.15-.673.15-.2.3-.774.977-.948 1.177-.175.2-.35.225-.65.075-.3-.15-1.267-.468-2.413-1.49-.892-.797-1.494-1.781-1.67-2.08-.176-.3-.019-.463.131-.612.135-.135.3-.351.45-.526.15-.176.2-.301.3-.501.1-.2.05-.376-.025-.526-.075-.15-.673-1.627-.924-2.228-.244-.585-.492-.506-.673-.515l-.576-.01c-.2 0-.526.075-.8.376-.276.3-1.052 1.027-1.052 2.504 0 1.477 1.077 2.904 1.226 3.105.15.2 2.12 3.234 5.13 4.535.717.31 1.275.494 1.712.632.719.229 1.373.197 1.89.12.576-.086 1.775-.726 2.025-1.427.25-.7.25-1.3.175-1.427-.075-.126-.276-.2-.576-.351z"/>
+          </svg>
+          Pedir no WhatsApp
+        </a>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- ══════════════════════════════════════
+       MOBILE DRAWER OVERLAY
+  ══════════════════════════════════════ -->
+  <div class="search-overlay" id="searchOverlay" aria-hidden="true">
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="Buscar produtos">
+      <div class="search-head">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+        <input class="search-input" id="searchInput" type="search" placeholder="Buscar camiseta, linha ou cor" autocomplete="off" />
+        <button class="search-close" id="searchClose" aria-label="Fechar busca">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span class="drawer-title">Menu</span>
+      <button class="drawer-close" id="drawerClose" aria-label="Fechar menu">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <ul class="drawer-nav">
+      <li><a href="#oversized">Oversized</a></li>
+      <li><a href="#tech-modal">Tech Modal</a></li>
+      <li><a href="#poliamida">Poliamida Tech</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <li>
+        <a href="https://wa.me/SEUNUMERO" class="drawer-wa" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.127 1.528 5.862L0 24l6.294-1.499A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.932 9.932 0 0 1-5.13-1.425l-.37-.22-3.724.977.994-3.633-.243-.382A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm5.47-7.538c-.3-.15-1.775-.877-2.05-.977-.274-.1-.474-.15-.673.15-.2.3-.774.977-.948 1.177-.175.2-.35.225-.65.075-.3-.15-1.267-.468-2.413-1.49-.892-.797-1.494-1.781-1.67-2.08-.176-.3-.019-.463.131-.612.135-.135.3-.351.45-.526.15-.176.2-.301.3-.501.1-.2.05-.376-.025-.526-.075-.15-.673-1.627-.924-2.228-.244-.585-.492-.506-.673-.515l-.576-.01c-.2 0-.526.075-.8.376-.276.3-1.052 1.027-1.052 2.504 0 1.477 1.077 2.904 1.226 3.105.15.2 2.12 3.234 5.13 4.535.717.31 1.275.494 1.712.632.719.229 1.373.197 1.89.12.576-.086 1.775-.726 2.025-1.427.25-.7.25-1.3.175-1.427-.075-.126-.276-.2-.576-.351z"/>
+          </svg>
+          Pedir no WhatsApp
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ══════════════════════════════════════
+       HERO SECTION
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg">
+      <picture>
+        <source media="(max-width: 900px)" srcset="batch_Banner_Principal_-_Op5_-_Mobile.webp" />
+        <img src="batch_Banner_Principal_-_Op5_-_Desktop.webp" alt="Hero Berzerk" />
+      </picture>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-subtitle">Entre no Modo Berzerk</p>
+
+      <h1 class="hero-title">Oversized</h1>
+
+      <!-- Price card -->
+      <div class="price-card">
+        <p class="price-label">A partir de</p>
+        <div class="price-value">
+          <span class="price-currency">R$</span>
+          <span class="price-main">59</span>
+          <span class="price-cents">,90</span>
+        </div>
+      </div>
+
+      <!-- CTA pill -->
+      <a href="https://wa.me/SEUNUMERO" class="hero-cta" target="_blank" rel="noopener">
+        ★ O Melhor Custo Benefício do Brasil ★
+      </a>
+
+      <!-- Promo badge -->
+      <div class="cashback-badge">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#ccc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+        </svg>
+        <strong>Frete grátis</strong> acima de R$299
+      </div>
+
+      <!-- Hero logo -->
+      <div class="hero-logo">
+        <img src="logohero1.webp" alt="Berzerk" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       COLLECTIONS SECTION
+  ══════════════════════════════════════ -->
+  <section class="collections">
+
+    <!-- Desktop grid -->
+    <div class="collections-grid">
+      <a href="#oversized" class="col-card">
+        <div class="col-card__img">
+          <img src="oversised.webp" alt="Oversized" />
+        </div>
+      </a>
+      <a href="#tech-modal" class="col-card">
+        <div class="col-card__img">
+          <img src="tech.webp" alt="Tech Modal" />
+        </div>
+      </a>
+      <a href="#poliamida" class="col-card">
+        <div class="col-card__img">
+          <img src="polimida.webp" alt="Poliamida Tech" />
+        </div>
+      </a>
+    </div>
+
+    <!-- Mobile carousel -->
+    <div class="col-carousel" id="colCarousel">
+      <div class="col-carousel__track" id="carouselTrack">
+        <a href="#oversized" class="col-carousel__item">
+          <div class="col-card__img">
+            <img src="oversised.webp" alt="Oversized" />
+          </div>
+        </a>
+        <a href="#tech-modal" class="col-carousel__item">
+          <div class="col-card__img">
+            <img src="tech.webp" alt="Tech Modal" />
+          </div>
+        </a>
+        <a href="#poliamida" class="col-carousel__item">
+          <div class="col-card__img">
+            <img src="polimida.webp" alt="Poliamida Tech" />
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PRODUTOS — Mais que Oversized
+  ══════════════════════════════════════ -->
+  <section class="products-section" id="oversized">
+
+    <div class="products-header">
+      <h2 class="products-title">Mais que Oversized</h2>
+      <p class="products-subtitle">Materiais premium, caimento perfeito e a identidade que ajudou a popularizar o Oversized nas academias do Brasil.</p>
+    </div>
+
+    <div class="products-viewport" id="productsViewport">
+      <div class="products-track" id="productsTrack">
+
+        <div class="prod-card">
+          <div class="prod-badge">-60%</div>
+          <div class="prod-img"><img src="EXCLUSIVAVERDE.webp" alt="Oversized - Zeus" /></div>
+          <div class="prod-info">
+            <p class="prod-name">Oversized - Zeus</p>
+            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
+            <p class="prod-installment">Até 12x de R$ 6,48</p>
+            <span class="prod-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-badge">-60%</div>
+          <div class="prod-img"><img src="EXCLUSIVAVERDE.webp" alt="Oversized - Shura" /></div>
+          <div class="prod-info">
+            <p class="prod-name">Oversized - Shura</p>
+            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
+            <p class="prod-installment">Até 12x de R$ 6,48</p>
+            <span class="prod-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-badge">-60%</div>
+          <div class="prod-img"><img src="EXCLUSIVAVERDE.webp" alt="Oversized - Yakuza" /></div>
+          <div class="prod-info">
+            <p class="prod-name">Oversized - Yakuza</p>
+            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
+            <p class="prod-installment">Até 12x de R$ 6,48</p>
+            <span class="prod-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-img"><img src="EXCLUSIVAVERDE.webp" alt="Oversized - Chinken Guts" /></div>
+          <div class="prod-info">
+            <p class="prod-name">Oversized - Chinken Guts</p>
+            <p class="prod-price"><strong>R$ 69,90</strong></p>
+            <p class="prod-installment">Até 12x de R$ 7,56</p>
+            <span class="prod-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-badge">-60%</div>
+          <div class="prod-img"><img src="EXCLUSIVAVERDE.webp" alt="Oversized - Leg Day" /></div>
+          <div class="prod-info">
+            <p class="prod-name">Oversized - Leg Day</p>
+            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
+            <p class="prod-installment">Até 12x de R$ 6,48</p>
+            <span class="prod-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-img"><img src="EXCLUSIVAVERDE.webp" alt="Oversized - Tiger" /></div>
+          <div class="prod-info">
+            <p class="prod-name">Oversized - Tiger</p>
+            <p class="prod-price"><strong>R$ 69,90</strong></p>
+            <p class="prod-installment">Até 12x de R$ 7,56</p>
+            <span class="prod-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-badge">-60%</div>
+          <div class="prod-img"><img src="EXCLUSIVAVERDE.webp" alt="Oversized - Warrior" /></div>
+          <div class="prod-info">
+            <p class="prod-name">Oversized - Warrior</p>
+            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
+            <p class="prod-installment">Até 12x de R$ 6,48</p>
+            <span class="prod-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="prod-card">
+          <div class="prod-badge">-60%</div>
+          <div class="prod-img"><img src="EXCLUSIVAVERDE.webp" alt="Oversized - Viking" /></div>
+          <div class="prod-info">
+            <p class="prod-name">Oversized - Viking</p>
+            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
+            <p class="prod-installment">Até 12x de R$ 6,48</p>
+            <span class="prod-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Barra de progresso + setas -->
+    <div class="products-footer">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="progressFill"></div>
+        </div>
+      </div>
+      <div class="products-arrows">
+        <button class="arrow-btn" id="prodPrev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="arrow-btn" id="prodNext" aria-label="Próximo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       DESIGN FUNCIONAL
+  ══════════════════════════════════════ -->
+  <section class="tech-section" id="tech-modal">
+
+    <div class="tech-header">
+      <h2 class="tech-title">Feita pra quem não para.</h2>
+      <p class="tech-subtitle">Desenvolvida com tecnologia modal de alta performance, leve, macio e com caimento que acompanha cada movimento. Do treino à rua, sem parar.</p>
+    </div>
+
+    <div class="products-viewport" id="techViewport">
+      <div class="products-track" id="techTrack">
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Preta" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Tech Modal - Preta</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Azul Marinho" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Tech Modal - Azul Marinho</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Chumbo" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Tech Modal - Chumbo</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Branca" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Tech Modal - Branca</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Verde" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Tech Modal - Verde</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Vinho" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Tech Modal - Vinho</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="products-footer">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="techFill"></div>
+        </div>
+      </div>
+      <div class="products-arrows">
+        <button class="arrow-btn" id="techPrev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="arrow-btn" id="techNext" aria-label="Próximo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       POLIAMIDA TECH
+  ══════════════════════════════════════ -->
+  <section class="tech-section" id="poliamida" style="background:#ebebeb;">
+
+    <div class="tech-header">
+      <h2 class="tech-title">Movimento sem limites.</h2>
+      <p class="tech-subtitle">A linha Poliamida Tech foi criada para acompanhar cada agachamento, cada sprint, cada PR. Leve, resistente e com identidade que vai do treino às ruas.</p>
+    </div>
+
+    <div class="products-viewport" id="poliamidaViewport">
+      <div class="products-track" id="poliamidaTrack">
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Preta" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Poliamida Tech - Preta</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Azul Marinho" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Poliamida Tech - Azul Marinho</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Chumbo" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Poliamida Tech - Chumbo</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Branca" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Poliamida Tech - Branca</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Verde" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Poliamida Tech - Verde</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+        <div class="tech-card">
+          <div class="tech-badge">-67%</div>
+          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Vinho" /></div>
+          <div class="tech-info">
+            <p class="tech-name">Camiseta - Poliamida Tech - Vinho</p>
+            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
+            <p class="tech-installment">Até 12x de R$ 5,40</p>
+            <span class="tech-cashback">Frete grátis nessa peça</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="products-footer">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="poliamidaFill"></div>
+        </div>
+      </div>
+      <div class="products-arrows">
+        <button class="arrow-btn" id="poliamidaPrev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="arrow-btn" id="poliamidaNext" aria-label="Próximo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       DEPOIMENTOS
+  ══════════════════════════════════════ -->
+  <section class="reviews-section">
+
+    <div class="reviews-section-title">
+      <p class="reviews-eyebrow">Depoimentos</p>
+      <h2 class="reviews-heading">O que dizem nossos clientes</h2>
+    </div>
+
+    <div class="reviews-top">
+      <div class="reviews-badge">
+        <span class="reviews-score">4.9</span>
+        <div class="reviews-badge-mid">
+          <div class="reviews-stars-row">★★★★★</div>
+          <span class="reviews-source">Baseado em avaliações do Google</span>
+        </div>
+        <div class="reviews-badge-sep"></div>
+        <div class="reviews-google-col">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          <span>Google</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-carousel-outer">
+      <div class="reviews-viewport" id="reviewsViewport">
+        <div class="reviews-track" id="reviewsTrack">
+
+          <!-- Badge card — visível só no mobile -->
+          <div class="review-badge-card">
+            <div class="review-badge-left">
+              <span class="reviews-score">4.9</span>
+              <div class="reviews-badge-mid">
+                <div class="reviews-stars-row">★★★★★</div>
+                <span class="reviews-source">Baseado em avaliações do Google</span>
+              </div>
+            </div>
+            <div class="reviews-badge-sep"></div>
+            <div class="reviews-google-col">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+              <span>Google</span>
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#1d4ed8">P</div>
+              <div class="review-author"><strong>Pedro A.</strong><span>Cliente verificado</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 2 semanas</span></div>
+            <p class="review-text">Melhor camiseta que já usei. O tecido é leve e não deforma depois de lavar. Comprei a Oversized e já quero a Tech Modal também.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#7c3aed">J</div>
+              <div class="review-author"><strong>Juliana R.</strong><span>Cliente verificada</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 1 mês</span></div>
+            <p class="review-text">Chegou rápido e bem embalada. O caimento é perfeito e o material é de qualidade. Super recomendo a Berzerk!</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#ea580c">M</div>
+              <div class="review-author"><strong>Marcos T.</strong><span>Cliente verificado</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 3 semanas</span></div>
+            <p class="review-text">Fiz a compra pelo WhatsApp e foi super fácil. Atendimento ótimo e a camiseta chegou no prazo. Já indiquei para os amigos.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#9333ea">A</div>
+              <div class="review-author"><strong>Ana L.</strong><span>Cliente verificada</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 5 dias</span></div>
+            <p class="review-text">Comprei 3 peças e todas ficaram ótimas. A Tech Modal é impressionante, muito mais confortável do que eu esperava.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#0d9488">R</div>
+              <div class="review-author"><strong>Rafael S.</strong><span>Cliente verificado</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 2 meses</span></div>
+            <p class="review-text">Chegou antes do prazo. A Oversized é perfeita, caimento incrível e o tecido não esquenta nem em dia de sol forte.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#db2777">C</div>
+              <div class="review-author"><strong>Camila F.</strong><span>Cliente verificada</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 3 semanas</span></div>
+            <p class="review-text">Finalmente achei uma camiseta oversized de qualidade. Vale muito o preço. Já fiz o segundo pedido e recomendei para a família toda.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#4f46e5">B</div>
+              <div class="review-author"><strong>Bruno M.</strong><span>Cliente verificado</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 1 semana</span></div>
+            <p class="review-text">Produto top, atendimento rápido no WhatsApp. Tirei todas as dúvidas em minutos e recebi no prazo combinado.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#16a34a">L</div>
+              <div class="review-author"><strong>Larissa C.</strong><span>Cliente verificada</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 2 semanas</span></div>
+            <p class="review-text">A Poliamida Tech é sensacional para treino. Leve, não abafa e ainda fica ótima com qualquer look do dia a dia.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#dc2626">D</div>
+              <div class="review-author"><strong>Diego R.</strong><span>Cliente verificado</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 1 mês</span></div>
+            <p class="review-text">Comprei para mim e para minha namorada. Os dois ficaram perfeitos. Tecido de alta qualidade e acabamento impecável.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#b45309">F</div>
+              <div class="review-author"><strong>Fernanda O.</strong><span>Cliente verificada</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 4 semanas</span></div>
+            <p class="review-text">Primeira compra pela Berzerk e já sou fã. O tecido é muito macio e o caimento da Oversized é exatamente o que eu buscava.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#0891b2">T</div>
+              <div class="review-author"><strong>Thiago B.</strong><span>Cliente verificado</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 6 dias</span></div>
+            <p class="review-text">Melhor custo-benefício do mercado. Paguei barato, recebi rápido e a qualidade superou minhas expectativas. Recomendo demais.</p>
+          </div>
+
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-avatar" style="background:#6366f1">I</div>
+              <div class="review-author"><strong>Isabela M.</strong><span>Cliente verificada</span></div>
+              <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </div>
+            <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 1 mês</span></div>
+            <p class="review-text">Usei na academia e na rua e a camiseta performou muito bem nos dois ambientes. Quero comprar mais cores da linha Poliamida.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="reviews-nav">
+        <button class="arrow-btn" id="reviewsPrev" aria-label="Anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="reviews-dots" id="reviewsDots"></div>
+        <button class="arrow-btn" id="reviewsNext" aria-label="Próximo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FAQ
+  ══════════════════════════════════════ -->
+  <section class="faq-section" id="faq">
+    <div class="faq-inner">
+
+      <h2 class="faq-title">Dúvidas Frequentes</h2>
+
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            <span>Qual o prazo de entrega?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body"><p>O prazo varia de 3 a 7 dias úteis dependendo da sua região. Após a confirmação do pagamento você recebe o código de rastreio direto no WhatsApp.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            <span>Quais tamanhos estão disponíveis?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body"><p>Trabalhamos com P, M, G e GG. Se tiver dúvida sobre o tamanho ideal, basta mandar uma mensagem no WhatsApp com sua altura e peso que a gente te orienta.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            <span>Como funciona a troca ou devolução?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body"><p>Aceitamos troca em até 7 dias corridos após o recebimento, desde que a peça esteja sem uso e com a etiqueta. Entre em contato pelo WhatsApp e cuidamos de tudo.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            <span>É seguro comprar pelo WhatsApp?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body"><p>Sim! O pagamento é feito via Pix ou link de pagamento com SSL, e você recebe comprovante na hora. Mais de 500 clientes já compraram com total segurança.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            <span>Posso parcelar minha compra?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body"><p>Sim! Você pode parcelar em até 12x pelo link de pagamento enviado no WhatsApp. Também aceitamos Pix com desconto imediato.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            <span>O tecido encolhe na lavagem?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body"><p>Não. Nossas peças são pré-lavadas e passam por controle de qualidade para garantir que o tamanho e o caimento se mantenham após as lavagens. Siga as instruções da etiqueta e sua camiseta dura muito mais.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            <span>Qual a diferença entre Oversized, Tech Modal e Poliamida Tech?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body"><p>A Oversized tem caimento amplo com tecido premium, ideal para o dia a dia. A Tech Modal é feita com modal macio de alta performance, perfeita para quem não para. Já a Poliamida Tech é ultraleve e respirável, desenvolvida para atividades físicas e uso nas ruas.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            <span>Vocês fazem entrega para todo o Brasil?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body"><p>Sim! Entregamos para todo o território nacional via Correios ou transportadora parceira. Pedidos acima de R$299 têm frete grátis independente da região.</p></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════ -->
+  <section class="cta-section" id="contato">
+    <div class="cta-bg-word" aria-hidden="true">BERZERK</div>
+    <div class="cta-inner">
+
+      <!-- Urgency badge -->
+      <div class="cta-urgency">
+        <span class="cta-urgency-dot"></span>
+        Oferta ativa &middot; Estoque limitado
+      </div>
+
+      <!-- Title -->
+      <h2 class="cta-title">
+        Entre no
+        <span class="cta-title-outline">Modo Berzerk</span>
+      </h2>
+
+      <!-- Sub -->
+      <p class="cta-sub">Vista o que poucos têm coragem de usar.<br>Frete grátis · 12x sem juros · Troca fácil.</p>
+
+      <!-- Trust badges -->
+      <div class="cta-trust">
+        <div class="cta-trust-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Pagamento seguro
+        </div>
+        <span class="cta-trust-sep">·</span>
+        <div class="cta-trust-item">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Frete grátis acima R$299
+        </div>
+        <span class="cta-trust-sep">·</span>
+        <div class="cta-trust-item">
+          <svg viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+          Troca fácil
+        </div>
+        <span class="cta-trust-sep">·</span>
+        <div class="cta-trust-item">
+          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          Entrega rápida
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="cta-btns">
+        <a href="https://wa.me/SEUNUMERO" class="cta-wa-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.127 1.528 5.862L0 24l6.294-1.499A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.932 9.932 0 0 1-5.13-1.425l-.37-.22-3.724.977.994-3.633-.243-.382A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm5.47-7.538c-.3-.15-1.775-.877-2.05-.977-.274-.1-.474-.15-.673.15-.2.3-.774.977-.948 1.177-.175.2-.35.225-.65.075-.3-.15-1.267-.468-2.413-1.49-.892-.797-1.494-1.781-1.67-2.08-.176-.3-.019-.463.131-.612.135-.135.3-.351.45-.526.15-.176.2-.301.3-.501.1-.2.05-.376-.025-.526-.075-.15-.673-1.627-.924-2.228-.244-.585-.492-.506-.673-.515l-.576-.01c-.2 0-.526.075-.8.376-.276.3-1.052 1.027-1.052 2.504 0 1.477 1.077 2.904 1.226 3.105.15.2 2.12 3.234 5.13 4.535.717.31 1.275.494 1.712.632.719.229 1.373.197 1.89.12.576-.086 1.775-.726 2.025-1.427.25-.7.25-1.3.175-1.427-.075-.126-.276-.2-.576-.351z"/></svg>
+          Pedir no WhatsApp
+        </a>
+        <a href="#oversized" class="cta-btn-secondary">
+          Ver coleção
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Social proof -->
+      <p class="cta-social-text"><strong>★★★★★</strong> +500 clientes satisfeitos</p>
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="footer">
+
+    <div class="footer-main">
+
+      <!-- Informações -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Informações</h4>
+        <ul class="footer-links">
+          <li><a href="#">Frete e Entrega</a></li>
+          <li><a href="#">Política de Privacidade</a></li>
+          <li><a href="https://wa.me/SEUNUMERO" target="_blank" rel="noopener">Fale Conosco</a></li>
+        </ul>
+      </div>
+
+      <!-- Redes sociais -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Nossas Redes Sociais</h4>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#000"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Promoções -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Nossas Promoções</h4>
+        <ul class="footer-links footer-promo-links">
+          <li>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+              Frete grátis acima de R$299
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Parcele em até 12x sem juros
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/></svg>
+              Troca fácil em 7 dias
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+              Até 67% OFF nas ofertas
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">Berzerk ® — Todos os direitos reservados.</p>
+
+      <p class="footer-credit">Criado por: <strong>Nicolas Dev</strong></p>
+    </div>
+
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       PRODUCT MODAL
+  ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-container">
+      <button class="modal-close" id="modalClose" aria-label="Fechar">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <!-- Galeria -->
+      <div class="modal-gallery">
+        <div class="modal-thumbs" id="modalThumbs"></div>
+        <div class="modal-main-img">
+          <img id="modalMainImg" src="" alt="" />
+        </div>
+      </div>
+
+      <!-- Informações -->
+      <div class="modal-info">
+        <h1 class="modal-title" id="modalTitle"></h1>
+
+        <div class="modal-meta">
+          <div class="modal-stars">★★★★★ <b>4.9/5</b></div>
+          <div class="modal-live"><span class="modal-live-dot"></span><span>115 ao vivo</span></div>
+        </div>
+
+        <div class="modal-price-row">
+          <span class="modal-price-old" id="modalPriceOld"></span>
+          <span class="modal-off-badge" id="modalOffBadge"></span>
+        </div>
+        <div class="modal-price-main" id="modalPriceMain"></div>
+        <div class="modal-installments" id="modalInstallments"></div>
+        <div class="modal-cashback-pill">🎁 Frete grátis acima de R$299</div>
+
+        <div class="modal-size-row">
+          <p class="modal-size-label">Tamanho: <span id="modalSelectedSize">P</span></p>
+          <div class="modal-sizes">
+            <button class="modal-size-btn active" data-size="P">P</button>
+            <button class="modal-size-btn" data-size="M">M</button>
+            <button class="modal-size-btn" data-size="G">G</button>
+            <button class="modal-size-btn" data-size="GG">GG</button>
+            <button class="modal-size-btn" data-size="XG">XG</button>
+          </div>
+        </div>
+
+        <a href="#" class="modal-table-link">
+          <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          Tabela de Medidas
+        </a>
+
+        <a href="https://wa.me/SEUNUMERO" class="modal-wa-btn" id="modalWaBtn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.127 1.528 5.862L0 24l6.294-1.499A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm5.47 16.462c-.3-.15-1.775-.877-2.05-.977-.274-.1-.474-.15-.673.15-.2.3-.774.977-.948 1.177-.175.2-.35.225-.65.075-.3-.15-1.267-.468-2.413-1.49-.892-.797-1.494-1.781-1.67-2.08-.176-.3-.019-.463.131-.612.135-.135.3-.351.45-.526.15-.176.2-.301.3-.501.1-.2.05-.376-.025-.526-.075-.15-.673-1.627-.924-2.228-.244-.585-.492-.506-.673-.515l-.576-.01c-.2 0-.526.075-.8.376-.276.3-1.052 1.027-1.052 2.504 0 1.477 1.077 2.904 1.226 3.105.15.2 2.12 3.234 5.13 4.535.717.31 1.275.494 1.712.632.719.229 1.373.197 1.89.12.576-.086 1.775-.726 2.025-1.427.25-.7.25-1.3.175-1.427-.075-.126-.276-.2-.576-.351z"/></svg>
+          Pedir no WhatsApp
+        </a>
+
+        <p class="modal-shipping">Frete grátis nas compras acima de R$ 299</p>
+
+        <div class="modal-features">
+          <div class="modal-feature">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            <span class="modal-feature-label">96%<br>Algodão</span>
+          </div>
+          <div class="modal-feature">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            <span class="modal-feature-label">Gramatura<br>190G</span>
+          </div>
+          <div class="modal-feature">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <span class="modal-feature-label">Caimento<br>Perfeito</span>
+          </div>
+          <div class="modal-feature">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span class="modal-feature-label">Resistente,<br>Não Encolhe</span>
+          </div>
+          <div class="modal-feature">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            <span class="modal-feature-label">Toque<br>Suave</span>
+          </div>
+          <div class="modal-feature">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span class="modal-feature-label">Estilo<br>Único</span>
+          </div>
+        </div>
+
+        <div class="modal-accordion-item">
+          <button class="modal-accordion-btn">Descrição <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="modal-accordion-body">
+            <p>— Conheça a coleção Berzerk!</p>
+            <p>— Reúne alta performance com o casual, perfeito para o treino e para o dia a dia, combinando estilo e versatilidade.</p>
+            <p>— Tecido Tech: 96% algodão 4% elastano, proporcionando caimento perfeito ao corpo.</p>
+            <p>— Gramatura de 190GSM.</p>
+            <p>— Gola 2x1 em Ribana Canelada com elastano, não esgarça com o tempo.</p>
+            <p>— Tingimento reativo (não desbota) e pré encolhido para manter a forma original.</p>
+            <p>— Estampa em Silk Screen no Plastisol para alta durabilidade.</p>
+          </div>
+        </div>
+
+        <div class="modal-accordion-item">
+          <button class="modal-accordion-btn">Detalhes do Produto <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+          <div class="modal-accordion-body">
+            <p><strong>Material:</strong> 96% Algodão e 4% elastano</p>
+            <p><strong>Gramatura:</strong> 190g/m²</p>
+            <p><strong>Modelagem:</strong> Oversized</p>
+          </div>
+        </div>
+
+        <div class="modal-info-sec">
+          <p class="modal-info-sec-title">Informações</p>
+          <div class="modal-info-items">
+            <div class="modal-info-item">
+              <svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+              <div class="modal-info-item-text">Frete grátis para pedidos acima de R$299.</div>
+            </div>
+            <div class="modal-info-item">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+              <div class="modal-info-item-text">Melhor custo benefício do Brasil.<a href="#">Entenda o motivo.</a></div>
+            </div>
+            <div class="modal-info-item">
+              <svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H5v10a2 2 0 002 2h10a2 2 0 002-2V10h1.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>
+              <div class="modal-info-item-text">Mais cuidado, mais durabilidade.<a href="#">Veja como conservar seu produto.</a></div>
+            </div>
+            <div class="modal-info-item">
+              <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+              <div class="modal-info-item-text">A primeira troca é fácil e gratuita.<a href="#">Confira as opções de troca aqui.</a></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BACK TO TOP BUTTON
+  ══════════════════════════════════════ -->
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 19V5"></path>
+      <path d="M5 12l7-7 7 7"></path>
+    </svg>
+  </button>
+
+  <script>
+    const hamburgerBtn  = document.getElementById('hamburgerBtn');
+    const drawerClose   = document.getElementById('drawerClose');
+    const drawer        = document.getElementById('drawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+
+    function openDrawer() {
+      drawer.classList.add('open');
+      drawerOverlay.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeDrawer() {
+      drawer.classList.remove('open');
+      drawerOverlay.classList.remove('open');
+      drawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // ── Tech section carousel ──
+    (function () {
+      const viewport = document.getElementById('techViewport');
+      const track    = document.getElementById('techTrack');
+      const fill     = document.getElementById('techFill');
+      const btnPrev  = document.getElementById('techPrev');
+      const btnNext  = document.getElementById('techNext');
+      if (!track) return;
+
+      const cards = Array.from(track.children);
+      const total = cards.length;
+      let step = 0, startX = 0, lastX = 0, dragging = false;
+
+      function visibleCount() { return window.innerWidth <= 900 ? 1 : 4; }
+      function cardW()        { return cards[0].offsetWidth + 16; }
+      function maxStep()      { return total - visibleCount(); }
+
+      function updateUI() {
+        track.style.transform = `translateX(${-step * cardW()}px)`;
+        const pct = maxStep() > 0 ? (step / maxStep()) * 100 : 0;
+        fill.style.width = pct + '%';
+        btnPrev.disabled = step === 0;
+        btnNext.disabled = step >= maxStep();
+      }
+
+      btnNext.addEventListener('click', () => { if (step < maxStep()) { step++; updateUI(); } });
+      btnPrev.addEventListener('click', () => { if (step > 0) { step--; updateUI(); } });
+
+      viewport.addEventListener('touchstart', e => {
+        dragging = true; startX = lastX = e.touches[0].clientX;
+        track.style.transition = 'none';
+      }, { passive: true });
+      viewport.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        lastX = e.touches[0].clientX;
+        const diff = lastX - startX;
+        if (Math.abs(diff) > 8) e.preventDefault();
+        track.style.transform = `translateX(${-step * cardW() + diff}px)`;
+      }, { passive: false });
+      viewport.addEventListener('touchend', () => {
+        if (!dragging) return; dragging = false;
+        track.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+        const diff = lastX - startX;
+        if (diff < -50 && step < maxStep()) step++;
+        else if (diff > 50 && step > 0)     step--;
+        updateUI();
+      });
+
+      window.addEventListener('resize', updateUI);
+      updateUI();
+    })();
+
+    // ── Poliamida section carousel ──
+    (function () {
+      const viewport = document.getElementById('poliamidaViewport');
+      const track    = document.getElementById('poliamidaTrack');
+      const fill     = document.getElementById('poliamidaFill');
+      const btnPrev  = document.getElementById('poliamidaPrev');
+      const btnNext  = document.getElementById('poliamidaNext');
+      if (!track) return;
+
+      const cards = Array.from(track.children);
+      const total = cards.length;
+      let step = 0, startX = 0, lastX = 0, dragging = false;
+
+      function visibleCount() { return window.innerWidth <= 900 ? 1 : 4; }
+      function cardW()        { return cards[0].offsetWidth + 16; }
+      function maxStep()      { return total - visibleCount(); }
+
+      function updateUI() {
+        track.style.transform = `translateX(${-step * cardW()}px)`;
+        const pct = maxStep() > 0 ? (step / maxStep()) * 100 : 0;
+        fill.style.width = pct + '%';
+        btnPrev.disabled = step === 0;
+        btnNext.disabled = step >= maxStep();
+      }
+
+      btnNext.addEventListener('click', () => { if (step < maxStep()) { step++; updateUI(); } });
+      btnPrev.addEventListener('click', () => { if (step > 0) { step--; updateUI(); } });
+
+      viewport.addEventListener('touchstart', e => {
+        dragging = true; startX = lastX = e.touches[0].clientX;
+        track.style.transition = 'none';
+      }, { passive: true });
+      viewport.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        lastX = e.touches[0].clientX;
+        const diff = lastX - startX;
+        if (Math.abs(diff) > 8) e.preventDefault();
+        track.style.transform = `translateX(${-step * cardW() + diff}px)`;
+      }, { passive: false });
+      viewport.addEventListener('touchend', () => {
+        if (!dragging) return; dragging = false;
+        track.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+        const diff = lastX - startX;
+        if (diff < -50 && step < maxStep()) step++;
+        else if (diff > 50 && step > 0)     step--;
+        updateUI();
+      });
+
+      window.addEventListener('resize', updateUI);
+      updateUI();
+    })();
+
+    // ── Produtos carousel ──
+    (function () {
+      const viewport   = document.getElementById('productsViewport');
+      const track      = document.getElementById('productsTrack');
+      const fill       = document.getElementById('progressFill');
+      const btnPrev    = document.getElementById('prodPrev');
+      const btnNext    = document.getElementById('prodNext');
+      if (!track) return;
+
+      const cards      = Array.from(track.children);
+      const total      = cards.length;
+      let step         = 0;
+      let startX       = 0;
+      let lastX        = 0;
+      let dragging     = false;
+
+      function visibleCount() {
+        return window.innerWidth <= 900 ? 1 : 4;
+      }
+
+      function cardW() {
+        return cards[0].offsetWidth + 16; // 16 = gap
+      }
+
+      function maxStep() {
+        return total - visibleCount();
+      }
+
+      function updateUI() {
+        track.style.transform = `translateX(${-step * cardW()}px)`;
+        const pct = maxStep() > 0 ? (step / maxStep()) * 100 : 0;
+        fill.style.width = pct + '%';
+        btnPrev.disabled = step === 0;
+        btnNext.disabled = step >= maxStep();
+      }
+
+      btnNext.addEventListener('click', () => {
+        if (step < maxStep()) { step++; updateUI(); }
+      });
+
+      btnPrev.addEventListener('click', () => {
+        if (step > 0) { step--; updateUI(); }
+      });
+
+      // Touch/drag no mobile
+      viewport.addEventListener('touchstart', e => {
+        dragging = true;
+        startX = lastX = e.touches[0].clientX;
+        track.style.transition = 'none';
+      }, { passive: true });
+
+      viewport.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        lastX = e.touches[0].clientX;
+        const diff = lastX - startX;
+        if (Math.abs(diff) > 8) e.preventDefault();
+        track.style.transform = `translateX(${-step * cardW() + diff}px)`;
+      }, { passive: false });
+
+      viewport.addEventListener('touchend', () => {
+        if (!dragging) return;
+        dragging = false;
+        track.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+        const diff = lastX - startX;
+        if (diff < -50 && step < maxStep())  step++;
+        else if (diff > 50 && step > 0)      step--;
+        updateUI();
+      });
+
+      window.addEventListener('resize', updateUI);
+      updateUI();
+    })();
+
+    hamburgerBtn.addEventListener('click', openDrawer);
+    drawerClose.addEventListener('click', closeDrawer);
+    drawerOverlay.addEventListener('click', closeDrawer);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeDrawer();
+    });
+
+    // ── Carousel infinito com drag ──
+    (function () {
+      const carousel = document.getElementById('colCarousel');
+      const track    = document.getElementById('carouselTrack');
+      if (!track || !carousel) return;
+
+      const origSlides = Array.from(track.children);
+      const N = origSlides.length;
+      const COPIES = 4; // cópias de cada lado — nunca fica branco
+
+      // Esvazia o track e reconstrói com múltiplas cópias
+      track.innerHTML = '';
+      for (let c = 0; c < COPIES * 2 + 1; c++) {
+        origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
+      }
+
+      // Começa no centro (cópias do meio)
+      let idx      = COPIES * N;
+      let autoTimer;
+      let startX   = 0;
+      let lastX    = 0;
+      let dragging = false;
+
+      function slideW() {
+        return track.children[0].offsetWidth + 12;
+      }
+
+      function moveTo(i, anim) {
+        track.style.transition = anim
+          ? 'transform 0.65s cubic-bezier(0.25, 1, 0.5, 1)'
+          : 'none';
+        track.style.transform = `translateX(${-i * slideW()}px)`;
+        idx = i;
+      }
+
+      moveTo(idx, false);
+
+      // Após cada transição, se afastou demais do centro, reposiciona
+      track.addEventListener('transitionend', () => {
+        const center = COPIES * N + (idx % N);
+        if (idx < N || idx >= (COPIES * 2) * N) {
+          moveTo(COPIES * N + ((idx % N) + N) % N, false);
+        }
+      });
+
+      function go(dir) { moveTo(idx + dir, true); }
+
+      function startAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(() => go(1), 3500);
+      }
+
+      carousel.addEventListener('touchstart', e => {
+        dragging = true;
+        startX = lastX = e.touches[0].clientX;
+        clearInterval(autoTimer);
+        track.style.transition = 'none';
+      }, { passive: true });
+
+      carousel.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        lastX = e.touches[0].clientX;
+        const diff = lastX - startX;
+        if (Math.abs(diff) > 8) e.preventDefault();
+        track.style.transform = `translateX(${-idx * slideW() + diff}px)`;
+      }, { passive: false });
+
+      carousel.addEventListener('touchend', () => {
+        if (!dragging) return;
+        dragging = false;
+        const diff = lastX - startX;
+        if      (diff < -50) go(1);
+        else if (diff >  50) go(-1);
+        else                 moveTo(idx, true);
+        startAuto();
+      });
+
+      startAuto();
+    })();
+
+    // ── Product Modal ──
+    (function () {
+      const overlay    = document.getElementById('productModal');
+      const closeBtn   = document.getElementById('modalClose');
+      const mainImg    = document.getElementById('modalMainImg');
+      const thumbsEl   = document.getElementById('modalThumbs');
+      const titleEl    = document.getElementById('modalTitle');
+      const priceOldEl = document.getElementById('modalPriceOld');
+      const offBadgeEl = document.getElementById('modalOffBadge');
+      const priceMainEl= document.getElementById('modalPriceMain');
+      const installEl  = document.getElementById('modalInstallments');
+      const selSizeEl  = document.getElementById('modalSelectedSize');
+      const waBtn      = document.getElementById('modalWaBtn');
+      const container  = overlay?.querySelector('.modal-container');
+
+      function openModal(data) {
+        titleEl.textContent    = data.name;
+        priceOldEl.textContent = data.priceOld || '';
+        offBadgeEl.textContent = data.off || '';
+        priceMainEl.textContent= data.price;
+        installEl.textContent  = data.installments;
+        mainImg.src = data.img;
+        mainImg.alt = data.name;
+        waBtn.href  = 'https://wa.me/SEUNUMERO?text=' + encodeURIComponent('Olá! Tenho interesse em: ' + data.name);
+
+        thumbsEl.innerHTML = '';
+        [data.img, data.img, data.img].forEach((src, i) => {
+          const t = document.createElement('div');
+          t.className = 'modal-thumb' + (i === 0 ? ' active' : '');
+          t.innerHTML = `<img src="${src}" alt="" />`;
+          t.addEventListener('click', () => {
+            thumbsEl.querySelectorAll('.modal-thumb').forEach(x => x.classList.remove('active'));
+            t.classList.add('active');
+            mainImg.src = src;
+          });
+          thumbsEl.appendChild(t);
+        });
+
+        selSizeEl.textContent = 'P';
+        document.querySelectorAll('.modal-size-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.size === 'P');
+        });
+
+        overlay.classList.add('open');
+        if (container) container.scrollTop = 0;
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+      document.querySelectorAll('.modal-size-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.modal-size-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          selSizeEl.textContent = btn.dataset.size;
+        });
+      });
+
+      document.querySelectorAll('.modal-accordion-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          btn.closest('.modal-accordion-item').classList.toggle('open');
+        });
+      });
+
+      function attachCards() {
+        document.querySelectorAll('.tech-card, .prod-card').forEach(card => {
+          if (card.dataset.modalBound) return;
+          card.dataset.modalBound = '1';
+          card.addEventListener('click', () => {
+            const img   = card.querySelector('img');
+            const name  = card.querySelector('.tech-name, .prod-name')?.textContent.trim() || '';
+            const pEl   = card.querySelector('.tech-price, .prod-price');
+            const old   = pEl?.querySelector('s')?.textContent.trim() || '';
+            const price = pEl?.querySelector('strong')?.textContent.trim() || '';
+            const inst  = card.querySelector('.tech-installment, .prod-installment')?.textContent.trim() || '';
+            const badge = card.querySelector('.tech-badge, .prod-badge')?.textContent.trim() || '';
+            openModal({ img: img?.src || '', name, priceOld: old, off: badge ? badge + ' OFF' : '', price, installments: inst });
+          });
+        });
+      }
+
+      attachCards();
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    })();
+
+    // Busca de produtos no header
+    (function () {
+      const openBtn = document.getElementById('searchOpen');
+      const overlay = document.getElementById('searchOverlay');
+      const closeBtn = document.getElementById('searchClose');
+      const input = document.getElementById('searchInput');
+      const resultsEl = document.getElementById('searchResults');
+      if (!openBtn || !overlay || !closeBtn || !input || !resultsEl) return;
+
+      const products = Array.from(document.querySelectorAll('.prod-card, .tech-card')).map(card => {
+        const img = card.querySelector('img');
+        const name = card.querySelector('.prod-name, .tech-name')?.textContent.trim() || '';
+        const price = card.querySelector('.prod-price strong, .tech-price strong')?.textContent.trim() || '';
+        const section = card.closest('section')?.querySelector('.products-title, .tech-title')?.textContent.trim() || '';
+        return {
+          card,
+          img: img?.src || '',
+          name,
+          price,
+          section,
+          searchText: `${name} ${price} ${section}`.toLowerCase()
+        };
+      });
+
+      function renderResults(query = '') {
+        const term = query.trim().toLowerCase();
+        const matches = (term ? products.filter(product => product.searchText.includes(term)) : products).slice(0, 12);
+
+        if (!matches.length) {
+          resultsEl.innerHTML = '<div class="search-empty">Nenhum produto encontrado.</div>';
+          return;
+        }
+
+        resultsEl.innerHTML = '';
+        matches.forEach(product => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'search-result';
+          button.innerHTML = `
+            <img src="${product.img}" alt="" />
+            <span>
+              <span class="search-result-name">${product.name}</span>
+              <span class="search-result-meta">${product.section}</span>
+            </span>
+            <span class="search-result-price">${product.price}</span>
+          `;
+          button.addEventListener('click', () => {
+            closeSearch();
+            product.card.click();
+          });
+          resultsEl.appendChild(button);
+        });
+      }
+
+      function openSearch() {
+        renderResults(input.value);
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        setTimeout(() => input.focus(), 50);
+      }
+
+      function closeSearch() {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      openBtn.addEventListener('click', openSearch);
+      closeBtn.addEventListener('click', closeSearch);
+      input.addEventListener('input', () => renderResults(input.value));
+      overlay.addEventListener('click', event => {
+        if (event.target === overlay) closeSearch();
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && overlay.classList.contains('open')) closeSearch();
+      });
+    })();
+
+    // ── Reviews carousel ──
+    (function () {
+      const viewport = document.getElementById('reviewsViewport');
+      const track    = document.getElementById('reviewsTrack');
+      const dotsEl   = document.getElementById('reviewsDots');
+      const btnPrev  = document.getElementById('reviewsPrev');
+      const btnNext  = document.getElementById('reviewsNext');
+      if (!track) return;
+
+      const allCards = Array.from(track.children);
+      let step     = 0;
+      let startX   = 0;
+      let lastX    = 0;
+      let dragging = false;
+
+      // Filtra cards visíveis (badge card é display:none no desktop)
+      function activeCards() { return allCards.filter(c => c.offsetParent !== null); }
+      function visibleCount() { return window.innerWidth <= 900 ? 1 : 3; }
+      function cardW()        { const a = activeCards(); return a.length ? a[0].offsetWidth + 20 : 0; }
+      function maxStep()      { return Math.max(0, activeCards().length - visibleCount()); }
+
+      function buildDots() {
+        dotsEl.innerHTML = '';
+        const ms = maxStep();
+        for (let i = 0; i <= ms; i++) {
+          const dot = document.createElement('button');
+          dot.className = 'reviews-dot' + (i === step ? ' active' : '');
+          dot.setAttribute('aria-label', 'Depoimento ' + (i + 1));
+          dot.addEventListener('click', () => { step = i; updateUI(); });
+          dotsEl.appendChild(dot);
+        }
+      }
+
+      function updateUI() {
+        step = Math.min(step, maxStep());
+        track.style.transform = `translateX(${-step * cardW()}px)`;
+        btnPrev.disabled = step === 0;
+        btnNext.disabled = step >= maxStep();
+        dotsEl.querySelectorAll('.reviews-dot').forEach((d, i) => d.classList.toggle('active', i === step));
+      }
+
+      btnNext.addEventListener('click', () => { if (step < maxStep()) { step++; updateUI(); } });
+      btnPrev.addEventListener('click', () => { if (step > 0)         { step--; updateUI(); } });
+
+      viewport.addEventListener('touchstart', e => {
+        dragging = true; startX = lastX = e.touches[0].clientX;
+        track.style.transition = 'none';
+      }, { passive: true });
+
+      viewport.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        lastX = e.touches[0].clientX;
+        const diff = lastX - startX;
+        if (Math.abs(diff) > 8) e.preventDefault();
+        track.style.transform = `translateX(${-step * cardW() + diff}px)`;
+      }, { passive: false });
+
+      viewport.addEventListener('touchend', () => {
+        if (!dragging) return; dragging = false;
+        track.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+        const diff = lastX - startX;
+        if (diff < -50 && step < maxStep()) step++;
+        else if (diff > 50 && step > 0)    step--;
+        updateUI();
+      });
+
+      window.addEventListener('resize', () => { buildDots(); updateUI(); });
+      buildDots();
+      updateUI();
+    })();
+
+    // ── FAQ accordion ──
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // ── Animações & Micro-interações ──
+    (function () {
+
+      // 1. Header sombra ao scrollar
+      const header = document.querySelector('.header');
+      if (header) {
+        window.addEventListener('scroll', () => {
+          header.classList.toggle('scrolled', window.scrollY > 40);
+        }, { passive: true });
+      }
+
+      // 2. Hero entrance — elementos entram em sequência no load
+      ['.hero-subtitle', '.hero-title', '.price-card', '.hero-cta', '.cashback-badge', '.hero-logo'].forEach((sel, i) => {
+        const el = document.querySelector(sel);
+        if (!el) return;
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(28px)';
+        el.style.transition = 'opacity 0.65s cubic-bezier(0.22,1,0.36,1), transform 0.65s cubic-bezier(0.22,1,0.36,1)';
+        setTimeout(() => { el.style.opacity = ''; el.style.transform = ''; }, 180 + i * 150);
+      });
+
+      // 3. Scroll reveal via IntersectionObserver
+      const revealIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0) scale(1)';
+          revealIO.unobserve(entry.target);
+        });
+      }, { threshold: 0.1 });
+
+      function reveal(el, delay = 0, mode = 'up') {
+        if (!el) return;
+        el.style.opacity = '0';
+        el.style.transform = mode === 'scale' ? 'translateY(16px) scale(0.97)' : 'translateY(32px)';
+        el.style.transition = `opacity 0.65s cubic-bezier(0.22,1,0.36,1) ${delay}ms, transform 0.65s cubic-bezier(0.22,1,0.36,1) ${delay}ms`;
+        revealIO.observe(el);
+      }
+
+      // Cabeçalhos das seções
+      document.querySelectorAll('.products-header, .tech-header, .reviews-section-title, .reviews-top, .faq-title').forEach(el => reveal(el));
+
+      // Collection cards com stagger
+      document.querySelectorAll('.col-card').forEach((el, i) => reveal(el, i * 110));
+
+      // FAQ items com stagger
+      document.querySelectorAll('.faq-item').forEach((el, i) => reveal(el, i * 55));
+
+      // CTA items com stagger
+      document.querySelectorAll('.cta-inner > *').forEach((el, i) => reveal(el, i * 90, 'scale'));
+
+      // 4. Ripple em botões e CTAs
+      function addRipple(btn, color) {
+        color = color || 'rgba(255,255,255,0.22)';
+        btn.addEventListener('click', function (e) {
+          const rect = btn.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height) * 2.4;
+          const span = document.createElement('span');
+          span.style.cssText = [
+            'position:absolute',
+            `width:${size}px`,
+            `height:${size}px`,
+            `left:${e.clientX - rect.left - size / 2}px`,
+            `top:${e.clientY - rect.top - size / 2}px`,
+            'border-radius:50%',
+            `background:${color}`,
+            'transform:scale(0)',
+            'animation:rippleAnim 0.55s linear forwards',
+            'pointer-events:none',
+            'z-index:0'
+          ].join(';');
+          btn.appendChild(span);
+          setTimeout(() => span.remove(), 580);
+        });
+      }
+
+      document.querySelectorAll('.hero-cta, .nav-wa, .cta-wa-btn, .cta-btn-secondary, .back-to-top, .drawer-wa').forEach(btn => addRipple(btn));
+      document.querySelectorAll('.arrow-btn').forEach(btn => addRipple(btn, 'rgba(255,255,255,0.14)'));
+      document.querySelectorAll('.faq-btn').forEach(btn => addRipple(btn, 'rgba(255,255,255,0.06)'));
+
+      // 5. Card hover lift
+      document.querySelectorAll('.prod-card, .tech-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-5px)';
+          card.style.boxShadow = '0 12px 40px rgba(0,0,0,0.45)';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+          card.style.boxShadow = '';
+        });
+      });
+
+      document.querySelectorAll('.review-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-4px)';
+          card.style.borderColor = '#3a3a3a';
+        });
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = '';
+          card.style.borderColor = '';
+        });
+      });
+
+      // 6. Contador do rating (0 → 4.9)
+      const scoreEl = document.querySelector('.reviews-score');
+      if (scoreEl) {
+        let counted = false;
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting && !counted) {
+            counted = true;
+            let v = 0;
+            const target = 4.9, step = 16, inc = target / (1100 / step);
+            const t = setInterval(() => {
+              v = Math.min(v + inc, target);
+              scoreEl.textContent = v.toFixed(1);
+              if (v >= target) clearInterval(t);
+            }, step);
+          }
+        }, { threshold: 0.5 }).observe(scoreEl);
+      }
+
+      // 7. Botao voltar ao topo
+      const backToTop = document.querySelector('.back-to-top');
+      if (backToTop) {
+        backToTop.style.transform = 'scale(0)';
+        backToTop.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1)';
+        setTimeout(() => { backToTop.style.transform = ''; }, 1400);
+        backToTop.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // 8. Nav link ativo conforme seção visível
+      const navLinkEls = document.querySelectorAll('.nav-links a');
+      const sectIds    = ['oversized', 'tech-modal', 'poliamida', 'faq', 'contato'];
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sectIds.forEach(id => {
+          const s = document.getElementById(id);
+          if (s && s.getBoundingClientRect().top < window.innerHeight * 0.6) current = id;
+        });
+        navLinkEls.forEach(a => a.classList.toggle('nav-active', a.getAttribute('href') === '#' + current));
+      }, { passive: true });
+
+      // 9. Ripple em botões restantes
+      const rippleDark  = 'rgba(0,0,0,0.12)';
+      const rippleLight = 'rgba(255,255,255,0.18)';
+      document.querySelectorAll('.icon-btn, .hamburger, .drawer-close').forEach(b => addRipple(b, rippleLight));
+      document.querySelectorAll('.modal-close, .modal-expand-btn').forEach(b => addRipple(b, rippleDark));
+      document.querySelectorAll('.modal-wa-btn').forEach(b => addRipple(b, rippleLight));
+      document.querySelectorAll('.modal-size-btn').forEach(b => addRipple(b, rippleLight));
+      document.querySelectorAll('.tech-tab').forEach(b => addRipple(b, rippleDark));
+
+      // 10. Efeito magnético — botão atrai o cursor levemente ao passar por perto
+      function addMagnetic(el, strength) {
+        strength = strength || 0.3;
+        el.addEventListener('mousemove', function (e) {
+          const r  = el.getBoundingClientRect();
+          const cx = r.left + r.width  / 2;
+          const cy = r.top  + r.height / 2;
+          el.style.transform = 'translate(' + ((e.clientX - cx) * strength).toFixed(1) + 'px,' + ((e.clientY - cy) * strength).toFixed(1) + 'px)';
+        });
+        el.addEventListener('mouseleave', function () {
+          el.style.transition = 'transform 0.5s cubic-bezier(0.34,1.56,0.64,1)';
+          el.style.transform  = '';
+          setTimeout(function () { el.style.transition = ''; }, 520);
+        });
+      }
+
+      document.querySelectorAll('.icon-btn').forEach(b => addMagnetic(b, 0.28));
+      document.querySelectorAll('.arrow-btn').forEach(b => addMagnetic(b, 0.2));
+
+      // 11. Spotlight — luz radial que segue o mouse em botões escuros
+      function addSpotlight(btn, color) {
+        color = color || 'rgba(255,255,255,0.18)';
+        const shine = document.createElement('span');
+        shine.style.cssText = 'position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;transition:opacity 0.3s;z-index:0;';
+        btn.appendChild(shine);
+
+        btn.addEventListener('mousemove', function (e) {
+          const r = btn.getBoundingClientRect();
+          const x = ((e.clientX - r.left) / r.width  * 100).toFixed(1);
+          const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1);
+          shine.style.background = 'radial-gradient(circle at ' + x + '% ' + y + '%, ' + color + ' 0%, transparent 60%)';
+          shine.style.opacity = '1';
+        });
+        btn.addEventListener('mouseleave', function () {
+          shine.style.opacity = '0';
+        });
+      }
+
+      document.querySelectorAll('.hero-cta, .nav-wa, .drawer-wa').forEach(b => addSpotlight(b, 'rgba(255,255,255,0.2)'));
+      addSpotlight(document.querySelector('.cta-wa-btn'), 'rgba(0,0,0,0.08)');
+      document.querySelectorAll('.modal-wa-btn').forEach(b => addSpotlight(b, 'rgba(255,255,255,0.12)'));
+      addSpotlight(document.querySelector('.back-to-top'), 'rgba(255,255,255,0.15)');
+
+      // 12. Tilt 3D em cards de produto ao mover o mouse
+      function addTilt(card, maxDeg) {
+        maxDeg = maxDeg || 8;
+        card.addEventListener('mousemove', function (e) {
+          const r  = card.getBoundingClientRect();
+          const x  = (e.clientX - r.left)  / r.width  - 0.5;
+          const y  = (e.clientY - r.top)   / r.height - 0.5;
+          card.style.transform = 'perspective(600px) rotateY(' + (x * maxDeg).toFixed(2) + 'deg) rotateX(' + (-y * maxDeg).toFixed(2) + 'deg) translateY(-5px)';
+          card.style.transition = 'transform 0.1s ease';
+          card.style.boxShadow  = '0 16px 48px rgba(0,0,0,0.28)';
+        });
+        card.addEventListener('mouseleave', function () {
+          card.style.transition = 'transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease';
+          card.style.transform  = '';
+          card.style.boxShadow  = '';
+        });
+      }
+
+      document.querySelectorAll('.prod-card, .tech-card').forEach(c => addTilt(c, 7));
+
+      // 13. Cursor spotlight no CTA section (brilho que segue o mouse na seção escura)
+      const ctaSection = document.querySelector('.cta-section');
+      if (ctaSection) {
+        const spot = document.createElement('div');
+        spot.style.cssText = 'position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 0.4s;z-index:1;';
+        ctaSection.insertBefore(spot, ctaSection.firstChild);
+
+        ctaSection.addEventListener('mousemove', function (e) {
+          const r = ctaSection.getBoundingClientRect();
+          const x = e.clientX - r.left;
+          const y = e.clientY - r.top;
+          spot.style.background = 'radial-gradient(500px circle at ' + x + 'px ' + y + 'px, rgba(255,255,255,0.04) 0%, transparent 65%)';
+          spot.style.opacity = '1';
+        });
+        ctaSection.addEventListener('mouseleave', function () { spot.style.opacity = '0'; });
+      }
+
+
+    })();
+  </script>
+</body>
+</html>
