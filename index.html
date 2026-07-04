@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Berzerk</title>
+  <title>La Fiore Pijamas</title>
   <link rel="icon" type="image/avif" href="logoheader.avif" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,12 +15,14 @@
     :root {
       --black: #000000;
       --white: #ffffff;
+      --header-bg: #FCE4DD;
+      --header-ink: #2D1018;
       --gray-muted: #6b6b6b;
       --gray-text: #999999;
       --card-bg: #1a1a1a;
       --border: #2e2e2e;
       --border-light: #3a3a3a;
-      --announcement-bg: #ffffff;
+      --announcement-bg: #2D1018;
       --nav-height-desktop: 58px;
       --nav-height-mobile: 56px;
       --announcement-height: 38px;
@@ -38,7 +40,7 @@
     /* ─── ANNOUNCEMENT BAR ─── */
     .announcement-bar {
       background: var(--announcement-bg);
-      color: #111;
+      color: #FCE4DD;
       text-align: center;
       padding: 0 16px;
       height: var(--announcement-height);
@@ -59,11 +61,11 @@
 
     /* ─── HEADER / NAV ─── */
     .header {
-      background: var(--black);
+      background: var(--header-bg);
       position: sticky;
       top: var(--announcement-height);
       z-index: 999;
-      border-bottom: 1px solid #1a1a1a;
+      border-bottom: 1px solid rgba(45, 16, 24, 0.18);
     }
 
     .nav-inner {
@@ -104,7 +106,7 @@
     }
 
     .nav-links a {
-      color: var(--white);
+      color: var(--header-ink);
       text-decoration: none;
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 500;
@@ -116,7 +118,7 @@
       white-space: nowrap;
     }
 
-    .nav-links a:hover { opacity: 0.6; }
+    .nav-links a:hover { opacity: 1; }
 
     /* Right icons */
     .nav-icons {
@@ -130,7 +132,7 @@
       position: relative;
       background: none;
       border: none;
-      color: var(--white);
+      color: var(--header-ink);
       cursor: pointer;
       padding: 8px;
       display: flex;
@@ -144,7 +146,7 @@
     .icon-btn svg {
       width: 20px;
       height: 20px;
-      stroke: var(--white);
+      stroke: currentColor;
       fill: none;
       stroke-width: 1.8;
       stroke-linecap: round;
@@ -349,7 +351,7 @@
       display: none;
       background: none;
       border: none;
-      color: var(--white);
+      color: var(--header-ink);
       cursor: pointer;
       padding: 8px;
       flex-direction: column;
@@ -362,7 +364,7 @@
       display: block;
       width: 22px;
       height: 1.5px;
-      background: var(--white);
+      background: var(--header-ink);
       transition: transform 0.3s, opacity 0.3s;
     }
 
@@ -1481,8 +1483,8 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      background: #fff;
-      color: #000;
+      background: #2D1018;
+      color: #fff;
       border: none;
       border-radius: 100px;
       padding: 8px 18px 8px 14px;
@@ -1493,7 +1495,7 @@
       text-transform: uppercase;
       text-decoration: none;
       cursor: pointer;
-      transition: opacity 0.2s, transform 0.2s;
+      transition: opacity 0.2s, transform 0.2s, background 0.2s;
       white-space: nowrap;
     }
 
@@ -2551,13 +2553,13 @@
       </button>
 
       <!-- Logo desktop -->
-      <a href="#" class="logo" aria-label="Berzerk">
-        <img src="logoheader.avif" alt="Berzerk" />
+      <a href="#" class="logo" aria-label="La Fiore Pijamas">
+        <img src="logofiore.png" alt="La Fiore Pijamas" />
       </a>
 
       <!-- Logo mobile (centered) -->
-      <a href="#" class="logo logo-mobile" aria-label="Berzerk">
-        <img src="logoheader.avif" alt="Berzerk" style="height:38px;" />
+      <a href="#" class="logo logo-mobile" aria-label="La Fiore Pijamas">
+        <img src="logofiore.png" alt="La Fiore Pijamas" style="height:38px;" />
       </a>
 
       <!-- Desktop nav links -->
@@ -2637,12 +2639,12 @@
     <div class="hero-bg">
       <picture>
         <source media="(max-width: 900px)" srcset="batch_Banner_Principal_-_Op5_-_Mobile.webp" />
-        <img src="batch_Banner_Principal_-_Op5_-_Desktop.webp" alt="Hero Berzerk" />
+        <img src="batch_Banner_Principal_-_Op5_-_Desktop.webp" alt="Hero La Fiore Pijamas" />
       </picture>
     </div>
 
     <div class="hero-content">
-      <p class="hero-subtitle">Entre no Modo Berzerk</p>
+      <p class="hero-subtitle">Seu momento de conforto começa aqui</p>
 
       <h1 class="hero-title">Pijamas</h1>
 
@@ -2671,7 +2673,7 @@
 
       <!-- Hero logo -->
       <div class="hero-logo">
-        <img src="logohero1.webp" alt="Berzerk" />
+        <img src="logohero1.webp" alt="La Fiore Pijamas" />
       </div>
     </div>
   </section>
@@ -3111,7 +3113,7 @@
               <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
             </div>
             <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 1 mês</span></div>
-            <p class="review-text">Chegou rápido e bem embalada. O caimento é perfeito e o material é de qualidade. Super recomendo a Berzerk!</p>
+            <p class="review-text">Chegou rápido e bem embalada. O caimento é perfeito e o material é de qualidade. Super recomendo a La Fiore!</p>
           </div>
 
           <div class="review-card">
@@ -3191,7 +3193,7 @@
               <svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
             </div>
             <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">há 4 semanas</span></div>
-            <p class="review-text">Primeira compra pela Berzerk e já sou fã. O tecido é muito macio e o caimento do pijama é exatamente o que eu buscava.</p>
+            <p class="review-text">Primeira compra pela La Fiore e já sou fã. O tecido é muito macio e o caimento do pijama é exatamente o que eu buscava.</p>
           </div>
 
           <div class="review-card">
@@ -3312,7 +3314,7 @@
        CTA FINAL
   ══════════════════════════════════════ -->
   <section class="cta-section" id="contato">
-    <div class="cta-bg-word" aria-hidden="true">BERZERK</div>
+    <div class="cta-bg-word" aria-hidden="true">LA FIORE</div>
     <div class="cta-inner">
 
       <!-- Urgency badge -->
@@ -3324,7 +3326,7 @@
       <!-- Title -->
       <h2 class="cta-title">
         Entre no
-        <span class="cta-title-outline">Modo Berzerk</span>
+        <span class="cta-title-outline">La Fiore Pijamas</span>
       </h2>
 
       <!-- Sub -->
@@ -3440,7 +3442,7 @@
     <div class="footer-divider"></div>
 
     <div class="footer-bottom">
-      <p class="footer-copy">Berzerk ® — Todos os direitos reservados.</p>
+      <p class="footer-copy">La Fiore Pijamas ® — Todos os direitos reservados.</p>
 
       <p class="footer-credit">Criado por: <strong>Nicolas Dev</strong></p>
     </div>
@@ -3534,7 +3536,7 @@
         <div class="modal-accordion-item">
           <button class="modal-accordion-btn">Descrição <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
           <div class="modal-accordion-body">
-            <p>— Conheça a coleção Berzerk!</p>
+            <p>— Conheça a coleção La Fiore Pijamas!</p>
             <p>— Reúne alta performance com o casual, perfeito para o treino e para o dia a dia, combinando estilo e versatilidade.</p>
             <p>— Tecido Tech: 96% algodão 4% elastano, proporcionando caimento perfeito ao corpo.</p>
             <p>— Gramatura de 190GSM.</p>
