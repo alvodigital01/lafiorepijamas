@@ -749,20 +749,6 @@
       font-weight: 600;
     }
 
-    /* Hero logo */
-    .hero-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      animation: fadeUp 0.9s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-      margin-top: 8px;
-    }
-
-    .hero-logo img {
-      height: 52px;
-      width: auto;
-    }
-
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
       .nav-links { display: none; }
@@ -1796,79 +1782,6 @@
       .modal-size-btn { width: 42px; height: 42px; }
     }
 
-    /* ─── COLLECTIONS ─── */
-    .collections {
-      background: #f2f2f2;
-    }
-
-    /* Desktop grid */
-    .collections-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .col-card {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      color: inherit;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .col-card__img {
-      overflow: hidden;
-      aspect-ratio: 9/11;
-    }
-
-    .col-card__img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-      display: block;
-      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .col-card:hover .col-card__img img {
-      transform: scale(1.04);
-    }
-
-
-    /* Dividers between columns */
-    .col-card:not(:last-child) {
-      border-right: 1px solid #e0e0e0;
-    }
-
-    /* Mobile carousel — hidden on desktop */
-    .col-carousel { display: none; }
-
-    @media (max-width: 900px) {
-      .collections-grid { display: none; }
-
-      .col-carousel {
-        display: block;
-        overflow: hidden;
-        position: relative;
-      }
-
-      .col-carousel__track {
-        display: flex;
-        transition: transform 0.9s cubic-bezier(0.77, 0, 0.18, 1);
-      }
-
-      .col-carousel__item {
-        flex: 0 0 80%;
-        text-decoration: none;
-        color: inherit;
-        margin-right: 12px;
-      }
-
-      .col-carousel__item .col-card__img {
-        aspect-ratio: 3/4;
-      }
-    }
-
     /* ─── DEPOIMENTOS ─── */
     .reviews-section-title {
       text-align: center;
@@ -2638,8 +2551,8 @@
   <section class="hero">
     <div class="hero-bg">
       <picture>
-        <source media="(max-width: 900px)" srcset="batch_Banner_Principal_-_Op5_-_Mobile.webp" />
-        <img src="batch_Banner_Principal_-_Op5_-_Desktop.webp" alt="Hero La Fiore Pijamas" />
+        <source media="(max-width: 900px)" srcset="bannermobile.png" />
+        <img src="bannerpc.png" alt="Hero La Fiore Pijamas" />
       </picture>
     </div>
 
@@ -2671,58 +2584,7 @@
         <strong>Frete grátis</strong> acima de R$299
       </div>
 
-      <!-- Hero logo -->
-      <div class="hero-logo">
-        <img src="logohero1.webp" alt="La Fiore Pijamas" />
-      </div>
     </div>
-  </section>
-
-  <!-- ══════════════════════════════════════
-       COLLECTIONS SECTION
-  ══════════════════════════════════════ -->
-  <section class="collections">
-
-    <!-- Desktop grid -->
-    <div class="collections-grid">
-      <a href="#oversized" class="col-card">
-        <div class="col-card__img">
-          <img src="1.jpg" alt="Pijamas" />
-        </div>
-      </a>
-      <a href="#tech-modal" class="col-card">
-        <div class="col-card__img">
-          <img src="tech.webp" alt="Tech Modal" />
-        </div>
-      </a>
-      <a href="#poliamida" class="col-card">
-        <div class="col-card__img">
-          <img src="polimida.webp" alt="Poliamida Tech" />
-        </div>
-      </a>
-    </div>
-
-    <!-- Mobile carousel -->
-    <div class="col-carousel" id="colCarousel">
-      <div class="col-carousel__track" id="carouselTrack">
-        <a href="#oversized" class="col-carousel__item">
-          <div class="col-card__img">
-            <img src="1.jpg" alt="Pijamas" />
-          </div>
-        </a>
-        <a href="#tech-modal" class="col-carousel__item">
-          <div class="col-card__img">
-            <img src="tech.webp" alt="Tech Modal" />
-          </div>
-        </a>
-        <a href="#poliamida" class="col-carousel__item">
-          <div class="col-card__img">
-            <img src="polimida.webp" alt="Poliamida Tech" />
-          </div>
-        </a>
-      </div>
-    </div>
-
   </section>
 
   <!-- ══════════════════════════════════════
@@ -2730,326 +2592,88 @@
   ══════════════════════════════════════ -->
   <section class="products-section" id="oversized">
 
-    <div class="products-header">
-      <h2 class="products-title">Pijamas</h2>
-      <p class="products-subtitle">Pijamas confortáveis para descansar, dormir bem e manter o visual bonito dentro de casa.</p>
+  <div class="products-header">
+    <h2 class="products-title">Pijamas Femininos</h2>
+    <p class="products-subtitle">Modelos macios, leves e bonitos para transformar a rotina de descanso em um momento especial.</p>
+  </div>
+
+  <div class="products-viewport" id="productsViewport">
+    <div class="products-track" id="productsTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="prodPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="prodNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
+  </div>
 
-    <div class="products-viewport" id="productsViewport">
-      <div class="products-track" id="productsTrack">
+</section>
 
-        <div class="prod-card">
-          <div class="prod-badge">-60%</div>
-          <div class="prod-img"><img src="1.jpg" alt="Pijama Lua Serena" /></div>
-          <div class="prod-info">
-            <p class="prod-name">Pijama Lua Serena</p>
-            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
-            <p class="prod-installment">Até 12x de R$ 6,48</p>
-            <span class="prod-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
+<section class="products-section collection-section--white" id="tech-modal">
 
-        <div class="prod-card">
-          <div class="prod-badge">-60%</div>
-          <div class="prod-img"><img src="2.jpg" alt="Pijama Noite Azul" /></div>
-          <div class="prod-info">
-            <p class="prod-name">Pijama Noite Azul</p>
-            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
-            <p class="prod-installment">Até 12x de R$ 6,48</p>
-            <span class="prod-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
+  <div class="products-header">
+    <h2 class="products-title">Pijamas Masculinos</h2>
+    <p class="products-subtitle">Pijamas confortaveis para noites tranquilas, descanso leve e um visual arrumado dentro de casa.</p>
+  </div>
 
-        <div class="prod-card">
-          <div class="prod-badge">-60%</div>
-          <div class="prod-img"><img src="3.jpg" alt="Pijama Sonho Leve" /></div>
-          <div class="prod-info">
-            <p class="prod-name">Pijama Sonho Leve</p>
-            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
-            <p class="prod-installment">Até 12x de R$ 6,48</p>
-            <span class="prod-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
+  <div class="products-viewport" id="techViewport">
+    <div class="products-track" id="techTrack"></div>
+  </div>
 
-        <div class="prod-card">
-          <div class="prod-img"><img src="4.jpg" alt="Pijama Jardim Calmo" /></div>
-          <div class="prod-info">
-            <p class="prod-name">Pijama Jardim Calmo</p>
-            <p class="prod-price"><strong>R$ 69,90</strong></p>
-            <p class="prod-installment">Até 12x de R$ 7,56</p>
-            <span class="prod-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="prod-card">
-          <div class="prod-badge">-60%</div>
-          <div class="prod-img"><img src="5.jpg" alt="Pijama Café da Manhã" /></div>
-          <div class="prod-info">
-            <p class="prod-name">Pijama Café da Manhã</p>
-            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
-            <p class="prod-installment">Até 12x de R$ 6,48</p>
-            <span class="prod-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="prod-card">
-          <div class="prod-img"><img src="6.jpg" alt="Pijama Abraço Macio" /></div>
-          <div class="prod-info">
-            <p class="prod-name">Pijama Abraço Macio</p>
-            <p class="prod-price"><strong>R$ 69,90</strong></p>
-            <p class="prod-installment">Até 12x de R$ 7,56</p>
-            <span class="prod-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="prod-card">
-          <div class="prod-badge">-60%</div>
-          <div class="prod-img"><img src="1.jpg" alt="Pijama Lua Serena" /></div>
-          <div class="prod-info">
-            <p class="prod-name">Pijama Lua Serena</p>
-            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
-            <p class="prod-installment">Até 12x de R$ 6,48</p>
-            <span class="prod-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="prod-card">
-          <div class="prod-badge">-60%</div>
-          <div class="prod-img"><img src="2.jpg" alt="Pijama Noite Azul" /></div>
-          <div class="prod-info">
-            <p class="prod-name">Pijama Noite Azul</p>
-            <p class="prod-price"><s>R$149,90</s> <strong>R$ 59,90</strong></p>
-            <p class="prod-installment">Até 12x de R$ 6,48</p>
-            <span class="prod-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-      </div>
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="techFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="techPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="techNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
+  </div>
 
-    <!-- Barra de progresso + setas -->
-    <div class="products-footer">
-      <div class="progress-bar-wrap">
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="progressFill"></div>
-        </div>
-      </div>
-      <div class="products-arrows">
-        <button class="arrow-btn" id="prodPrev" aria-label="Anterior">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="arrow-btn" id="prodNext" aria-label="Próximo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
+</section>
+
+<section class="products-section" id="poliamida">
+
+  <div class="products-header">
+    <h2 class="products-title">Pijamas Familia</h2>
+    <p class="products-subtitle">Combinacoes pensadas para deixar todo mundo confortavel, dos momentos no sofa as fotos em familia.</p>
+  </div>
+
+  <div class="products-viewport" id="poliamidaViewport">
+    <div class="products-track" id="poliamidaTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="poliamidaFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="poliamidaPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="poliamidaNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
+  </div>
 
-  </section>
+</section>
 
-  <!-- ══════════════════════════════════════
-       DESIGN FUNCIONAL
-  ══════════════════════════════════════ -->
-  <section class="tech-section" id="tech-modal">
+<section class="products-section collection-section--white" id="pijamas-infantil">
 
-    <div class="tech-header">
-      <h2 class="tech-title">Feita pra quem não para.</h2>
-      <p class="tech-subtitle">Desenvolvida com tecnologia modal de alta performance, leve, macio e com caimento que acompanha cada movimento. Do treino à rua, sem parar.</p>
+  <div class="products-header">
+    <h2 class="products-title">Pijamas Infantil</h2>
+    <p class="products-subtitle">Pecas fofas e confortaveis para acompanhar historias antes de dormir, brincadeiras leves e noites felizes.</p>
+  </div>
+
+  <div class="products-viewport" id="infantilViewport">
+    <div class="products-track" id="infantilTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="infantilFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="infantilPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="infantilNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
+  </div>
 
-    <div class="products-viewport" id="techViewport">
-      <div class="products-track" id="techTrack">
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Preta" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Tech Modal - Preta</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Azul Marinho" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Tech Modal - Azul Marinho</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Chumbo" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Tech Modal - Chumbo</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Branca" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Tech Modal - Branca</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Verde" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Tech Modal - Verde</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="Modelo_-_Camisa_Preta.webp" alt="Tech Modal Vinho" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Tech Modal - Vinho</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="products-footer">
-      <div class="progress-bar-wrap">
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="techFill"></div>
-        </div>
-      </div>
-      <div class="products-arrows">
-        <button class="arrow-btn" id="techPrev" aria-label="Anterior">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="arrow-btn" id="techNext" aria-label="Próximo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ══════════════════════════════════════
-       POLIAMIDA TECH
-  ══════════════════════════════════════ -->
-  <section class="tech-section" id="poliamida" style="background:#ebebeb;">
-
-    <div class="tech-header">
-      <h2 class="tech-title">Movimento sem limites.</h2>
-      <p class="tech-subtitle">A linha Poliamida Tech foi criada para acompanhar cada agachamento, cada sprint, cada PR. Leve, resistente e com identidade que vai do treino às ruas.</p>
-    </div>
-
-    <div class="products-viewport" id="poliamidaViewport">
-      <div class="products-track" id="poliamidaTrack">
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Preta" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Poliamida Tech - Preta</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Azul Marinho" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Poliamida Tech - Azul Marinho</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Chumbo" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Poliamida Tech - Chumbo</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Branca" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Poliamida Tech - Branca</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Verde" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Poliamida Tech - Verde</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-        <div class="tech-card">
-          <div class="tech-badge">-67%</div>
-          <div class="tech-img"><img src="polimida1.webp" alt="Poliamida Tech Vinho" /></div>
-          <div class="tech-info">
-            <p class="tech-name">Camiseta - Poliamida Tech - Vinho</p>
-            <p class="tech-price"><s>R$149,90</s> <strong>R$ 49,90</strong></p>
-            <p class="tech-installment">Até 12x de R$ 5,40</p>
-            <span class="tech-cashback">Frete grátis nessa peça</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="products-footer">
-      <div class="progress-bar-wrap">
-        <div class="progress-bar-bg">
-          <div class="progress-bar-fill" id="poliamidaFill"></div>
-        </div>
-      </div>
-      <div class="products-arrows">
-        <button class="arrow-btn" id="poliamidaPrev" aria-label="Anterior">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <button class="arrow-btn" id="poliamidaNext" aria-label="Próximo">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ══════════════════════════════════════
-       DEPOIMENTOS
-  ══════════════════════════════════════ -->
-  <section class="reviews-section">
+</section>
+<section class="reviews-section">
 
     <div class="reviews-section-title">
       <p class="reviews-eyebrow">Depoimentos</p>
@@ -3796,86 +3420,6 @@
       if (e.key === 'Escape') closeDrawer();
     });
 
-    // ── Carousel infinito com drag ──
-    (function () {
-      const carousel = document.getElementById('colCarousel');
-      const track    = document.getElementById('carouselTrack');
-      if (!track || !carousel) return;
-
-      const origSlides = Array.from(track.children);
-      const N = origSlides.length;
-      const COPIES = 4; // cópias de cada lado — nunca fica branco
-
-      // Esvazia o track e reconstrói com múltiplas cópias
-      track.innerHTML = '';
-      for (let c = 0; c < COPIES * 2 + 1; c++) {
-        origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
-      }
-
-      // Começa no centro (cópias do meio)
-      let idx      = COPIES * N;
-      let autoTimer;
-      let startX   = 0;
-      let lastX    = 0;
-      let dragging = false;
-
-      function slideW() {
-        return track.children[0].offsetWidth + 12;
-      }
-
-      function moveTo(i, anim) {
-        track.style.transition = anim
-          ? 'transform 0.65s cubic-bezier(0.25, 1, 0.5, 1)'
-          : 'none';
-        track.style.transform = `translateX(${-i * slideW()}px)`;
-        idx = i;
-      }
-
-      moveTo(idx, false);
-
-      // Após cada transição, se afastou demais do centro, reposiciona
-      track.addEventListener('transitionend', () => {
-        const center = COPIES * N + (idx % N);
-        if (idx < N || idx >= (COPIES * 2) * N) {
-          moveTo(COPIES * N + ((idx % N) + N) % N, false);
-        }
-      });
-
-      function go(dir) { moveTo(idx + dir, true); }
-
-      function startAuto() {
-        clearInterval(autoTimer);
-        autoTimer = setInterval(() => go(1), 3500);
-      }
-
-      carousel.addEventListener('touchstart', e => {
-        dragging = true;
-        startX = lastX = e.touches[0].clientX;
-        clearInterval(autoTimer);
-        track.style.transition = 'none';
-      }, { passive: true });
-
-      carousel.addEventListener('touchmove', e => {
-        if (!dragging) return;
-        lastX = e.touches[0].clientX;
-        const diff = lastX - startX;
-        if (Math.abs(diff) > 8) e.preventDefault();
-        track.style.transform = `translateX(${-idx * slideW() + diff}px)`;
-      }, { passive: false });
-
-      carousel.addEventListener('touchend', () => {
-        if (!dragging) return;
-        dragging = false;
-        const diff = lastX - startX;
-        if      (diff < -50) go(1);
-        else if (diff >  50) go(-1);
-        else                 moveTo(idx, true);
-        startAuto();
-      });
-
-      startAuto();
-    })();
-
     // ── Product Modal ──
     (function () {
       const overlay    = document.getElementById('productModal');
@@ -4139,7 +3683,7 @@
       }
 
       // 2. Hero entrance — elementos entram em sequência no load
-      ['.hero-subtitle', '.hero-title', '.price-card', '.hero-cta', '.cashback-badge', '.hero-logo'].forEach((sel, i) => {
+      ['.hero-subtitle', '.hero-title', '.price-card', '.hero-cta', '.cashback-badge'].forEach((sel, i) => {
         const el = document.querySelector(sel);
         if (!el) return;
         el.style.opacity = '0';
@@ -4168,9 +3712,6 @@
 
       // Cabeçalhos das seções
       document.querySelectorAll('.products-header, .tech-header, .reviews-section-title, .reviews-top, .faq-title').forEach(el => reveal(el));
-
-      // Collection cards com stagger
-      document.querySelectorAll('.col-card').forEach((el, i) => reveal(el, i * 110));
 
       // FAQ items com stagger
       document.querySelectorAll('.faq-item').forEach((el, i) => reveal(el, i * 55));
