@@ -698,6 +698,32 @@
       transform: translateX(200%);
     }
 
+    /* CTA Catálogo */
+    .hero-catalog-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FCE4DD;
+      color: #2D1018;
+      border: 1px solid #2D1018;
+      border-radius: 100px;
+      padding: 12px 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      animation: fadeUp 0.9s 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, opacity 0.2s;
+    }
+
+    .hero-catalog-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      opacity: 0.92;
+    }
+
     /* Cashback badge */
     .cashback-badge {
       display: inline-flex;
@@ -1181,7 +1207,7 @@
 
     /* ─── PRODUTOS ─── */
     .products-section {
-      background: #ebebeb;
+      background: #FCE4DD;
       padding: 56px 0 40px;
     }
 
@@ -2575,23 +2601,23 @@
         <p class="price-label">A partir de</p>
         <div class="price-value">
           <span class="price-currency">R$</span>
-          <span class="price-main">59</span>
+          <span class="price-main">69</span>
           <span class="price-cents">,90</span>
         </div>
       </div>
 
       <!-- CTA pill -->
       <a href="https://wa.me/554398570720?text=Ol%C3%A1%2C%20La%20Fiore%21%20Quero%20aproveitar%20a%20oferta%20dos%20pijamas." class="hero-cta" target="_blank" rel="noopener">
-        ★ O Melhor Custo Benefício do Brasil ★
+        ★ A Melhor Qualidade do Brasil ★
       </a>
 
-      <!-- Promo badge -->
-      <div class="cashback-badge">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#ccc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+      <!-- CTA catálogo -->
+      <a href="#oversized" class="hero-catalog-cta">
+        Ver Catálogo
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#2D1018" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
         </svg>
-        <strong>Frete grátis</strong> acima de R$299
-      </div>
+      </a>
 
     </div>
   </section>
@@ -3249,8 +3275,8 @@
       {
         trackId: 'productsTrack',
         priceOld: 'R$149,90',
-        price: 'R$ 59,90',
-        installment: 'Ate 12x de R$ 6,48',
+        price: 'R$ 69,90',
+        installment: 'Ate 12x de R$ 7,56',
         badge: '-60%',
         images: [
           'pijamas%20feminimos/1.jpg',
