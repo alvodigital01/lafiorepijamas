@@ -32,7 +32,7 @@
 
     body {
       font-family: 'Barlow', sans-serif;
-      background: var(--black);
+      background: #fff;
       color: var(--white);
       overflow-x: hidden;
     }
@@ -813,8 +813,8 @@
     }
     /* ─── FOOTER ─── */
     .footer {
-      background: #0a0a0a;
-      color: #fff;
+      background: #FCE4DD;
+      color: #2D1018;
       padding: 56px 60px 0;
     }
 
@@ -831,7 +831,7 @@
       font-size: 13px;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: #fff;
+      color: #2D1018;
       margin-bottom: 20px;
     }
 
@@ -845,12 +845,12 @@
     .footer-links a {
       font-family: 'Barlow', sans-serif;
       font-size: 14px;
-      color: #aaa;
+      color: #5a2030;
       text-decoration: none;
       transition: color 0.2s;
     }
 
-    .footer-links a:hover { color: #fff; }
+    .footer-links a:hover { color: #2D1018; }
 
     .footer-promo-links a {
       display: flex;
@@ -873,18 +873,18 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      border: 1px solid #444;
+      border: 1px solid rgba(45,16,24,0.4);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
+      color: #2D1018;
       text-decoration: none;
       transition: border-color 0.2s, background 0.2s;
     }
 
     .social-btn:hover {
-      border-color: #fff;
-      background: rgba(255,255,255,0.08);
+      border-color: #2D1018;
+      background: rgba(45,16,24,0.1);
     }
 
     .social-btn svg { width: 18px; height: 18px; }
@@ -904,7 +904,7 @@
 
     .footer-divider {
       border: none;
-      border-top: 1px solid #222;
+      border-top: 1px solid rgba(45,16,24,0.2);
     }
 
     .footer-bottom {
@@ -949,7 +949,7 @@
     }
 
     .footer-credit strong {
-      color: #888;
+      color: #5a2030;
     }
 
     @media (max-width: 900px) {
@@ -1008,7 +1008,7 @@
     }
 
     .tech-tab.active {
-      background: #111;
+      background: #2D1018;
       color: #fff;
       border-color: #111;
     }
@@ -1457,7 +1457,7 @@
       left: 28px;
       width: 58px;
       height: 58px;
-      background: #111;
+      background: #2D1018;
       border: 1px solid rgba(255,255,255,0.72);
       border-radius: 50%;
       display: flex;
@@ -1829,7 +1829,7 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #666;
+      color: #5a2030;
       margin-bottom: 8px;
     }
 
@@ -1838,14 +1838,14 @@
       font-size: 44px;
       font-weight: 800;
       text-transform: uppercase;
-      color: #fff;
+      color: #2D1018;
       letter-spacing: -0.5px;
     }
 
     @media (max-width: 480px) { .reviews-heading { font-size: 32px; } }
 
     .reviews-section {
-      background: #000;
+      background: #fff;
       padding: 64px 0 72px;
       overflow: hidden;
     }
@@ -1861,8 +1861,8 @@
       display: flex;
       align-items: center;
       gap: 20px;
-      background: #1a1a1a;
-      border: 1px solid #2e2e2e;
+      background: #f5f5f5;
+      border: 1px solid rgba(45,16,24,0.12);
       border-radius: 16px;
       padding: 20px 28px;
     }
@@ -1871,7 +1871,7 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 54px;
       font-weight: 800;
-      color: #fff;
+      color: #2D1018;
       line-height: 1;
     }
 
@@ -1889,14 +1889,14 @@
 
     .reviews-source {
       font-size: 13px;
-      color: #888;
+      color: #5a2030;
       font-family: 'Barlow', sans-serif;
     }
 
     .reviews-badge-sep {
       width: 1px;
       height: 48px;
-      background: #2e2e2e;
+      background: rgba(45,16,24,0.15);
       flex-shrink: 0;
     }
 
@@ -1911,7 +1911,7 @@
 
     .reviews-google-col span {
       font-size: 12px;
-      color: #888;
+      color: #5a2030;
       font-family: 'Barlow', sans-serif;
     }
 
@@ -1933,8 +1933,8 @@
     }
 
     .review-card {
-      background: #1a1a1a;
-      border: 1px solid #2e2e2e;
+      background: #f9f9f9;
+      border: 1px solid rgba(45,16,24,0.1);
       border-radius: 16px;
       padding: 24px;
       flex: 0 0 calc(33.333% - 14px);
@@ -1961,7 +1961,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: #333;
+      background: rgba(45,16,24,0.2);
       border: none;
       cursor: pointer;
       padding: 0;
@@ -1969,7 +1969,7 @@
     }
 
     .reviews-dot.active {
-      background: #fff;
+      background: #2D1018;
       width: 24px;
       border-radius: 4px;
     }
@@ -1977,8 +1977,8 @@
     /* Badge como primeiro card no mobile */
     .review-badge-card {
       flex: 0 0 calc(33.333% - 14px);
-      background: #1a1a1a;
-      border: 1px solid #2e2e2e;
+      background: #f9f9f9;
+      border: 1px solid rgba(45,16,24,0.1);
       border-radius: 16px;
       padding: 24px;
       display: flex;
@@ -2039,26 +2039,26 @@
       gap: 2px;
     }
 
-    .review-author strong { font-size: 15px; font-weight: 600; color: #fff; font-family: 'Barlow', sans-serif; }
-    .review-author span   { font-size: 12px; color: #888; font-family: 'Barlow', sans-serif; }
+    .review-author strong { font-size: 15px; font-weight: 600; color: #2D1018; font-family: 'Barlow', sans-serif; }
+    .review-author span   { font-size: 12px; color: #5a2030; font-family: 'Barlow', sans-serif; }
     .review-g-icon        { width: 22px; height: 22px; flex-shrink: 0; }
 
     .review-stars-time { display: flex; align-items: center; gap: 10px; }
 
     .review-stars { color: #f59e0b; font-size: 16px; letter-spacing: 1px; }
 
-    .review-time { font-size: 12px; color: #555; font-family: 'Barlow', sans-serif; }
+    .review-time { font-size: 12px; color: #5a2030; font-family: 'Barlow', sans-serif; }
 
     .review-text {
       font-size: 14px;
       line-height: 1.65;
-      color: #bbb;
+      color: #444;
       font-family: 'Barlow', sans-serif;
     }
 
     /* ─── FAQ ─── */
     .faq-section {
-      background: #111;
+      background: #FCE4DD;
       padding: 72px 24px;
     }
 
@@ -2071,14 +2071,14 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 44px;
       font-weight: 800;
-      color: #fff;
+      color: #2D1018;
       text-align: center;
       text-transform: uppercase;
       letter-spacing: -0.5px;
       margin-bottom: 48px;
     }
 
-    .faq-item { border-bottom: 1px solid #2e2e2e; }
+    .faq-item { border-bottom: 1px solid rgba(45,16,24,0.15); }
 
     .faq-btn {
       width: 100%;
@@ -2090,7 +2090,7 @@
       justify-content: space-between;
       gap: 16px;
       padding: 18px 0;
-      color: #fff;
+      color: #2D1018;
       font-family: 'Barlow', sans-serif;
       font-size: 16px;
       font-weight: 500;
@@ -2102,10 +2102,10 @@
       width: 20px;
       height: 20px;
       flex-shrink: 0;
-      stroke: #666;
+      stroke: #2D1018;
     }
 
-    .faq-item.open .faq-btn { color: #FCE4DD; }
+    .faq-item.open .faq-btn { color: #5D1525; }
 
     .faq-body {
       display: none;
@@ -2117,13 +2117,13 @@
       padding-bottom: 22px;
       font-size: 14px;
       line-height: 1.75;
-      color: #888;
+      color: #5a2030;
       font-family: 'Barlow', sans-serif;
     }
 
     /* ─── CTA FINAL ─── */
     .cta-section {
-      background: #000;
+      background: #fff;
       padding: 104px 24px 100px;
       text-align: center;
       position: relative;
@@ -2134,7 +2134,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(255,255,255,0.03) 0%, transparent 70%);
+      background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(45,16,24,0.04) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -2149,7 +2149,7 @@
       letter-spacing: -0.02em;
       text-transform: uppercase;
       color: transparent;
-      -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+      -webkit-text-stroke: 1px rgba(45,16,24,0.08);
       pointer-events: none;
       user-select: none;
       white-space: nowrap;
@@ -2170,8 +2170,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(45,16,24,0.08);
+      border: 1px solid rgba(45,16,24,0.2);
       border-radius: 100px;
       padding: 8px 18px;
       font-family: 'Barlow Condensed', sans-serif;
@@ -2179,7 +2179,7 @@
       font-size: 12px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #bbb;
+      color: #2D1018;
     }
 
     .cta-urgency-dot {
@@ -2202,21 +2202,21 @@
       font-weight: 900;
       text-transform: uppercase;
       line-height: 0.92;
-      color: #fff;
+      color: #2D1018;
       letter-spacing: -2px;
     }
 
     .cta-title-outline {
       display: block;
       color: transparent;
-      -webkit-text-stroke: 2px rgba(255,255,255,0.88);
+      -webkit-text-stroke: 2px rgba(45,16,24,0.7);
       white-space: nowrap;
     }
 
     .cta-sub {
       font-family: 'Barlow', sans-serif;
       font-size: 16px;
-      color: #999;
+      color: #5a2030;
       line-height: 1.65;
       max-width: 440px;
     }
@@ -2235,14 +2235,14 @@
       gap: 6px;
       font-family: 'Barlow', sans-serif;
       font-size: 12px;
-      color: #888;
+      color: #2D1018;
       white-space: nowrap;
     }
 
     .cta-trust-item svg {
       width: 14px;
       height: 14px;
-      stroke: #777;
+      stroke: #2D1018;
       fill: none;
       stroke-width: 1.8;
       stroke-linecap: round;
@@ -2251,7 +2251,7 @@
     }
 
     .cta-trust-sep {
-      color: #3a3a3a;
+      color: rgba(45,16,24,0.3);
       font-size: 18px;
       line-height: 1;
     }
@@ -2268,8 +2268,8 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #fff;
-      color: #000;
+      background: #2D1018;
+      color: #FCE4DD;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 16px;
       font-weight: 700;
@@ -2285,7 +2285,7 @@
     .cta-wa-btn:hover {
       opacity: 0.9;
       transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(255,255,255,0.16);
+      box-shadow: 0 12px 40px rgba(45,16,24,0.2);
     }
 
     .cta-wa-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
@@ -2295,8 +2295,8 @@
       align-items: center;
       gap: 8px;
       background: transparent;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.4);
+      color: #2D1018;
+      border: 1px solid rgba(45,16,24,0.4);
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 16px;
       font-weight: 600;
@@ -2312,8 +2312,8 @@
     }
 
     .cta-btn-secondary:hover {
-      border-color: rgba(255,255,255,0.4);
-      color: #fff;
+      border-color: rgba(45,16,24,0.7);
+      color: #2D1018;
       transform: translateY(-2px);
     }
 
@@ -2342,8 +2342,8 @@
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      border: 2px solid #000;
-      background: #2a2a2a;
+      border: 2px solid #FCE4DD;
+      background: #2D1018;
       margin-left: -8px;
       display: flex;
       align-items: center;
@@ -2351,7 +2351,7 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
       font-size: 11px;
-      color: #aaa;
+      color: #FCE4DD;
       flex-shrink: 0;
       text-transform: uppercase;
     }
@@ -2361,7 +2361,7 @@
     .cta-social-text {
       font-family: 'Barlow', sans-serif;
       font-size: 13px;
-      color: #888;
+      color: #2D1018;
     }
 
     .cta-social-text strong {
@@ -2399,8 +2399,8 @@
     }
 
     @keyframes ctaGlow {
-      0%, 100% { box-shadow: 0 4px 24px rgba(255,255,255,0.08); }
-      50%       { box-shadow: 0 8px 48px rgba(255,255,255,0.2), 0 0 0 8px rgba(255,255,255,0.04); }
+      0%, 100% { box-shadow: 0 4px 24px rgba(45,16,24,0.12); }
+      50%       { box-shadow: 0 8px 48px rgba(45,16,24,0.28), 0 0 0 8px rgba(45,16,24,0.06); }
     }
 
     .header { transition: box-shadow 0.35s; }
@@ -2482,7 +2482,7 @@
        ANNOUNCEMENT BAR
   ══════════════════════════════════════ -->
   <div class="announcement-bar">
-    <strong>FRETE GRÁTIS</strong>&nbsp;em compras acima de R$299
+    Do nosso ateliê em Londrina para o seu conforto
   </div>
 
   <!-- ══════════════════════════════════════
@@ -2511,9 +2511,9 @@
       <!-- Desktop nav links -->
       <ul class="nav-links">
         <li><a href="#oversized">Femininos</a></li>
-        <li><a href="#tech-modal">Masculinos</a></li>
-        <li><a href="#poliamida">Família</a></li>
         <li><a href="#pijamas-infantil">Infantil</a></li>
+        <li><a href="#poliamida">Família</a></li>
+        <li><a href="#tech-modal">Masculinos</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
@@ -2564,9 +2564,9 @@
 
     <ul class="drawer-nav">
       <li><a href="#oversized">Femininos</a></li>
-      <li><a href="#tech-modal">Masculinos</a></li>
-      <li><a href="#poliamida">Família</a></li>
       <li><a href="#pijamas-infantil">Infantil</a></li>
+      <li><a href="#poliamida">Família</a></li>
+      <li><a href="#tech-modal">Masculinos</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contato">Contato</a></li>
       <li>
@@ -2592,7 +2592,7 @@
     </div>
 
     <div class="hero-content">
-      <p class="hero-subtitle">Seu momento de conforto começa aqui</p>
+      <p class="hero-subtitle">Pijamas feitos para você viver bem em casa</p>
 
       <h1 class="hero-title">Pijamas</h1>
 
@@ -2914,7 +2914,7 @@
             <span>Quais tamanhos estão disponíveis?</span>
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-body"><p>Trabalhamos com P, M, G e GG. Se tiver dúvida sobre o tamanho ideal, basta mandar uma mensagem no WhatsApp com sua altura e peso que a gente te orienta.</p></div>
+          <div class="faq-body"><p>Trabalhamos com P, M, G, GG e XG+. Cada malha tem seu próprio comportamento de caimento, por isso se tiver dúvida é só nos chamar no WhatsApp com sua altura e medidas que te ajudamos a escolher o tamanho certo.</p></div>
         </div>
 
         <div class="faq-item">
@@ -2951,10 +2951,18 @@
 
         <div class="faq-item">
           <button class="faq-btn">
-            <span>Qual a diferença entre as coleções?</span>
+            <span>Os pijamas são fabricados pela própria La Fiore?</span>
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-body"><p>A coleção feminina traz modelos delicados e confortáveis, a masculina prioriza praticidade para o dia a dia, a família combina peças para todos usarem juntos e a infantil tem opções leves para as crianças.</p></div>
+          <div class="faq-body"><p>Sim! Somos uma marca de fabricação própria, sediada em Londrina/PR. Cada peça é produzida com controle de qualidade, por isso garantimos o caimento, o acabamento e a durabilidade que você sente na primeira vez que veste.</p></div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-btn">
+            <span>Como conservar meu pijama?</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-body"><p>Lave à mão ou em máquina com centrifugação leve, com água fria e sabão neutro. Evite alvejante e secar no varal à sombra preserva as cores por muito mais tempo. Cada etiqueta traz as orientações específicas para a malha da peça.</p></div>
         </div>
 
         <div class="faq-item">
@@ -2962,7 +2970,7 @@
             <span>Vocês fazem entrega para todo o Brasil?</span>
             <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
-          <div class="faq-body"><p>Sim! Entregamos para todo o território nacional via Correios ou transportadora parceira. Pedidos acima de R$299 têm frete grátis independente da região.</p></div>
+          <div class="faq-body"><p>Sim! Entregamos para todo o território nacional via Correios ou transportadora parceira.</p></div>
         </div>
 
       </div>
@@ -2979,38 +2987,33 @@
       <!-- Urgency badge -->
       <div class="cta-urgency">
         <span class="cta-urgency-dot"></span>
-        Oferta ativa &middot; Estoque limitado
+        Pronta entrega &middot; Feito em Londrina/PR
       </div>
 
       <!-- Title -->
       <h2 class="cta-title">
-        COMPRE COM A
-        <span class="cta-title-outline">LA FIORE</span>
+        CONFORTO QUE
+        <span class="cta-title-outline">VOCÊ MERECE</span>
       </h2>
 
       <!-- Sub -->
-      <p class="cta-sub">Vista o que poucos têm coragem de usar.<br>Frete grátis · 12x sem juros · Troca fácil.</p>
+      <p class="cta-sub">Pijamas feitos com cuidado, para acompanhar cada momento do seu dia — em casa ou em família.</p>
 
       <!-- Trust badges -->
       <div class="cta-trust">
         <div class="cta-trust-item">
-          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          Pagamento seguro
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Pronta entrega
         </div>
         <span class="cta-trust-sep">·</span>
         <div class="cta-trust-item">
-          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-          Frete grátis acima R$299
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Fabricação própria
         </div>
         <span class="cta-trust-sep">·</span>
         <div class="cta-trust-item">
           <svg viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
           Troca fácil
-        </div>
-        <span class="cta-trust-sep">·</span>
-        <div class="cta-trust-item">
-          <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          Entrega rápida
         </div>
       </div>
 
@@ -3043,7 +3046,7 @@
       <div class="footer-col">
         <h4 class="footer-col-title">Informações</h4>
         <ul class="footer-links">
-          <li><a href="#">Frete e Entrega</a></li>
+          <li><a href="#faq">Prazo de Entrega</a></li>
           <li><a href="#">Política de Privacidade</a></li>
           <li><a href="https://wa.me/554398570720?text=Ol%C3%A1%2C%20La%20Fiore%21%20Quero%20falar%20com%20voc%C3%AAs." target="_blank" rel="noopener">Fale Conosco</a></li>
         </ul>
@@ -3059,26 +3062,26 @@
           <a href="#" class="social-btn" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
-          <a href="#" class="social-btn" aria-label="YouTube">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.95C5.12 20 12 20 12 20s6.88 0 8.59-.47a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#000"/></svg>
+          <a href="https://wa.me/554398570720?text=Ol%C3%A1%2C%20La%20Fiore%21%20Quero%20conhecer%20os%20pijamas." class="social-btn" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.127 1.528 5.862L0 24l6.294-1.499A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.932 9.932 0 0 1-5.13-1.425l-.37-.22-3.724.977.994-3.633-.243-.382A9.944 9.944 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm5.47-7.538c-.3-.15-1.775-.877-2.05-.977-.274-.1-.474-.15-.673.15-.2.3-.774.977-.948 1.177-.175.2-.35.225-.65.075-.3-.15-1.267-.468-2.413-1.49-.892-.797-1.494-1.781-1.67-2.08-.176-.3-.019-.463.131-.612.135-.135.3-.351.45-.526.15-.176.2-.301.3-.501.1-.2.05-.376-.025-.526-.075-.15-.673-1.627-.924-2.228-.244-.585-.492-.506-.673-.515l-.576-.01c-.2 0-.526.075-.8.376-.276.3-1.052 1.027-1.052 2.504 0 1.477 1.077 2.904 1.226 3.105.15.2 2.12 3.234 5.13 4.535.717.31 1.275.494 1.712.632.719.229 1.373.197 1.89.12.576-.086 1.775-.726 2.025-1.427.25-.7.25-1.3.175-1.427-.075-.126-.276-.2-.576-.351z"/></svg>
           </a>
         </div>
       </div>
 
-      <!-- Promoções -->
+      <!-- Diferenciais -->
       <div class="footer-col">
-        <h4 class="footer-col-title">Nossas Promoções</h4>
+        <h4 class="footer-col-title">Por que La Fiore?</h4>
         <ul class="footer-links footer-promo-links">
           <li>
             <a href="#">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-              Frete grátis acima de R$299
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              Fabricação própria em Londrina/PR
             </a>
           </li>
           <li>
             <a href="#">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-              Parcele em até 12x sem juros
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              Pronta entrega para todo o Brasil
             </a>
           </li>
           <li>
@@ -3089,8 +3092,8 @@
           </li>
           <li>
             <a href="#">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-              Até 67% OFF nas ofertas
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Atendimento personalizado via WhatsApp
             </a>
           </li>
         </ul>
@@ -3140,8 +3143,6 @@
         </div>
         <div class="modal-price-main" id="modalPriceMain"></div>
         <div class="modal-installments" id="modalInstallments"></div>
-        <div class="modal-cashback-pill">🎁 Frete grátis acima de R$299</div>
-
         <div class="modal-size-row">
           <p class="modal-size-label">Tamanho: <span id="modalSelectedSize">P</span></p>
           <div class="modal-sizes">
@@ -3162,8 +3163,6 @@
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.556 4.127 1.528 5.862L0 24l6.294-1.499A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm5.47 16.462c-.3-.15-1.775-.877-2.05-.977-.274-.1-.474-.15-.673.15-.2.3-.774.977-.948 1.177-.175.2-.35.225-.65.075-.3-.15-1.267-.468-2.413-1.49-.892-.797-1.494-1.781-1.67-2.08-.176-.3-.019-.463.131-.612.135-.135.3-.351.45-.526.15-.176.2-.301.3-.501.1-.2.05-.376-.025-.526-.075-.15-.673-1.627-.924-2.228-.244-.585-.492-.506-.673-.515l-.576-.01c-.2 0-.526.075-.8.376-.276.3-1.052 1.027-1.052 2.504 0 1.477 1.077 2.904 1.226 3.105.15.2 2.12 3.234 5.13 4.535.717.31 1.275.494 1.712.632.719.229 1.373.197 1.89.12.576-.086 1.775-.726 2.025-1.427.25-.7.25-1.3.175-1.427-.075-.126-.276-.2-.576-.351z"/></svg>
           Pedir no WhatsApp
         </a>
-
-        <p class="modal-shipping">Frete grátis nas compras acima de R$ 299</p>
 
         <div class="modal-features">
           <div class="modal-feature">
@@ -3217,10 +3216,6 @@
         <div class="modal-info-sec">
           <p class="modal-info-sec-title">Informações</p>
           <div class="modal-info-items">
-            <div class="modal-info-item">
-              <svg viewBox="0 0 24 24"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
-              <div class="modal-info-item-text">Frete grátis para pedidos acima de R$299.</div>
-            </div>
             <div class="modal-info-item">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
               <div class="modal-info-item-text">Melhor custo benefício do Brasil.<a href="#">Entenda o motivo.</a></div>
@@ -3412,7 +3407,6 @@
               <p class="prod-name">${name}</p>
               <p class="prod-price"><s>${collection.priceOld}</s> <strong>${collection.price}</strong></p>
               <p class="prod-installment">${collection.installment}</p>
-              <span class="prod-cashback">Frete gratis nessa peca</span>
             </div>
           </div>
         `;
