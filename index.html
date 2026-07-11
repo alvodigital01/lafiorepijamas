@@ -50,8 +50,10 @@
       font-size: 13px;
       font-family: 'Barlow', sans-serif;
       letter-spacing: 0.01em;
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 1000;
     }
 
@@ -62,10 +64,16 @@
     /* ─── HEADER / NAV ─── */
     .header {
       background: var(--header-bg);
-      position: sticky;
+      position: fixed;
       top: var(--announcement-height);
+      left: 0;
+      right: 0;
       z-index: 999;
       border-bottom: 1px solid rgba(45, 16, 24, 0.18);
+    }
+
+    body {
+      padding-top: calc(var(--announcement-height) + var(--nav-height-desktop));
     }
 
     .nav-inner {
@@ -791,6 +799,10 @@
         padding: 0 12px;
         height: var(--nav-height-mobile);
         position: relative;
+      }
+
+      body {
+        padding-top: calc(var(--announcement-height) + var(--nav-height-mobile));
       }
 
       .hero {
