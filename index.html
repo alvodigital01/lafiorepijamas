@@ -2150,7 +2150,7 @@
     /* ─── LOCALIZACAO ─── */
     .location-section {
       background: #fff;
-      padding: 88px 24px;
+      padding: 58px 24px;
       color: var(--header-ink);
     }
 
@@ -2161,7 +2161,7 @@
 
     .location-heading {
       max-width: 680px;
-      margin: 0 auto 40px;
+      margin: 0 auto 26px;
       text-align: center;
     }
 
@@ -2188,7 +2188,7 @@
     .location-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
-      min-height: 470px;
+      min-height: 380px;
       overflow: hidden;
       border: 1px solid rgba(45, 16, 24, 0.14);
       border-radius: 24px;
@@ -2196,7 +2196,7 @@
     }
 
     .location-map {
-      min-height: 470px;
+      min-height: 380px;
       background: #f5e8e4;
     }
 
@@ -2204,7 +2204,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      min-height: 470px;
+      min-height: 380px;
       border: 0;
       filter: saturate(0.75) contrast(0.96);
     }
@@ -2213,24 +2213,26 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 44px;
+      padding: 28px 36px;
       background: #FCE4DD;
     }
 
     .location-info-title {
-      margin-bottom: 26px;
+      margin-bottom: 18px;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 28px;
+      font-size: 23px;
       font-weight: 800;
       text-transform: uppercase;
       color: var(--header-ink);
+      text-align: center;
+      white-space: nowrap;
     }
 
     .location-detail {
       display: grid;
       grid-template-columns: 42px 1fr;
       gap: 14px;
-      padding: 20px 0;
+      padding: 14px 0;
       border-top: 1px solid rgba(45, 16, 24, 0.14);
     }
 
@@ -2300,17 +2302,21 @@
     .location-link:hover { transform: translateY(-2px); opacity: 0.9; }
 
     @media (max-width: 800px) {
-      .location-section { padding: 64px 16px; }
-      .location-heading { margin-bottom: 28px; }
+      .location-section { padding: 46px 16px; }
+      .location-heading { margin-bottom: 22px; }
       .location-grid { grid-template-columns: 1fr; border-radius: 18px; }
-      .location-map, .location-map iframe { min-height: 340px; }
-      .location-info { padding: 32px 24px; }
+      .location-map, .location-map iframe { min-height: 270px; }
+      .location-info { padding: 26px 22px; }
+      .location-info-title {
+        text-align: center;
+        white-space: normal;
+      }
     }
 
     @media (max-width: 480px) {
-      .location-section { padding: 52px 14px; }
+      .location-section { padding: 40px 14px; }
       .location-title { font-size: 32px; }
-      .location-map, .location-map iframe { min-height: 300px; }
+      .location-map, .location-map iframe { min-height: 240px; }
       .location-info-title { font-size: 24px; }
       .location-info { padding: 28px 20px; }
     }
@@ -2568,6 +2574,7 @@
     }
 
     @media (max-width: 480px) {
+      .cta-title { font-size: 58px; }
       .cta-sub { font-size: 14px; }
       .cta-btns { flex-direction: column; width: 100%; }
       .cta-wa-btn, .cta-btn-secondary { width: 100%; justify-content: center; }
@@ -3236,12 +3243,6 @@
   <section class="cta-section" id="contato">
     <div class="cta-bg-word" aria-hidden="true">LA FIORE</div>
     <div class="cta-inner">
-
-      <!-- Urgency badge -->
-      <div class="cta-urgency">
-        <span class="cta-urgency-dot"></span>
-        Pronta entrega &middot; Feito em Londrina/PR
-      </div>
 
       <!-- Title -->
       <h2 class="cta-title">
