@@ -1820,6 +1820,15 @@
         display: none;
       }
 
+      .modal-thumbs.has-multiple {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 8px;
+        padding: 8px;
+        background: #ebebeb;
+      }
+
       .modal-thumb { width: 56px; height: 56px; }
 
       .modal-main-img {
@@ -4027,6 +4036,7 @@
           });
           thumbsEl.appendChild(thumb);
         });
+        thumbsEl.classList.toggle('has-multiple', images.length > 1);
 
         selSizeEl.textContent = 'P';
         document.querySelectorAll('.modal-size-btn').forEach(b => {
