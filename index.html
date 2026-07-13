@@ -1240,7 +1240,7 @@
     }
 
     .collection-section--white .products-title {
-      color: var(--header-ink);
+      color: #111;
     }
 
     .products-header {
@@ -1255,6 +1255,7 @@
       color: #111;
       margin-bottom: 10px;
       letter-spacing: -0.01em;
+      text-transform: uppercase;
     }
 
     .products-subtitle {
@@ -2799,9 +2800,7 @@
       <ul class="nav-links">
         <li><a href="#pijamas-americanos">Americanos</a></li>
         <li><a href="#baby-dolls">Baby Dolls</a></li>
-        <li><a href="#oversized">Femininos</a></li>
         <li><a href="#pijamas-infantil">Infantil</a></li>
-        <li><a href="#poliamida">Família</a></li>
         <li><a href="#tech-modal">Masculinos</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contato">Contato</a></li>
@@ -2854,9 +2853,7 @@
     <ul class="drawer-nav">
       <li><a href="#pijamas-americanos">Americanos</a></li>
       <li><a href="#baby-dolls">Baby Dolls</a></li>
-      <li><a href="#oversized">Femininos</a></li>
       <li><a href="#pijamas-infantil">Infantil</a></li>
-      <li><a href="#poliamida">Família</a></li>
       <li><a href="#tech-modal">Masculinos</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contato">Contato</a></li>
@@ -2958,22 +2955,64 @@
 
 </section>
 
-<section class="products-section collection-section--white" id="oversized">
+<section class="products-section" id="alcinhas">
 
   <div class="products-header">
-    <h2 class="products-title">PIJAMAS FEMININOS</h2>
-    <p class="products-subtitle">Modelos macios, leves e bonitos para transformar a rotina de descanso em um momento especial.</p>
+    <h2 class="products-title">PIJAMAS DE ALCINHAS</h2>
+    <p class="products-subtitle">Conjuntos leves e confortaveis, com alcinhas delicadas para noites frescas e cheias de estilo.</p>
   </div>
 
-  <div class="products-viewport" id="femininosViewport">
-    <div class="products-track" id="femininosTrack"></div>
+  <div class="products-viewport" id="alcinhasViewport">
+    <div class="products-track" id="alcinhasTrack"></div>
   </div>
 
   <div class="products-footer">
-    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="femininosFill"></div></div></div>
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="alcinhasFill"></div></div></div>
     <div class="products-arrows">
-      <button class="arrow-btn" id="femininosPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <button class="arrow-btn" id="femininosNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+      <button class="arrow-btn" id="alcinhasPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="alcinhasNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+
+</section>
+
+<section class="products-section collection-section--white" id="colecoes">
+
+  <div class="products-header">
+    <h2 class="products-title">NOSSAS COLEÇÕES</h2>
+    <p class="products-subtitle">Coleções pensadas para vestir toda a família com conforto, qualidade e combinações especiais.</p>
+  </div>
+
+  <div class="products-viewport" id="colecoesViewport">
+    <div class="products-track" id="colecoesTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="colecoesFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="colecoesPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="colecoesNext" aria-label="Próximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+
+</section>
+
+<section class="products-section" id="pijamas-infantil">
+
+  <div class="products-header">
+    <h2 class="products-title">Pijamas Infantil</h2>
+    <p class="products-subtitle">Pecas fofas e confortaveis para acompanhar historias antes de dormir, brincadeiras leves e noites felizes.</p>
+  </div>
+
+  <div class="products-viewport" id="infantilViewport">
+    <div class="products-track" id="infantilTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="infantilFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="infantilPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="infantilNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
   </div>
 
@@ -3000,47 +3039,6 @@
 
 </section>
 
-<section class="products-section" id="poliamida">
-
-  <div class="products-header">
-    <h2 class="products-title">Pijamas Familia</h2>
-    <p class="products-subtitle">Combinacoes pensadas para deixar todo mundo confortavel, dos momentos no sofa as fotos em familia.</p>
-  </div>
-
-  <div class="products-viewport" id="poliamidaViewport">
-    <div class="products-track" id="poliamidaTrack"></div>
-  </div>
-
-  <div class="products-footer">
-    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="poliamidaFill"></div></div></div>
-    <div class="products-arrows">
-      <button class="arrow-btn" id="poliamidaPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <button class="arrow-btn" id="poliamidaNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-    </div>
-  </div>
-
-</section>
-
-<section class="products-section collection-section--white" id="pijamas-infantil">
-
-  <div class="products-header">
-    <h2 class="products-title">Pijamas Infantil</h2>
-    <p class="products-subtitle">Pecas fofas e confortaveis para acompanhar historias antes de dormir, brincadeiras leves e noites felizes.</p>
-  </div>
-
-  <div class="products-viewport" id="infantilViewport">
-    <div class="products-track" id="infantilTrack"></div>
-  </div>
-
-  <div class="products-footer">
-    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="infantilFill"></div></div></div>
-    <div class="products-arrows">
-      <button class="arrow-btn" id="infantilPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <button class="arrow-btn" id="infantilNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-    </div>
-  </div>
-
-</section>
 <section class="reviews-section">
 
     <div class="reviews-section-title">
@@ -3755,32 +3753,6 @@
         ]
       },
       {
-        trackId: 'poliamidaTrack',
-        priceOld: 'R$229,90',
-        price: 'R$ 129,90',
-        installment: 'Ate 12x de R$ 14,05',
-        badge: '-43%',
-        images: [
-          'pijamas%20familia/23.jpg'
-        ],
-        names: [
-          'Kit Familia Aurora',
-          'Kit Familia Boa Noite',
-          'Kit Familia Sonho Doce',
-          'Kit Familia Casa Feliz',
-          'Kit Familia Lua Clara',
-          'Kit Familia Abraço',
-          'Kit Familia Domingo',
-          'Kit Familia Estrela',
-          'Kit Familia Manha Leve',
-          'Kit Familia Doce Lar',
-          'Kit Familia Nuvem',
-          'Kit Familia Sorriso',
-          'Kit Familia Jardim',
-          'Kit Familia Sereno'
-        ]
-      },
-      {
         trackId: 'infantilTrack',
         priceOld: 'R$119,90',
         price: 'R$ 49,90',
@@ -3808,11 +3780,6 @@
         ]
       }
     ];
-
-    collectionData.push({
-      trackId: 'femininosTrack',
-      products: collectionData[0].products
-    });
 
     collectionData.push({
       trackId: 'babyTrack',
@@ -3850,6 +3817,97 @@
       ]
     });
 
+    collectionData.push({
+      trackId: 'alcinhasTrack',
+      products: [
+        {
+          name: 'Alcinha - Preto',
+          images: ['pijamas%20feminimos/alcinhas/2.jpg', 'pijamas%20feminimos/alcinhas/3.jpg'],
+          priceOld: 'R$ 99,90',
+          price: 'R$ 89,90',
+          installment: 'Ate 12x de R$ 9,72'
+        },
+        {
+          name: 'Alcinha - Noite de Natal',
+          images: ['pijamas%20feminimos/alcinhas/1.jpg'],
+          price: 'R$ 99,90',
+          installment: 'Ate 12x de R$ 10,81'
+        },
+        {
+          name: 'Alcinha - Xadrez Verde',
+          images: ['pijamas%20feminimos/alcinhas/4.jpg'],
+          price: 'R$ 99,90',
+          installment: 'Ate 12x de R$ 10,81'
+        },
+        {
+          name: 'Alcinha - Preto',
+          images: ['pijamas%20feminimos/alcinhas/2.jpg', 'pijamas%20feminimos/alcinhas/3.jpg'],
+          priceOld: 'R$ 99,90',
+          price: 'R$ 89,90',
+          installment: 'Ate 12x de R$ 9,72'
+        },
+        {
+          name: 'Alcinha - Noite de Natal',
+          images: ['pijamas%20feminimos/alcinhas/1.jpg'],
+          price: 'R$ 99,90',
+          installment: 'Ate 12x de R$ 10,81'
+        },
+        {
+          name: 'Alcinha - Xadrez Verde',
+          images: ['pijamas%20feminimos/alcinhas/4.jpg'],
+          price: 'R$ 99,90',
+          installment: 'Ate 12x de R$ 10,81'
+        }
+      ]
+    });
+
+    collectionData.push({
+      trackId: 'colecoesTrack',
+      products: [
+        {
+          name: 'Coleção Confy',
+          images: [
+            'pijamas%20feminimos/colecoes/1.jpg',
+            'pijamas%20feminimos/colecoes/2.jpg',
+            'pijamas%20feminimos/colecoes/3.jpg'
+          ],
+          installment: 'Malha viscolycra'
+        },
+        {
+          name: 'Coleção Sonhos em Família',
+          images: [
+            'pijamas%20feminimos/colecoes/4.jpg',
+            'pijamas%20feminimos/colecoes/5.jpg'
+          ],
+          installment: 'Pijama em malha suede com elastano'
+        },
+        {
+          name: 'Coleção Família',
+          images: [
+            'pijamas%20feminimos/colecoes/6.jpg',
+            'pijamas%20feminimos/colecoes/7.jpg'
+          ],
+          installment: 'Malha suede para toda a família'
+        },
+        {
+          name: 'Coleção Essencial',
+          images: [
+            'pijamas%20feminimos/colecoes/8.jpg',
+            'pijamas%20feminimos/colecoes/9.jpg'
+          ],
+          installment: 'Malha suede'
+        },
+        {
+          name: 'Coleção Noite Clássica',
+          images: [
+            'pijamas%20feminimos/colecoes/10.jpg',
+            'pijamas%20feminimos/colecoes/11.jpg'
+          ],
+          installment: 'Malha suede'
+        }
+      ]
+    });
+
     function renderCollectionCards(collection) {
       const track = document.getElementById(collection.trackId);
       if (!track) return;
@@ -3870,6 +3928,9 @@
         const oldPrice = product.priceOld || '';
         const badge = product.badge || collection.badge || '';
         const priceOldHtml = oldPrice ? `<s>${oldPrice}</s> ` : '';
+        const priceHtml = product.price
+          ? `<p class="prod-price">${priceOldHtml}<strong>${product.price}</strong></p>`
+          : '';
 
         return `
           <div class="prod-card" data-images='${JSON.stringify(imageList)}'>
@@ -3877,7 +3938,7 @@
             <div class="prod-img"><img src="${img}" alt="${product.name}" /></div>
             <div class="prod-info">
               <p class="prod-name">${product.name}</p>
-              <p class="prod-price">${priceOldHtml}<strong>${product.price}</strong></p>
+              ${priceHtml}
               <p class="prod-installment">${product.installment || ''}</p>
             </div>
           </div>
@@ -3887,13 +3948,13 @@
 
     collectionData.forEach(renderCollectionCards);
 
-    // ── Tech section carousel ──
+    // Alcinhas carousel
     (function () {
-      const viewport = document.getElementById('techViewport');
-      const track    = document.getElementById('techTrack');
-      const fill     = document.getElementById('techFill');
-      const btnPrev  = document.getElementById('techPrev');
-      const btnNext  = document.getElementById('techNext');
+      const viewport = document.getElementById('alcinhasViewport');
+      const track = document.getElementById('alcinhasTrack');
+      const fill = document.getElementById('alcinhasFill');
+      const btnPrev = document.getElementById('alcinhasPrev');
+      const btnNext = document.getElementById('alcinhasNext');
       if (!track) return;
 
       const cards = Array.from(track.children);
@@ -3901,13 +3962,13 @@
       let step = 0, startX = 0, lastX = 0, dragging = false;
 
       function visibleCount() { return window.innerWidth <= 900 ? 1 : 4; }
-      function cardW()        { return cards[0].offsetWidth + 16; }
-      function maxStep()      { return total - visibleCount(); }
+      function cardW() { return cards[0].offsetWidth + 16; }
+      function maxStep() { return Math.max(0, total - visibleCount()); }
 
       function updateUI() {
+        step = Math.min(step, maxStep());
         track.style.transform = `translateX(${-step * cardW()}px)`;
-        const pct = maxStep() > 0 ? (step / maxStep()) * 100 : 0;
-        fill.style.width = pct + '%';
+        fill.style.width = (maxStep() > 0 ? (step / maxStep()) * 100 : 0) + '%';
         btnPrev.disabled = step === 0;
         btnNext.disabled = step >= maxStep();
       }
@@ -3916,9 +3977,11 @@
       btnPrev.addEventListener('click', () => { if (step > 0) { step--; updateUI(); } });
 
       viewport.addEventListener('touchstart', e => {
-        dragging = true; startX = lastX = e.touches[0].clientX;
+        dragging = true;
+        startX = lastX = e.touches[0].clientX;
         track.style.transition = 'none';
       }, { passive: true });
+
       viewport.addEventListener('touchmove', e => {
         if (!dragging) return;
         lastX = e.touches[0].clientX;
@@ -3926,12 +3989,14 @@
         if (Math.abs(diff) > 8) e.preventDefault();
         track.style.transform = `translateX(${-step * cardW() + diff}px)`;
       }, { passive: false });
+
       viewport.addEventListener('touchend', () => {
-        if (!dragging) return; dragging = false;
+        if (!dragging) return;
+        dragging = false;
         track.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
         const diff = lastX - startX;
         if (diff < -50 && step < maxStep()) step++;
-        else if (diff > 50 && step > 0)     step--;
+        else if (diff > 50 && step > 0) step--;
         updateUI();
       });
 
@@ -3939,13 +4004,69 @@
       updateUI();
     })();
 
-    // ── Poliamida section carousel ──
+    // Coleções carousel
     (function () {
-      const viewport = document.getElementById('poliamidaViewport');
-      const track    = document.getElementById('poliamidaTrack');
-      const fill     = document.getElementById('poliamidaFill');
-      const btnPrev  = document.getElementById('poliamidaPrev');
-      const btnNext  = document.getElementById('poliamidaNext');
+      const viewport = document.getElementById('colecoesViewport');
+      const track = document.getElementById('colecoesTrack');
+      const fill = document.getElementById('colecoesFill');
+      const btnPrev = document.getElementById('colecoesPrev');
+      const btnNext = document.getElementById('colecoesNext');
+      if (!track) return;
+
+      const cards = Array.from(track.children);
+      const total = cards.length;
+      let step = 0, startX = 0, lastX = 0, dragging = false;
+
+      function visibleCount() { return window.innerWidth <= 900 ? 1 : 4; }
+      function cardW() { return cards[0].offsetWidth + 16; }
+      function maxStep() { return Math.max(0, total - visibleCount()); }
+
+      function updateUI() {
+        step = Math.min(step, maxStep());
+        track.style.transform = `translateX(${-step * cardW()}px)`;
+        fill.style.width = (maxStep() > 0 ? (step / maxStep()) * 100 : 0) + '%';
+        btnPrev.disabled = step === 0;
+        btnNext.disabled = step >= maxStep();
+      }
+
+      btnNext.addEventListener('click', () => { if (step < maxStep()) { step++; updateUI(); } });
+      btnPrev.addEventListener('click', () => { if (step > 0) { step--; updateUI(); } });
+
+      viewport.addEventListener('touchstart', e => {
+        dragging = true;
+        startX = lastX = e.touches[0].clientX;
+        track.style.transition = 'none';
+      }, { passive: true });
+
+      viewport.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        lastX = e.touches[0].clientX;
+        const diff = lastX - startX;
+        if (Math.abs(diff) > 8) e.preventDefault();
+        track.style.transform = `translateX(${-step * cardW() + diff}px)`;
+      }, { passive: false });
+
+      viewport.addEventListener('touchend', () => {
+        if (!dragging) return;
+        dragging = false;
+        track.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+        const diff = lastX - startX;
+        if (diff < -50 && step < maxStep()) step++;
+        else if (diff > 50 && step > 0) step--;
+        updateUI();
+      });
+
+      window.addEventListener('resize', updateUI);
+      updateUI();
+    })();
+
+    // ── Tech section carousel ──
+    (function () {
+      const viewport = document.getElementById('techViewport');
+      const track    = document.getElementById('techTrack');
+      const fill     = document.getElementById('techFill');
+      const btnPrev  = document.getElementById('techPrev');
+      const btnNext  = document.getElementById('techNext');
       if (!track) return;
 
       const cards = Array.from(track.children);
@@ -4071,78 +4192,6 @@
       const fill       = document.getElementById('babyFill');
       const btnPrev    = document.getElementById('babyPrev');
       const btnNext    = document.getElementById('babyNext');
-      if (!track) return;
-
-      const cards      = Array.from(track.children);
-      const total      = cards.length;
-      let step         = 0;
-      let startX       = 0;
-      let lastX        = 0;
-      let dragging     = false;
-
-      function visibleCount() {
-        return window.innerWidth <= 900 ? 1 : 4;
-      }
-
-      function cardW() {
-        return cards[0].offsetWidth + 16;
-      }
-
-      function maxStep() {
-        return total - visibleCount();
-      }
-
-      function updateUI() {
-        track.style.transform = `translateX(${-step * cardW()}px)`;
-        const pct = maxStep() > 0 ? (step / maxStep()) * 100 : 0;
-        fill.style.width = pct + '%';
-        btnPrev.disabled = step === 0;
-        btnNext.disabled = step >= maxStep();
-      }
-
-      btnNext.addEventListener('click', () => {
-        if (step < maxStep()) { step++; updateUI(); }
-      });
-
-      btnPrev.addEventListener('click', () => {
-        if (step > 0) { step--; updateUI(); }
-      });
-
-      viewport.addEventListener('touchstart', e => {
-        dragging = true;
-        startX = lastX = e.touches[0].clientX;
-        track.style.transition = 'none';
-      }, { passive: true });
-
-      viewport.addEventListener('touchmove', e => {
-        if (!dragging) return;
-        lastX = e.touches[0].clientX;
-        const diff = lastX - startX;
-        if (Math.abs(diff) > 8) e.preventDefault();
-        track.style.transform = `translateX(${-step * cardW() + diff}px)`;
-      }, { passive: false });
-
-      viewport.addEventListener('touchend', () => {
-        if (!dragging) return;
-        dragging = false;
-        track.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
-        const diff = lastX - startX;
-        if (diff < -50 && step < maxStep())  step++;
-        else if (diff > 50 && step > 0)      step--;
-        updateUI();
-      });
-
-      window.addEventListener('resize', updateUI);
-      updateUI();
-    })();
-
-    // Femininos carousel
-    (function () {
-      const viewport   = document.getElementById('femininosViewport');
-      const track      = document.getElementById('femininosTrack');
-      const fill       = document.getElementById('femininosFill');
-      const btnPrev    = document.getElementById('femininosPrev');
-      const btnNext    = document.getElementById('femininosNext');
       if (!track) return;
 
       const cards      = Array.from(track.children);
@@ -4710,7 +4759,7 @@
 
       // 8. Nav link ativo conforme seção visível
       const navLinkEls = document.querySelectorAll('.nav-links a');
-      const sectIds    = ['pijamas-americanos', 'baby-dolls', 'oversized', 'tech-modal', 'poliamida', 'pijamas-infantil', 'faq', 'contato'];
+      const sectIds    = ['pijamas-americanos', 'baby-dolls', 'alcinhas', 'colecoes', 'pijamas-infantil', 'tech-modal', 'faq', 'contato'];
 
       window.addEventListener('scroll', () => {
         let current = '';
