@@ -1701,8 +1701,6 @@
     }
     .modal-stars { color: var(--header-ink); font-size: 13px; letter-spacing: 1px; }
     .modal-stars b { color: #333; }
-    .modal-live { display: flex; align-items: center; gap: 5px; }
-    .modal-live-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; }
     .modal-price-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
     .modal-price-old { font-family: 'Barlow', sans-serif; font-size: 14px; color: #aaa; text-decoration: line-through; }
     .modal-off-badge {
@@ -1840,9 +1838,12 @@
         overflow: visible;
       }
 
-      .modal-title { font-size: 24px; }
+      .modal-title { font-size: 30px; text-align: center; }
+      .modal-meta { justify-content: center; }
       .modal-meta { flex-wrap: wrap; gap: 8px 12px; }
-      .modal-price-main { font-size: 34px; }
+      .modal-price-row { justify-content: center; }
+      .modal-price-main { font-size: 46px; text-align: center; }
+      .modal-installments { text-align: center; font-size: 14px; }
       .modal-cashback-pill { width: 100%; justify-content: center; text-align: center; }
       .modal-wa-btn { padding: 14px 16px; }
     }
@@ -1855,7 +1856,8 @@
 
       .modal-gallery { padding: 12px; }
       .modal-main-img img { max-height: 38dvh; }
-      .modal-title { font-size: 22px; }
+      .modal-title { font-size: 28px; }
+      .modal-price-main { font-size: 42px; }
       .modal-features { grid-template-columns: repeat(2, 1fr); }
       .modal-size-btn { width: 42px; height: 42px; }
     }
@@ -3406,7 +3408,6 @@
 
         <div class="modal-meta">
           <div class="modal-stars">★★★★★ <b>4.9/5</b></div>
-          <div class="modal-live"><span class="modal-live-dot"></span><span>115 ao vivo</span></div>
         </div>
 
         <div class="modal-price-row">
