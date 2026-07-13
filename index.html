@@ -1636,7 +1636,12 @@
       align-items: center;
       justify-content: center;
     }
-    .modal-thumbs { display: none; }
+    .modal-thumbs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      order: 2;
+    }
     .modal-thumb {
       width: 54px; height: 54px;
       border-radius: 6px; border: 2px solid transparent;
@@ -1654,6 +1659,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      order: 1;
     }
     .modal-main-img img {
       width: auto;
@@ -1804,12 +1810,15 @@
         width: 100%;
         flex: none;
         min-height: auto;
+        flex-direction: column;
         padding: 14px;
         gap: 8px;
       }
 
       .modal-thumbs {
-        display: none;
+        flex-direction: row;
+        justify-content: center;
+        order: 2;
       }
 
       .modal-thumb { width: 56px; height: 56px; }
@@ -1817,6 +1826,7 @@
       .modal-main-img {
         flex: none;
         min-height: auto;
+        order: 1;
       }
 
       .modal-main-img img {
@@ -3389,6 +3399,7 @@
         <div class="modal-main-img">
           <img id="modalMainImg" src="" alt="" />
         </div>
+        <div class="modal-thumbs" id="modalThumbs"></div>
       </div>
 
       <!-- Informações -->
@@ -3940,6 +3951,7 @@
       const overlay    = document.getElementById('productModal');
       const closeBtn   = document.getElementById('modalClose');
       const mainImg    = document.getElementById('modalMainImg');
+      const thumbsEl   = document.getElementById('modalThumbs');
       const titleEl    = document.getElementById('modalTitle');
       const priceOldEl = document.getElementById('modalPriceOld');
       const offBadgeEl = document.getElementById('modalOffBadge');
@@ -3958,6 +3970,12 @@
         mainImg.src = data.img;
         mainImg.alt = data.name;
         waBtn.href  = 'https://wa.me/554398570720?text=' + encodeURIComponent('Olá, La Fiore! Tenho interesse no pijama: ' + data.name);
+
+        thumbsEl.innerHTML = '';
+        const thumb = document.createElement('div');
+        thumb.className = 'modal-thumb active';
+        thumb.innerHTML = `<img src="${data.img}" alt="" />`;
+        thumbsEl.appendChild(thumb);
 
         selSizeEl.textContent = 'P';
         document.querySelectorAll('.modal-size-btn').forEach(b => {
