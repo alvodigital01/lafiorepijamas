@@ -4027,8 +4027,17 @@
       const selSizeEl  = document.getElementById('modalSelectedSize');
       const waBtn      = document.getElementById('modalWaBtn');
       const container  = overlay?.querySelector('.modal-container');
+      let currentProductName = '';
+
+      function updateWhatsAppLink() {
+        const selectedSize = selSizeEl.textContent.trim();
+        waBtn.href = 'https://wa.me/554398570720?text=' + encodeURIComponent(
+          'Olá, La Fiore! Tenho interesse no pijama: ' + currentProductName + ' - Tamanho: ' + selectedSize
+        );
+      }
 
       function openModal(data) {
+        currentProductName = data.name;
         titleEl.textContent    = data.name;
         priceOldEl.textContent = data.priceOld || '';
         offBadgeEl.textContent = data.off || '';
@@ -4037,8 +4046,6 @@
         const images = data.images?.length ? data.images : [data.img];
         mainImg.src = images[0];
         mainImg.alt = data.name;
-        waBtn.href  = 'https://wa.me/554398570720?text=' + encodeURIComponent('Olá, La Fiore! Tenho interesse no pijama: ' + data.name);
-
         thumbsEl.innerHTML = '';
         images.forEach((src, i) => {
           const thumb = document.createElement('div');
@@ -4058,6 +4065,7 @@
         document.querySelectorAll('.modal-size-btn').forEach(b => {
           b.classList.toggle('active', b.dataset.size === 'P');
         });
+        updateWhatsAppLink();
 
         overlay.classList.add('open');
         if (container) container.scrollTop = 0;
@@ -4096,6 +4104,7 @@
           document.querySelectorAll('.modal-size-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           selSizeEl.textContent = btn.dataset.size;
+          updateWhatsAppLink();
         });
       });
 
