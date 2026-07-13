@@ -1661,6 +1661,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: zoom-in;
     }
     .modal-main-img img {
       width: auto;
@@ -1826,8 +1827,9 @@
       }
 
       .modal-main-img img {
+        width: 100%;
         max-width: 100%;
-        max-height: 42dvh;
+        max-height: 56dvh;
         object-fit: contain;
       }
 
@@ -1855,11 +1857,41 @@
       }
 
       .modal-gallery { padding: 12px; }
-      .modal-main-img img { max-height: 38dvh; }
+      .modal-main-img img { max-height: 52dvh; }
       .modal-title { font-size: 28px; }
       .modal-price-main { font-size: 42px; }
       .modal-features { grid-template-columns: repeat(2, 1fr); }
       .modal-size-btn { width: 42px; height: 42px; }
+    }
+
+    .image-zoom-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 11000;
+      background: rgba(45,16,24,0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease;
+      cursor: zoom-out;
+    }
+
+    .image-zoom-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .image-zoom-overlay img {
+      max-width: 96vw;
+      max-height: 94dvh;
+      width: auto;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      box-shadow: 0 20px 70px rgba(0,0,0,0.35);
     }
 
     /* ─── DEPOIMENTOS ─── */
@@ -3511,6 +3543,10 @@
   <!-- ══════════════════════════════════════
        BACK TO TOP BUTTON
   ══════════════════════════════════════ -->
+  <div class="image-zoom-overlay" id="imageZoomOverlay" aria-hidden="true">
+    <img id="imageZoomImg" src="" alt="" />
+  </div>
+
   <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">
     <svg viewBox="0 0 24 24">
       <path d="M12 19V5"></path>
@@ -3951,6 +3987,8 @@
       const closeBtn   = document.getElementById('modalClose');
       const mainImg    = document.getElementById('modalMainImg');
       const thumbsEl   = document.getElementById('modalThumbs');
+      const zoomOverlay= document.getElementById('imageZoomOverlay');
+      const zoomImg    = document.getElementById('imageZoomImg');
       const titleEl    = document.getElementById('modalTitle');
       const priceOldEl = document.getElementById('modalPriceOld');
       const offBadgeEl = document.getElementById('modalOffBadge');
@@ -3991,8 +4029,27 @@
         document.body.style.overflow = '';
       }
 
+      function openZoom() {
+        if (!mainImg.src) return;
+        zoomImg.src = mainImg.src;
+        zoomImg.alt = mainImg.alt || '';
+        zoomOverlay.classList.add('open');
+        zoomOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeZoom() {
+        zoomOverlay.classList.remove('open');
+        zoomOverlay.setAttribute('aria-hidden', 'true');
+        zoomImg.src = '';
+        document.body.style.overflow = overlay.classList.contains('open') ? 'hidden' : '';
+      }
+
       closeBtn.addEventListener('click', closeModal);
       overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+      mainImg.addEventListener('click', openZoom);
+      thumbsEl.addEventListener('click', openZoom);
+      zoomOverlay.addEventListener('click', closeZoom);
 
       document.querySelectorAll('.modal-size-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -4026,7 +4083,11 @@
       }
 
       attachCards();
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+      document.addEventListener('keydown', e => {
+        if (e.key !== 'Escape') return;
+        if (zoomOverlay.classList.contains('open')) closeZoom();
+        else closeModal();
+      });
     })();
 
     // Busca de produtos no header
