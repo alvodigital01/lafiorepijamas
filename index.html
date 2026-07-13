@@ -3588,16 +3588,15 @@
         price: 'R$ 69,90',
         installment: 'Ate 12x de R$ 7,56',
         badge: '-60%',
+        cardCount: 12,
         images: [
+          ['pijamas%20feminimos/7.jpg', 'pijamas%20feminimos/8.jpg'],
+          ['pijamas%20feminimos/9.jpg', 'pijamas%20feminimos/10.jpg'],
+          'pijamas%20feminimos/11.jpg',
           'pijamas%20feminimos/1.jpg',
           'pijamas%20feminimos/2.jpg',
           'pijamas%20feminimos/3.jpg',
           'pijamas%20feminimos/4.jpg',
-          'pijamas%20feminimos/7.jpg',
-          'pijamas%20feminimos/8.jpg',
-          'pijamas%20feminimos/9.jpg',
-          'pijamas%20feminimos/10.jpg',
-          'pijamas%20feminimos/11.jpg',
           'pijamas%20feminimos/13.jpg',
           'pijamas%20feminimos/14.jpg',
           'pijamas%20feminimos/15.jpg',
@@ -3605,15 +3604,13 @@
           'pijamas%20feminimos/22.jpg'
         ],
         names: [
+          'Americano Curto - Maçã Verde',
+          'Americano Curto - Preto',
+          'Americano Curto - Azul Marinho',
           'Pijama Aurora Rose',
           'Pijama Lua Serena',
           'Pijama Brisa Azul',
           'Pijama Jardim Doce',
-          'Pijama Noite de Cetim',
-          'Pijama Estrela Bela',
-          'Pijama Duna Leve',
-          'Pijama Flor de Algodao',
-          'Pijama Nuvem Clara',
           'Pijama Amora Soft',
           'Pijama Bella Casa',
           'Pijama Sonho de Lavanda',
@@ -3710,12 +3707,14 @@
       const track = document.getElementById(collection.trackId);
       if (!track) return;
 
-      track.innerHTML = Array.from({ length: collectionCardCount }, (_, i) => {
-        const img = collection.images[i % collection.images.length];
+      track.innerHTML = Array.from({ length: collection.cardCount || collectionCardCount }, (_, i) => {
+        const productImages = collection.images[i % collection.images.length];
+        const imageList = Array.isArray(productImages) ? productImages : [productImages];
+        const img = imageList[0];
         const name = collection.names[i] || collection.names[i % collection.names.length];
 
         return `
-          <div class="prod-card">
+          <div class="prod-card" data-images='${JSON.stringify(imageList)}'>
             <div class="prod-badge">${collection.badge}</div>
             <div class="prod-img"><img src="${img}" alt="${name}" /></div>
             <div class="prod-info">
@@ -4010,15 +4009,24 @@
         offBadgeEl.textContent = data.off || '';
         priceMainEl.textContent= data.price;
         installEl.textContent  = data.installments;
-        mainImg.src = data.img;
+        const images = data.images?.length ? data.images : [data.img];
+        mainImg.src = images[0];
         mainImg.alt = data.name;
         waBtn.href  = 'https://wa.me/554398570720?text=' + encodeURIComponent('Olá, La Fiore! Tenho interesse no pijama: ' + data.name);
 
         thumbsEl.innerHTML = '';
-        const thumb = document.createElement('div');
-        thumb.className = 'modal-thumb active';
-        thumb.innerHTML = `<img src="${data.img}" alt="" />`;
-        thumbsEl.appendChild(thumb);
+        images.forEach((src, i) => {
+          const thumb = document.createElement('div');
+          thumb.className = 'modal-thumb' + (i === 0 ? ' active' : '');
+          thumb.innerHTML = `<img src="${src}" alt="" />`;
+          thumb.addEventListener('click', event => {
+            event.stopPropagation();
+            mainImg.src = src;
+            thumbsEl.querySelectorAll('.modal-thumb').forEach(t => t.classList.remove('active'));
+            thumb.classList.add('active');
+          });
+          thumbsEl.appendChild(thumb);
+        });
 
         selSizeEl.textContent = 'P';
         document.querySelectorAll('.modal-size-btn').forEach(b => {
@@ -4083,7 +4091,13 @@
             const price = pEl?.querySelector('strong')?.textContent.trim() || '';
             const inst  = card.querySelector('.tech-installment, .prod-installment')?.textContent.trim() || '';
             const badge = card.querySelector('.tech-badge, .prod-badge')?.textContent.trim() || '';
-            openModal({ img: img?.src || '', name, priceOld: old, off: badge ? badge + ' OFF' : '', price, installments: inst });
+            let images = [];
+            try {
+              images = JSON.parse(card.dataset.images || '[]');
+            } catch (error) {
+              images = [];
+            }
+            openModal({ img: img?.src || '', images, name, priceOld: old, off: badge ? badge + ' OFF' : '', price, installments: inst });
           });
         });
       }
