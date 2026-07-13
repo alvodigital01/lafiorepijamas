@@ -1811,8 +1811,9 @@
         display: flex;
         flex: none;
         min-height: auto;
-        padding: 14px;
-        gap: 8px;
+        padding: 0;
+        gap: 0;
+        background: transparent;
       }
 
       .modal-thumbs {
@@ -1822,15 +1823,19 @@
       .modal-thumb { width: 56px; height: 56px; }
 
       .modal-main-img {
+        width: 100%;
         flex: none;
         min-height: auto;
+        border-radius: 0;
+        overflow: hidden;
       }
 
       .modal-main-img img {
         width: 100%;
         max-width: 100%;
+        height: 56dvh;
         max-height: 56dvh;
-        object-fit: contain;
+        object-fit: cover;
       }
 
       .modal-info {
@@ -1856,8 +1861,8 @@
         max-height: 94dvh;
       }
 
-      .modal-gallery { padding: 12px; }
-      .modal-main-img img { max-height: 52dvh; }
+      .modal-gallery { padding: 0; }
+      .modal-main-img img { height: 52dvh; max-height: 52dvh; }
       .modal-title { font-size: 28px; }
       .modal-price-main { font-size: 42px; }
       .modal-features { grid-template-columns: repeat(2, 1fr); }
