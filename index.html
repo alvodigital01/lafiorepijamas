@@ -2798,6 +2798,7 @@
       <!-- Desktop nav links -->
       <ul class="nav-links">
         <li><a href="#pijamas-americanos">Americanos</a></li>
+        <li><a href="#baby-dolls">Baby Dolls</a></li>
         <li><a href="#oversized">Femininos</a></li>
         <li><a href="#pijamas-infantil">Infantil</a></li>
         <li><a href="#poliamida">Família</a></li>
@@ -2852,6 +2853,7 @@
 
     <ul class="drawer-nav">
       <li><a href="#pijamas-americanos">Americanos</a></li>
+      <li><a href="#baby-dolls">Baby Dolls</a></li>
       <li><a href="#oversized">Femininos</a></li>
       <li><a href="#pijamas-infantil">Infantil</a></li>
       <li><a href="#poliamida">Família</a></li>
@@ -2930,6 +2932,27 @@
     <div class="products-arrows">
       <button class="arrow-btn" id="prodPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
       <button class="arrow-btn" id="prodNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+
+</section>
+
+<section class="products-section collection-section--white" id="baby-dolls">
+
+  <div class="products-header">
+    <h2 class="products-title">BABY DOLLS</h2>
+    <p class="products-subtitle">Modelos leves em malha liganete com renda, feitos para noites confortaveis e delicadas.</p>
+  </div>
+
+  <div class="products-viewport" id="babyViewport">
+    <div class="products-track" id="babyTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="babyFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="babyPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="babyNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
   </div>
 
@@ -3791,6 +3814,42 @@
       products: collectionData[0].products
     });
 
+    collectionData.push({
+      trackId: 'babyTrack',
+      products: [
+        {
+          name: 'Baby Doll - Preto Bicolor',
+          images: ['pijamas%20feminimos/baby/1.jpg', 'pijamas%20feminimos/baby/2.jpg'],
+          price: 'R$ 139,90',
+          installment: 'Ate 12x de R$ 15,13'
+        },
+        {
+          name: 'Baby Doll - Frozen',
+          images: ['pijamas%20feminimos/baby/3.jpg', 'pijamas%20feminimos/baby/4.jpg'],
+          price: 'R$ 119,90',
+          installment: 'Ate 12x de R$ 12,97'
+        },
+        {
+          name: 'Baby Doll - Verde Água',
+          images: ['pijamas%20feminimos/baby/5.jpg'],
+          price: 'R$ 119,90',
+          installment: 'Ate 12x de R$ 12,97'
+        },
+        {
+          name: 'Baby Doll - Vermelho',
+          images: ['pijamas%20feminimos/baby/6.jpg', 'pijamas%20feminimos/baby/7.jpg'],
+          price: 'R$ 119,90',
+          installment: 'Ate 12x de R$ 12,97'
+        },
+        {
+          name: 'Baby Doll - Azul Marinho',
+          images: ['pijamas%20feminimos/baby/8.jpg', 'pijamas%20feminimos/baby/9.jpg'],
+          price: 'R$ 119,90',
+          installment: 'Ate 12x de R$ 12,97'
+        }
+      ]
+    });
+
     function renderCollectionCards(collection) {
       const track = document.getElementById(collection.trackId);
       if (!track) return;
@@ -3977,6 +4036,78 @@
       });
 
       // Touch/drag no mobile
+      viewport.addEventListener('touchstart', e => {
+        dragging = true;
+        startX = lastX = e.touches[0].clientX;
+        track.style.transition = 'none';
+      }, { passive: true });
+
+      viewport.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        lastX = e.touches[0].clientX;
+        const diff = lastX - startX;
+        if (Math.abs(diff) > 8) e.preventDefault();
+        track.style.transform = `translateX(${-step * cardW() + diff}px)`;
+      }, { passive: false });
+
+      viewport.addEventListener('touchend', () => {
+        if (!dragging) return;
+        dragging = false;
+        track.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+        const diff = lastX - startX;
+        if (diff < -50 && step < maxStep())  step++;
+        else if (diff > 50 && step > 0)      step--;
+        updateUI();
+      });
+
+      window.addEventListener('resize', updateUI);
+      updateUI();
+    })();
+
+    // Baby Dolls carousel
+    (function () {
+      const viewport   = document.getElementById('babyViewport');
+      const track      = document.getElementById('babyTrack');
+      const fill       = document.getElementById('babyFill');
+      const btnPrev    = document.getElementById('babyPrev');
+      const btnNext    = document.getElementById('babyNext');
+      if (!track) return;
+
+      const cards      = Array.from(track.children);
+      const total      = cards.length;
+      let step         = 0;
+      let startX       = 0;
+      let lastX        = 0;
+      let dragging     = false;
+
+      function visibleCount() {
+        return window.innerWidth <= 900 ? 1 : 4;
+      }
+
+      function cardW() {
+        return cards[0].offsetWidth + 16;
+      }
+
+      function maxStep() {
+        return total - visibleCount();
+      }
+
+      function updateUI() {
+        track.style.transform = `translateX(${-step * cardW()}px)`;
+        const pct = maxStep() > 0 ? (step / maxStep()) * 100 : 0;
+        fill.style.width = pct + '%';
+        btnPrev.disabled = step === 0;
+        btnNext.disabled = step >= maxStep();
+      }
+
+      btnNext.addEventListener('click', () => {
+        if (step < maxStep()) { step++; updateUI(); }
+      });
+
+      btnPrev.addEventListener('click', () => {
+        if (step > 0) { step--; updateUI(); }
+      });
+
       viewport.addEventListener('touchstart', e => {
         dragging = true;
         startX = lastX = e.touches[0].clientX;
@@ -4579,7 +4710,7 @@
 
       // 8. Nav link ativo conforme seção visível
       const navLinkEls = document.querySelectorAll('.nav-links a');
-      const sectIds    = ['pijamas-americanos', 'oversized', 'tech-modal', 'poliamida', 'pijamas-infantil', 'faq', 'contato'];
+      const sectIds    = ['pijamas-americanos', 'baby-dolls', 'oversized', 'tech-modal', 'poliamida', 'pijamas-infantil', 'faq', 'contato'];
 
       window.addEventListener('scroll', () => {
         let current = '';
