@@ -564,6 +564,10 @@
       animation: fadeUp 0.9s 0.1s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
 
+    .hero-subtitle-mobile-break {
+      display: none;
+    }
+
     .hero-title {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
@@ -816,6 +820,7 @@
     }
 
     @media (max-width: 480px) {
+      .hero-subtitle-mobile-break { display: block; }
       .price-card { padding: 18px 32px 20px; min-width: 220px; }
       .price-value { font-size: 52px; }
       .price-currency { font-size: 30px; }
@@ -1221,6 +1226,7 @@
     .products-section {
       background: #FCE4DD;
       padding: 56px 0 40px;
+      scroll-margin-top: calc(var(--announcement-height) + var(--nav-height-desktop));
     }
 
     .products-section.collection-section--white {
@@ -1229,6 +1235,10 @@
 
     .collection-section--white .prod-card {
       border: 1px solid #ececec;
+    }
+
+    .collection-section--white .products-title {
+      color: var(--header-ink);
     }
 
     .products-header {
@@ -1452,6 +1462,10 @@
     .arrow-btn:disabled:hover svg { stroke: #111; }
 
     @media (max-width: 900px) {
+      .products-section {
+        scroll-margin-top: calc(var(--announcement-height) + var(--nav-height-mobile));
+      }
+
       .prod-card { flex: 0 0 75vw; }
       .products-viewport { padding: 0 16px; }
       .products-footer { padding: 20px 16px 0; }
@@ -2604,7 +2618,7 @@
     </div>
 
     <div class="hero-content">
-      <p class="hero-subtitle">Pijamas feitos para você viver bem em casa</p>
+      <p class="hero-subtitle">Pijamas feitos para você<br class="hero-subtitle-mobile-break"> viver bem em casa</p>
 
       <h1 class="hero-title">Pijamas</h1>
 
