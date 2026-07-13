@@ -1814,6 +1814,7 @@
         padding: 0;
         gap: 0;
         background: #ebebeb;
+        position: relative;
       }
 
       .modal-thumbs {
@@ -1825,11 +1826,26 @@
         flex-direction: row;
         justify-content: center;
         gap: 8px;
-        padding: 8px;
-        background: #ebebeb;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        z-index: 3;
+        padding: 0 12px;
+        background: transparent;
       }
 
       .modal-thumb { width: 56px; height: 56px; }
+
+      .modal-thumbs.has-multiple .modal-thumb {
+        background: rgba(255,255,255,0.88);
+        border-color: rgba(255,255,255,0.9);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.22);
+      }
+
+      .modal-thumbs.has-multiple .modal-thumb.active {
+        border-color: var(--header-ink);
+      }
 
       .modal-main-img {
         width: 100%;
