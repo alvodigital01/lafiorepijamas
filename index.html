@@ -2147,6 +2147,174 @@
       font-family: 'Barlow', sans-serif;
     }
 
+    /* ─── LOCALIZACAO ─── */
+    .location-section {
+      background: #fff;
+      padding: 88px 24px;
+      color: var(--header-ink);
+    }
+
+    .location-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .location-heading {
+      max-width: 680px;
+      margin: 0 auto 40px;
+      text-align: center;
+    }
+
+    .location-kicker {
+      display: inline-block;
+      margin-bottom: 12px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8d5361;
+    }
+
+    .location-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(38px, 5vw, 58px);
+      font-weight: 800;
+      line-height: 1;
+      text-transform: uppercase;
+      color: var(--header-ink);
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+      min-height: 470px;
+      overflow: hidden;
+      border: 1px solid rgba(45, 16, 24, 0.14);
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(45, 16, 24, 0.1);
+    }
+
+    .location-map {
+      min-height: 470px;
+      background: #f5e8e4;
+    }
+
+    .location-map iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 470px;
+      border: 0;
+      filter: saturate(0.75) contrast(0.96);
+    }
+
+    .location-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 44px;
+      background: #FCE4DD;
+    }
+
+    .location-info-title {
+      margin-bottom: 26px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--header-ink);
+    }
+
+    .location-detail {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(45, 16, 24, 0.14);
+    }
+
+    .location-detail:first-of-type {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .location-icon {
+      display: flex;
+      width: 42px;
+      height: 42px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: var(--header-ink);
+      color: #FCE4DD;
+    }
+
+    .location-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .location-detail strong {
+      display: block;
+      margin-bottom: 5px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .location-detail p,
+    .location-detail address {
+      font-family: 'Barlow', sans-serif;
+      font-size: 14px;
+      line-height: 1.65;
+      color: #5a2030;
+      font-style: normal;
+    }
+
+    .location-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      padding: 13px 20px;
+      border-radius: 100px;
+      background: var(--header-ink);
+      color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .location-link:hover { transform: translateY(-2px); opacity: 0.9; }
+
+    @media (max-width: 800px) {
+      .location-section { padding: 64px 16px; }
+      .location-heading { margin-bottom: 28px; }
+      .location-grid { grid-template-columns: 1fr; border-radius: 18px; }
+      .location-map, .location-map iframe { min-height: 340px; }
+      .location-info { padding: 32px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .location-section { padding: 52px 14px; }
+      .location-title { font-size: 36px; }
+      .location-map, .location-map iframe { min-height: 300px; }
+      .location-info-title { font-size: 24px; }
+      .location-info { padding: 28px 20px; }
+    }
+
     /* ─── CTA FINAL ─── */
     .cta-section {
       background: #fff;
@@ -2612,8 +2780,8 @@
   <section class="hero">
     <div class="hero-bg">
       <picture>
-        <source media="(max-width: 900px)" srcset="bannermobile.png" />
-        <img src="bannerpc.png" alt="Hero La Fiore Pijamas" />
+        <source media="(max-width: 900px)" srcset="bannermobile.jpg" />
+        <img src="bannerpc.jpg" alt="Hero La Fiore Pijamas" />
       </picture>
     </div>
 
@@ -2999,6 +3167,65 @@
           <div class="faq-body"><p>Sim! Entregamos para todo o território nacional via Correios ou transportadora parceira.</p></div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       LOCALIZACAO E HORARIOS
+  ══════════════════════════════════════ -->
+  <section class="location-section" aria-labelledby="locationTitle">
+    <div class="location-inner">
+      <div class="location-heading">
+        <span class="location-kicker">Visite a La Fiore</span>
+        <h2 class="location-title" id="locationTitle">Onde estamos</h2>
+      </div>
+
+      <div class="location-grid">
+        <div class="location-map">
+          <iframe
+            title="Mapa da La Fiore em Londrina"
+            src="https://www.google.com/maps?q=Rua%20Acylino%20Augusto%20do%20Nascimento%2C%20398%2C%20Londrina%20PR%2C%2086063-090%2C%20Brasil&amp;output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+
+        <div class="location-info">
+          <h3 class="location-info-title">Nosso horário de atendimento</h3>
+
+          <div class="location-detail">
+            <span class="location-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+            </span>
+            <div>
+              <strong>Segunda à sexta</strong>
+              <p>Das 9:00 às 12:00<br>e das 13:30 às 18:00</p>
+            </div>
+          </div>
+
+          <div class="location-detail">
+            <span class="location-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"></path></svg>
+            </span>
+            <div>
+              <strong>Aos sábados</strong>
+              <p>Das 9:00 às 12:00</p>
+            </div>
+          </div>
+
+          <div class="location-detail">
+            <span class="location-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+            </span>
+            <div>
+              <strong>Endereço</strong>
+              <address>Rua Acylino Augusto do Nascimento, 398<br>Londrina - PR, 86063-090, Brasil</address>
+            </div>
+          </div>
+
+          <a class="location-link" href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Acylino%20Augusto%20do%20Nascimento%2C%20398%2C%20Londrina%20PR%2C%2086063-090%2C%20Brasil" target="_blank" rel="noopener">Abrir no Google Maps</a>
+        </div>
       </div>
     </div>
   </section>
