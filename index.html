@@ -1931,17 +1931,23 @@
 
     /* ─── CONFECCAO SOB MEDIDA ─── */
     .custom-made-section {
-      background: #2D1018;
+      position: relative;
+      background:
+        radial-gradient(1100px 520px at 88% -12%, rgba(244,183,168,0.16), transparent 60%),
+        radial-gradient(700px 400px at -5% 105%, rgba(244,183,168,0.08), transparent 55%),
+        #2D1018;
       color: #fff;
-      padding: 78px 24px;
+      padding: 84px 24px 78px;
+      overflow: hidden;
     }
 
     .custom-made-inner {
+      position: relative;
       width: min(1180px, 100%);
       margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-      gap: 64px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 72px;
       align-items: center;
     }
 
@@ -1968,7 +1974,7 @@
     }
 
     .custom-made-text {
-      max-width: 570px;
+      max-width: 490px;
       color: rgba(255,255,255,0.78);
       font-family: 'Barlow', sans-serif;
       font-size: 16px;
@@ -1988,12 +1994,13 @@
       font-size: 14px;
       font-weight: 700;
       text-decoration: none;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, gap 0.25s ease;
     }
 
     .custom-made-cta:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+      gap: 14px;
     }
 
     .custom-made-cta svg {
@@ -2002,23 +2009,104 @@
       fill: currentColor;
     }
 
-    .custom-made-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+    /* Visual: framed photo with a stitched border + hanging fabric tag */
+    .custom-made-visual {
+      display: flex;
+      justify-content: center;
     }
 
-    .custom-made-card {
-      min-height: 190px;
-      padding: 26px;
-      border: 1px solid rgba(255,255,255,0.16);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.06);
+    .custom-made-frame {
+      position: relative;
+      width: min(420px, 100%);
+      aspect-ratio: 4 / 5;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    }
+
+    .custom-made-frame::before {
+      content: '';
+      position: absolute;
+      inset: -12px;
+      border: 1.5px dashed rgba(244,183,168,0.45);
+      border-radius: 32px;
+      transform: rotate(-1.4deg);
+      pointer-events: none;
+    }
+
+    .custom-made-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+    }
+
+    .custom-made-frame:hover img {
+      transform: scale(1.045);
+    }
+
+    .custom-made-tag {
+      position: absolute;
+      left: -16px;
+      bottom: 26px;
+      padding: 10px 18px;
+      background: #FCE4DD;
+      color: #2D1018;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      border: 1px dashed rgba(45,16,24,0.35);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.35);
+      transform: rotate(-4deg);
+    }
+
+    /* Steps: horizontal process row beneath the intro, tailoring-themed icons */
+    .custom-made-steps {
+      position: relative;
+      width: min(1180px, 100%);
+      margin: 64px auto 0;
+      padding-top: 44px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0 28px;
+      border-top: 1px solid rgba(255,255,255,0.14);
+    }
+
+    .custom-made-step {
+      padding-right: 28px;
+      border-right: 1px dashed rgba(255,255,255,0.16);
+    }
+
+    .custom-made-step:last-child {
+      padding-right: 0;
+      border-right: none;
+    }
+
+    .custom-made-step-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      color: #F4B7A8;
+    }
+
+    .custom-made-step-icon svg {
+      width: 20px;
+      height: 20px;
     }
 
     .custom-made-number {
       display: block;
-      margin-bottom: 24px;
+      margin-bottom: 10px;
       color: #F4B7A8;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 15px;
@@ -2026,17 +2114,17 @@
       letter-spacing: 0.1em;
     }
 
-    .custom-made-card h3 {
+    .custom-made-step h3 {
       margin-bottom: 8px;
       color: #fff;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 23px;
+      font-size: 22px;
       font-weight: 700;
       text-transform: uppercase;
     }
 
-    .custom-made-card p {
-      color: rgba(255,255,255,0.68);
+    .custom-made-step p {
+      color: rgba(255,255,255,0.66);
       font-family: 'Barlow', sans-serif;
       font-size: 13px;
       line-height: 1.6;
@@ -2044,12 +2132,18 @@
 
     @media (max-width: 900px) {
       .custom-made-section { padding: 58px 20px; }
-      .custom-made-inner { grid-template-columns: 1fr; gap: 38px; }
+      .custom-made-inner { grid-template-columns: 1fr; gap: 44px; }
+      .custom-made-visual { order: -1; }
+      .custom-made-text { max-width: 100%; }
+      .custom-made-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; margin-top: 48px; }
+      .custom-made-step { border-right: none; padding-right: 0; }
+      .custom-made-step:nth-child(odd) { padding-right: 16px; border-right: 1px dashed rgba(255,255,255,0.16); }
     }
 
     @media (max-width: 560px) {
-      .custom-made-grid { grid-template-columns: 1fr; }
-      .custom-made-card { min-height: 0; }
+      .custom-made-steps { grid-template-columns: 1fr; row-gap: 28px; }
+      .custom-made-step:nth-child(odd) { border-right: none; padding-right: 0; }
+      .custom-made-frame { width: min(320px, 100%); }
     }
 
     /* ─── DEPOIMENTOS ─── */
@@ -2232,15 +2326,38 @@
     /* Desktop: badge card fica no carousel como 1º item normal */
     /* Mobile: reviews-top some, badge card entra no carousel */
     @media (max-width: 900px) {
-      .reviews-top      { display: none; }
-      .review-card      { flex: 0 0 80vw; }
-      .review-badge-card{ flex: 0 0 80vw; }
+      .reviews-top {
+        display: flex;
+        padding: 0 16px;
+        margin-bottom: 36px;
+      }
+
+      .reviews-badge {
+        width: min(100%, 520px);
+        justify-content: space-between;
+      }
+
+      .review-card { flex: 0 0 100%; box-sizing: border-box; }
+      .review-badge-card { display: none; }
+
+      .reviews-nav { margin-top: 22px; }
+      .reviews-dots { min-height: 24px; justify-content: center; }
     }
 
     @media (max-width: 480px) {
       .reviews-carousel-outer { padding: 0 16px; }
-      .review-card       { flex: 0 0 calc(100vw - 48px); padding: 20px; }
-      .review-badge-card { flex: 0 0 calc(100vw - 48px); padding: 20px; flex-wrap: wrap; }
+      .reviews-badge { gap: 10px; padding: 18px 16px; border-radius: 14px; }
+      .reviews-score { font-size: 44px; }
+      .reviews-badge-mid { min-width: 0; flex: 1; gap: 3px; }
+      .reviews-stars-row { font-size: 17px; letter-spacing: 1px; white-space: nowrap; }
+      .reviews-source { font-size: 11px; line-height: 1.3; }
+      .reviews-badge-sep { height: 44px; }
+      .reviews-google-col { min-width: 38px; }
+      .reviews-google-col svg { width: 27px; height: 27px; }
+      .reviews-google-col span { font-size: 10px; }
+      .review-card { padding: 20px; min-height: 280px; }
+      .reviews-dot { width: 7px; height: 7px; }
+      .reviews-dot.active { width: 22px; }
     }
 
     /* Desktop: esconde badge card no carousel (já aparece no reviews-top acima) */
@@ -2792,15 +2909,7 @@
       .cta-trust { gap: 12px; }
     }
 
-    @media (max-width: 900px) {
-      .reviews-badge { gap: 14px; padding: 16px 20px; }
-      .reviews-score { font-size: 44px; }
-    }
-
     @media (max-width: 480px) {
-      .reviews-badge { flex-wrap: wrap; justify-content: center; text-align: center; gap: 12px; }
-      .reviews-badge-sep { display: none; }
-      .review-card { width: 280px; padding: 20px; }
       .faq-title { font-size: 32px; }
     }
 
@@ -3174,28 +3283,47 @@
       </a>
     </div>
 
-    <div class="custom-made-grid">
-      <article class="custom-made-card">
-        <span class="custom-made-number">01</span>
-        <h3>Medidas personalizadas</h3>
-        <p>Ajustamos a peça às suas medidas para oferecer conforto e um caimento mais adequado.</p>
-      </article>
-      <article class="custom-made-card">
-        <span class="custom-made-number">02</span>
-        <h3>Modelo do seu jeito</h3>
-        <p>Converse conosco sobre modelo, comprimento, detalhes e acabamentos disponíveis.</p>
-      </article>
-      <article class="custom-made-card">
-        <span class="custom-made-number">03</span>
-        <h3>Pedidos especiais</h3>
-        <p>Produzimos para casais, famílias, grupos, empresas e ocasiões que merecem algo único.</p>
-      </article>
-      <article class="custom-made-card">
-        <span class="custom-made-number">04</span>
-        <h3>Atendimento próximo</h3>
-        <p>Acompanhamos o pedido pelo WhatsApp, desde a ideia inicial até a definição da peça.</p>
-      </article>
+    <div class="custom-made-visual">
+      <div class="custom-made-frame">
+        <img src="pijamas familia/fam.jpg" alt="Família vestindo pijamas personalizados La Fiore" loading="lazy">
+        <span class="custom-made-tag">Feito à mão</span>
+      </div>
     </div>
+  </div>
+
+  <div class="custom-made-steps">
+    <article class="custom-made-step">
+      <span class="custom-made-step-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="8" width="20" height="8" rx="1.5"/><line x1="6" y1="8" x2="6" y2="11"/><line x1="10" y1="8" x2="10" y2="13"/><line x1="14" y1="8" x2="14" y2="11"/><line x1="18" y1="8" x2="18" y2="13"/></svg>
+      </span>
+      <span class="custom-made-number">01</span>
+      <h3>Medidas personalizadas</h3>
+      <p>Ajustamos a peça às suas medidas para oferecer conforto e um caimento mais adequado.</p>
+    </article>
+    <article class="custom-made-step">
+      <span class="custom-made-step-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
+      </span>
+      <span class="custom-made-number">02</span>
+      <h3>Modelo do seu jeito</h3>
+      <p>Converse conosco sobre modelo, comprimento, detalhes e acabamentos disponíveis.</p>
+    </article>
+    <article class="custom-made-step">
+      <span class="custom-made-step-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </span>
+      <span class="custom-made-number">03</span>
+      <h3>Pedidos especiais</h3>
+      <p>Produzimos para casais, famílias, grupos, empresas e ocasiões que merecem algo único.</p>
+    </article>
+    <article class="custom-made-step">
+      <span class="custom-made-step-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      </span>
+      <span class="custom-made-number">04</span>
+      <h3>Atendimento próximo</h3>
+      <p>Acompanhamos o pedido pelo WhatsApp, desde a ideia inicial até a definição da peça.</p>
+    </article>
   </div>
 </section>
 
@@ -5046,8 +5174,12 @@
 
       function buildDots() {
         dotsEl.innerHTML = '';
-        const ms = maxStep();
-        for (let i = 0; i <= ms; i++) {
+        const total = maxStep() + 1;
+        const visibleDots = window.innerWidth <= 900 ? Math.min(7, total) : total;
+        const firstDot = Math.max(0, Math.min(step - Math.floor(visibleDots / 2), total - visibleDots));
+        const lastDot = firstDot + visibleDots;
+
+        for (let i = firstDot; i < lastDot; i++) {
           const dot = document.createElement('button');
           dot.className = 'reviews-dot' + (i === step ? ' active' : '');
           dot.setAttribute('aria-label', 'Depoimento ' + (i + 1));
@@ -5061,7 +5193,7 @@
         track.style.transform = `translateX(${-step * cardW()}px)`;
         btnPrev.disabled = step === 0;
         btnNext.disabled = step >= maxStep();
-        dotsEl.querySelectorAll('.reviews-dot').forEach((d, i) => d.classList.toggle('active', i === step));
+        buildDots();
       }
 
       btnNext.addEventListener('click', () => { if (step < maxStep()) { step++; updateUI(); } });
@@ -5089,8 +5221,7 @@
         updateUI();
       });
 
-      window.addEventListener('resize', () => { buildDots(); updateUI(); });
-      buildDots();
+      window.addEventListener('resize', updateUI);
       updateUI();
     })();
 
