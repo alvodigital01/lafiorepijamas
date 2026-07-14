@@ -2184,7 +2184,7 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 44px;
       font-weight: 800;
-      color: #2D1018;
+      color: #000;
       text-align: center;
       text-transform: uppercase;
       letter-spacing: -0.5px;
@@ -2203,7 +2203,7 @@
       justify-content: space-between;
       gap: 16px;
       padding: 18px 0;
-      color: #2D1018;
+      color: #000;
       font-family: 'Barlow', sans-serif;
       font-size: 16px;
       font-weight: 500;
@@ -2215,10 +2215,10 @@
       width: 20px;
       height: 20px;
       flex-shrink: 0;
-      stroke: #2D1018;
+      stroke: #000;
     }
 
-    .faq-item.open .faq-btn { color: #5D1525; }
+    .faq-item.open .faq-btn { color: #000; }
 
     .faq-body {
       display: none;
@@ -2230,7 +2230,7 @@
       padding-bottom: 22px;
       font-size: 14px;
       line-height: 1.75;
-      color: #5a2030;
+      color: #000;
       font-family: 'Barlow', sans-serif;
     }
 
@@ -3048,10 +3048,10 @@
 
     <div class="reviews-top">
       <div class="reviews-badge">
-        <span class="reviews-score">4.9</span>
+        <span class="reviews-score">5,0</span>
         <div class="reviews-badge-mid">
           <div class="reviews-stars-row">★★★★★</div>
-          <span class="reviews-source">Baseado em avaliações do Google</span>
+            <span class="reviews-source">Baseado em 35 avaliações do Google</span>
         </div>
         <div class="reviews-badge-sep"></div>
         <div class="reviews-google-col">
@@ -3073,10 +3073,10 @@
           <!-- Badge card — visível só no mobile -->
           <div class="review-badge-card">
             <div class="review-badge-left">
-              <span class="reviews-score">4.9</span>
+              <span class="reviews-score">5,0</span>
               <div class="reviews-badge-mid">
                 <div class="reviews-stars-row">★★★★★</div>
-                <span class="reviews-source">Baseado em avaliações do Google</span>
+                <span class="reviews-source">Baseado em 35 avaliações do Google</span>
               </div>
             </div>
             <div class="reviews-badge-sep"></div>
@@ -3315,7 +3315,7 @@
     <div class="location-inner">
       <div class="location-heading">
         <span class="location-kicker">Visite a La Fiore</span>
-        <h2 class="location-title" id="locationTitle">Onde estamos</h2>
+        <h2 class="location-title" id="locationTitle">Onde estamos?</h2>
       </div>
 
       <div class="location-grid">
@@ -3576,7 +3576,7 @@
 
         <div class="modal-accordion-item">
           <button class="modal-accordion-btn">Descrição <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="modal-accordion-body">
+          <div class="modal-accordion-body" id="modalDescription">
             <p>— Conheça a coleção La Fiore Pijamas!</p>
             <p>— Reúne alta performance com o casual, perfeito para o treino e para o dia a dia, combinando estilo e versatilidade.</p>
             <p>— Tecido Tech: 96% algodão 4% elastano, proporcionando caimento perfeito ao corpo.</p>
@@ -3589,7 +3589,7 @@
 
         <div class="modal-accordion-item">
           <button class="modal-accordion-btn">Detalhes do Produto <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-          <div class="modal-accordion-body">
+          <div class="modal-accordion-body" id="modalProductDetails">
             <p><strong>Material:</strong> 96% Algodão e 4% elastano</p>
             <p><strong>Gramatura:</strong> 190g/m²</p>
             <p><strong>Categoria:</strong> Pijama</p>
@@ -3606,10 +3606,6 @@
             <div class="modal-info-item">
               <svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.57a1 1 0 00.99.84H5v10a2 2 0 002 2h10a2 2 0 002-2V10h1.15a1 1 0 00.99-.84l.58-3.57a2 2 0 00-1.34-2.23z"/></svg>
               <div class="modal-info-item-text">Mais cuidado, mais durabilidade.<a href="#">Veja como conservar seu produto.</a></div>
-            </div>
-            <div class="modal-info-item">
-              <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-              <div class="modal-info-item-text">A primeira troca é fácil e gratuita.<a href="#">Confira as opções de troca aqui.</a></div>
             </div>
           </div>
         </div>
@@ -3729,44 +3725,122 @@
             name: 'Conjunto Manga Longa Masculino',
             images: ['masc/1.jpg'],
             price: 'R$ 179,90',
-            installment: 'Disponivel P e XG'
+            installment: 'Disponivel P e XG',
+            description: [
+              'Conjunto masculino preto pensado para noites frias e momentos de descanso.',
+              'A blusa de manga longa possui acabamento contrastante na gola, trazendo um visual discreto e elegante.',
+              'A calca comprida acompanha a modelagem confortavel do conjunto e permite liberdade de movimento.'
+            ],
+            details: [
+              '<strong>Cor:</strong> Preto',
+              '<strong>Modelagem:</strong> Blusa de manga longa e calca comprida',
+              '<strong>Tamanhos disponiveis:</strong> P e XG',
+              '<strong>Categoria:</strong> Conjunto masculino'
+            ]
           },
           {
             name: 'Conjunto Manga Longa Bordo',
             images: ['masc/2.jpg'],
             price: 'R$ 179,90',
-            installment: 'Conforto para noites mais frias'
+            installment: 'Conforto para noites mais frias',
+            description: [
+              'Conjunto masculino que combina blusa bordo de manga longa com calca xadrez em tons neutros.',
+              'A composicao equilibra conforto e estilo para dormir, relaxar ou aproveitar momentos tranquilos em casa.',
+              'A modelagem soltinha oferece um caimento agradavel sem limitar os movimentos.'
+            ],
+            details: [
+              '<strong>Cor da blusa:</strong> Bordo',
+              '<strong>Estampa da calca:</strong> Xadrez',
+              '<strong>Modelagem:</strong> Manga longa e calca comprida',
+              '<strong>Categoria:</strong> Conjunto masculino'
+            ]
           },
           {
             name: 'Masculino - Pinheiro',
             images: ['masc/3.jpg'],
             priceOld: 'R$ 139,90',
             price: 'R$ 119,90',
-            installment: 'Em malha poliviscose'
+            installment: 'Em malha poliviscose',
+            description: [
+              'Conjunto masculino Pinheiro em tom verde, com visual minimalista e facil de usar.',
+              'A malha poliviscose combina toque macio, leveza e praticidade para as noites mais amenas.',
+              'Camiseta de gola V e bermuda com elastico na cintura proporcionam conforto no dia a dia.'
+            ],
+            details: [
+              '<strong>Material:</strong> Malha poliviscose',
+              '<strong>Cor:</strong> Verde pinheiro',
+              '<strong>Modelagem:</strong> Camiseta de gola V e bermuda',
+              '<strong>Categoria:</strong> Pijama masculino curto'
+            ]
           },
           {
             name: 'Masculino - Xadrez Preto',
             images: ['masc/4.jpg'],
             price: 'R$ 139,90',
-            installment: 'Em malha suede'
+            installment: 'Em malha suede',
+            description: [
+              'Pijama masculino curto com camiseta preta e detalhes xadrez nas mangas.',
+              'A bermuda xadrez completa o conjunto com uma proposta classica e moderna ao mesmo tempo.',
+              'A malha suede oferece toque aveludado e aconchegante para noites confortaveis.'
+            ],
+            details: [
+              '<strong>Material:</strong> Malha suede',
+              '<strong>Cores:</strong> Preto, cinza e branco',
+              '<strong>Modelagem:</strong> Camiseta de manga curta e bermuda',
+              '<strong>Estampa:</strong> Xadrez',
+              '<strong>Categoria:</strong> Pijama masculino curto'
+            ]
           },
           {
             name: 'Conjunto Manga Longa Cinza',
             images: ['masc/5.jpg'],
             price: 'R$ 179,90',
-            installment: 'Conforto para noites mais frias'
+            installment: 'Conforto para noites mais frias',
+            description: [
+              'Conjunto masculino de manga longa com blusa mescla e calca preta.',
+              'O contraste da gola e dos punhos valoriza o acabamento esportivo e contemporaneo da peca.',
+              'Ideal para noites frias, leitura e momentos de descanso com conforto prolongado.'
+            ],
+            details: [
+              '<strong>Cores:</strong> Cinza mescla e preto',
+              '<strong>Modelagem:</strong> Blusa de manga longa e calca comprida',
+              '<strong>Acabamento:</strong> Gola e punhos contrastantes',
+              '<strong>Categoria:</strong> Conjunto masculino'
+            ]
           },
           {
             name: 'Pantufa Masculina Cinza',
             images: ['masc/6.jpg'],
             price: 'R$ 69,90',
-            installment: 'Macia e confortavel'
+            installment: 'Macia e confortavel',
+            description: [
+              'Pantufa masculina cinza com formato fechado na frente e interior acolchoado.',
+              'O tecido mescla cria um visual discreto, enquanto a estrutura leve ajuda a manter os pes confortaveis em casa.',
+              'Uma opcao pratica para acompanhar o pijama nos dias de temperatura mais baixa.'
+            ],
+            details: [
+              '<strong>Cor:</strong> Cinza mescla',
+              '<strong>Modelo:</strong> Fechado na frente',
+              '<strong>Acabamento:</strong> Interior acolchoado',
+              '<strong>Categoria:</strong> Pantufa masculina'
+            ]
           },
           {
             name: 'Pantufa Masculina Azul Marinho',
             images: ['masc/7.jpg'],
             price: 'R$ 69,90',
-            installment: 'Macia e confortavel'
+            installment: 'Macia e confortavel',
+            description: [
+              'Pantufa masculina azul-marinho com frente aberta e acabamento matelassado.',
+              'A modelagem facilita o calce e oferece conforto para a rotina dentro de casa.',
+              'O tom classico combina facilmente com os conjuntos masculinos da colecao.'
+            ],
+            details: [
+              '<strong>Cor:</strong> Azul-marinho',
+              '<strong>Modelo:</strong> Frente aberta',
+              '<strong>Acabamento:</strong> Matelassado',
+              '<strong>Categoria:</strong> Pantufa masculina'
+            ]
           }
         ]
       },
@@ -4002,7 +4076,10 @@
           : '';
 
         return `
-          <div class="prod-card" data-images='${JSON.stringify(imageList)}'>
+          <div class="prod-card"
+               data-images='${JSON.stringify(imageList)}'
+               data-description="${encodeURIComponent(JSON.stringify(product.description || []))}"
+               data-details="${encodeURIComponent(JSON.stringify(product.details || []))}">
             ${badge ? `<div class="prod-badge">${badge}</div>` : ''}
             <div class="prod-img"><img src="${img}" alt="${product.name}" /></div>
             <div class="prod-info">
@@ -4419,9 +4496,13 @@
       const offBadgeEl = document.getElementById('modalOffBadge');
       const priceMainEl= document.getElementById('modalPriceMain');
       const installEl  = document.getElementById('modalInstallments');
+      const descEl     = document.getElementById('modalDescription');
+      const detailsEl  = document.getElementById('modalProductDetails');
       const selSizeEl  = document.getElementById('modalSelectedSize');
       const waBtn      = document.getElementById('modalWaBtn');
       const container  = overlay?.querySelector('.modal-container');
+      const defaultDescription = descEl?.innerHTML || '';
+      const defaultDetails = detailsEl?.innerHTML || '';
       let currentProductName = '';
 
       function updateWhatsAppLink() {
@@ -4438,6 +4519,12 @@
         offBadgeEl.textContent = data.off || '';
         priceMainEl.textContent= data.price;
         installEl.textContent  = data.installments;
+        descEl.innerHTML = data.description?.length
+          ? data.description.map(item => `<p>— ${item}</p>`).join('')
+          : defaultDescription;
+        detailsEl.innerHTML = data.details?.length
+          ? data.details.map(item => `<p>${item}</p>`).join('')
+          : defaultDetails;
         const images = data.images?.length ? data.images : [data.img];
         mainImg.src = images[0];
         mainImg.alt = data.name;
@@ -4527,7 +4614,16 @@
             } catch (error) {
               images = [];
             }
-            openModal({ img: img?.src || '', images, name, priceOld: old, off: badge ? badge + ' OFF' : '', price, installments: inst });
+            const readEncodedList = value => {
+              try {
+                return JSON.parse(decodeURIComponent(value || ''));
+              } catch (error) {
+                return [];
+              }
+            };
+            const description = readEncodedList(card.dataset.description);
+            const details = readEncodedList(card.dataset.details);
+            openModal({ img: img?.src || '', images, name, priceOld: old, off: badge ? badge + ' OFF' : '', price, installments: inst, description, details });
           });
         });
       }
@@ -4627,6 +4723,140 @@
       const btnPrev  = document.getElementById('reviewsPrev');
       const btnNext  = document.getElementById('reviewsNext');
       if (!track) return;
+
+      const realReviews = [
+        {
+          name: 'Laura Cleone', initial: 'L', color: '#c2410c', time: 'há 3 anos',
+          text: 'Tudo impecável! Pedi uma peça personalizada e superou todas as minhas expectativas. Além disso, fui atendida com muito carinho. Recomendo muitoooooo, tô simplesmente apaixonada! 😍😍'
+        },
+        {
+          name: 'Rebecca Bebert', initial: 'R', color: '#d97706', time: 'há 4 anos',
+          text: 'Pijamas perfeitos, confortáveis, frescos, sem contar o excelente atendimento. Muito obrigada, meninas.'
+        },
+        {
+          name: 'Juliana Pereira', initial: 'J', color: '#64748b', time: 'há 4 anos',
+          text: 'La Fiore é sinônimo de conforto e beleza. Amei os pijamas que comprei para mim e quis presentear minha filha e meu genro. Parabéns, equipe La Fiore! Com certeza vou indicar e voltar muito mais vezes.'
+        },
+        {
+          name: 'Sandra Nunes', initial: 'S', color: '#9333ea', time: 'há 3 anos',
+          text: 'Qualidade, agilidade na entrega, carinho e atenção que nos dão é o que torna o atendimento sensacional. Parabéns! 😍'
+        },
+        {
+          name: 'Angela M. Medeiros Moyses', initial: 'A', color: '#7c3aed', time: 'há 3 anos',
+          text: 'Fiz ótimas compras, sendo sempre muito bem atendida. Todos os produtos são de excelente qualidade e super atuais! Amei! Uso e recomendo!'
+        },
+        {
+          name: 'Gabriela Guarnieri', initial: 'G', color: '#db2777', time: 'há 2 anos',
+          text: 'Atendimento incrível desde o primeiro contato. Comprei pijamas de qualidade, muito confortáveis, bonitos e leves. Obrigada pelo atendimento.'
+        },
+        {
+          name: 'Amanda Cechoto', initial: 'A', color: '#0d9488', time: 'há 3 anos',
+          text: 'Pijamas com uma excelente qualidade! Atendimento impecável, sem contar com uma grade de tamanhos do bebê ao plus size.'
+        },
+        {
+          name: 'Dany Viana', initial: 'D', color: '#475569', time: 'há 3 anos',
+          text: 'Pijamas de ótima qualidade e super confortáveis. Atendimento nota 10. Meus filhos amaram o pijama de lançamento do Harry Potter.'
+        },
+        {
+          name: 'Sandra Negrão Aceno', initial: 'S', color: '#ea580c', time: 'há 3 anos',
+          text: 'Material utilizado de qualidade. Já adquiri o produto, lavo sempre e continua com um excelente aspecto. Muito satisfeita.'
+        },
+        {
+          name: 'Matilde Mates', initial: 'M', color: '#92400e', time: 'há 3 anos',
+          text: 'Excelente! Ótimo atendimento e ótimos pijamas! Gostosos, confortáveis e de material excelente.'
+        },
+        {
+          name: 'Jaqueline Silveira', initial: 'J', color: '#be123c', time: 'há 6 meses',
+          text: 'Atendimento personalizado, peças de ótima qualidade e preço justo. Super recomendo!'
+        },
+        {
+          name: 'Franciele Iavoca', initial: 'F', color: '#a16207', time: 'há 3 anos',
+          text: 'Ótimo atendimento, produto de qualidade, com preço justo, além de muito confortável. ❤️'
+        },
+        {
+          name: 'Denesse Hues', initial: 'D', color: '#ca8a04', time: 'há 4 anos',
+          text: 'Pijamas maravilhosos, tenho vários dessa marca. A malha é super macia e são de muita qualidade.'
+        },
+        {
+          name: 'Vera Piccoto', initial: 'V', color: '#65a30d', time: 'há 3 anos',
+          text: 'Uma graça em tudo! Pijamas, atendimento, site maravilhoso!'
+        },
+        {
+          name: 'Ana Paula Moran', initial: 'A', color: '#78350f', time: 'há 3 anos',
+          text: 'Produtos de excelente qualidade e atendimento top. Super recomendo!!!'
+        },
+        {
+          name: 'Ana Lucia Pereira', initial: 'A', color: '#0284c7', time: 'há 3 anos',
+          text: 'Pijamas excelentes, confortáveis e com ótimo custo-benefício! Recomendo!'
+        },
+        {
+          name: 'Rosangela Poleto Rosa', initial: 'R', color: '#059669', time: 'há 3 anos',
+          text: 'Ótima, qualidade das peças excelente. Podem confiar!'
+        },
+        {
+          name: 'Fernanda Zanelli', initial: 'F', color: '#a16207', time: 'há 11 meses',
+          text: 'Atendimento muito rápido e eficaz!'
+        },
+        {
+          name: 'Andreza Del Campo', initial: 'A', color: '#b45309', time: 'há 3 anos',
+          text: 'Amei! Melhores pijamas e atendimento excelente.'
+        },
+        {
+          name: 'Clara Bastone', initial: 'C', color: '#d97706', time: 'há 3 anos',
+          text: 'Atendimento ótimo, produtos lindos e de excelente qualidade.'
+        },
+        {
+          name: 'Janaina Uliana', initial: 'J', color: '#c2410c', time: 'há 3 anos',
+          text: 'Peças e atendimento impecáveis.'
+        },
+        {
+          name: 'Nicole Bechelli Merolli', initial: 'N', color: '#a21caf', time: 'há 3 anos',
+          text: 'Pijamas lindos, tecidos excelentes e ótimas peças.'
+        },
+        {
+          name: 'Regina Carboni', initial: 'R', color: '#92400e', time: 'há 3 anos',
+          text: 'Pijamas confortáveis e de ótima qualidade!'
+        },
+        {
+          name: 'Josi Rosa', initial: 'J', color: '#57534e', time: 'há 3 anos',
+          text: 'Pijamas muito aconchegantes, quentinhos como um abraço.'
+        },
+        {
+          name: 'Angela Aparecida', initial: 'A', color: '#059669', time: 'há 3 anos',
+          text: 'Atendimento nota 1000.'
+        },
+        {
+          name: 'João Antonio M. Oliveira', initial: 'J', color: '#d97706', time: 'há 3 anos',
+          text: 'Produtos de muita qualidade.'
+        },
+        {
+          name: 'Wagner Cantinho', initial: 'W', color: '#92400e', time: 'há 1 ano',
+          text: 'Qualidade e atendimento maravilhosos.'
+        },
+        {
+          name: 'Sander Diego', initial: 'S', color: '#db2777', time: 'há 2 anos',
+          text: 'Pijamas lindos com atendimento incrível.'
+        },
+        {
+          name: 'Paulo Calvo', initial: 'P', color: '#a16207', time: 'há 6 dias',
+          text: 'Comprei pijamas personalizados para um grupo de amigas fazer uma viagem. Atendimento impecável desde o primeiro contato, peças maravilhosas e perfeitas. Super recomendo.'
+        }
+      ];
+
+      const googleIcon = '<svg class="review-g-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 2.43-4.53 5.16-4.53z" fill="#EA4335"/></svg>';
+
+      track.querySelectorAll('.review-card').forEach(card => card.remove());
+      track.insertAdjacentHTML('beforeend', realReviews.map(review => `
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar" style="background:${review.color}">${review.initial}</div>
+            <div class="review-author"><strong>${review.name}</strong><span>Avaliação do Google</span></div>
+            ${googleIcon}
+          </div>
+          <div class="review-stars-time"><span class="review-stars">★★★★★</span><span class="review-time">${review.time}</span></div>
+          <p class="review-text">${review.text}</p>
+        </div>
+      `).join(''));
 
       const allCards = Array.from(track.children);
       let step     = 0;
