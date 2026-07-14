@@ -4571,6 +4571,22 @@
     reorderCollectionProducts('colecoesTrack', product => product.name.includes('Confy'), 'end');
     reorderCollectionProducts('infantilTrack', product => product.name.includes('Familia Pet Lovers'), 'end');
 
+    const accessoriesCollection = collectionData.find(item => item.trackId === 'acessoriosTrack');
+    if (accessoriesCollection?.products) {
+      const heartKits = accessoriesCollection.products.filter(product => product.name.includes('Kit Corações'));
+      const slippers = accessoriesCollection.products.filter(product => product.name.startsWith('Pantufa'));
+      const necessaires = accessoriesCollection.products.filter(product => product.name.startsWith('Nécessaire'));
+      const mixedAccessories = [];
+      const longestList = Math.max(slippers.length, necessaires.length);
+
+      for (let index = 0; index < longestList; index++) {
+        if (slippers[index]) mixedAccessories.push(slippers[index]);
+        if (necessaires[index]) mixedAccessories.push(necessaires[index]);
+      }
+
+      accessoriesCollection.products = [...mixedAccessories, ...heartKits];
+    }
+
     collectionData.forEach(renderCollectionCards);
 
     // Alcinhas carousel
