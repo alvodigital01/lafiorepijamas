@@ -3079,6 +3079,7 @@
         <li><a href="#colecoes">Coleções</a></li>
         <li><a href="#pijamas-infantil">Pet Lovers</a></li>
         <li><a href="#tech-modal">Masculinos</a></li>
+        <li><a href="#acessorios">Acessórios</a></li>
         <li><a href="#sob-medida">Sob Medida</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contato">Contato</a></li>
@@ -3135,6 +3136,7 @@
       <li><a href="#colecoes">Coleções</a></li>
       <li><a href="#pijamas-infantil">Pet Lovers</a></li>
       <li><a href="#tech-modal">Masculinos</a></li>
+      <li><a href="#acessorios">Acessórios</a></li>
       <li><a href="#sob-medida">Sob Medida</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contato">Contato</a></li>
@@ -3313,6 +3315,25 @@
 
 </section>
 
+<section class="products-section" id="acessorios">
+  <div class="products-header">
+    <h2 class="products-title">NOSSOS ACESSÓRIOS</h2>
+    <p class="products-subtitle">Pantufas, kits e detalhes especiais para deixar seus momentos de descanso ainda mais confortáveis.</p>
+  </div>
+
+  <div class="products-viewport" id="acessoriosViewport">
+    <div class="products-track" id="acessoriosTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="acessoriosFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="acessoriosPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="acessoriosNext" aria-label="Próximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
 <section class="custom-made-section" id="sob-medida" aria-labelledby="customMadeTitle">
   <div class="custom-made-inner">
     <div class="custom-made-copy">
@@ -3378,7 +3399,7 @@
 
     <div class="reviews-top">
       <div class="reviews-badge">
-        <span class="reviews-score">5,0</span>
+        <span class="reviews-score">5.0</span>
         <div class="reviews-badge-mid">
           <div class="reviews-stars-row">★★★★★</div>
             <span class="reviews-source">Baseado em 35 avaliações do Google</span>
@@ -3403,7 +3424,7 @@
           <!-- Badge card — visível só no mobile -->
           <div class="review-badge-card">
             <div class="review-badge-left">
-              <span class="reviews-score">5,0</span>
+              <span class="reviews-score">5.0</span>
               <div class="reviews-badge-mid">
                 <div class="reviews-stars-row">★★★★★</div>
                 <span class="reviews-source">Baseado em 35 avaliações do Google</span>
@@ -4145,42 +4166,6 @@
               '<strong>Acabamento:</strong> Gola e punhos contrastantes',
               '<strong>Categoria:</strong> Conjunto masculino'
             ]
-          },
-          {
-            name: 'Pantufa Masculina Cinza',
-            images: ['masc/6.jpg'],
-            price: 'R$ 69,90',
-            installment: 'Macia e confortavel',
-            description: [
-              'Pantufa masculina cinza com formato fechado na frente e interior acolchoado.',
-              'O tecido mescla cria um visual discreto, enquanto a estrutura leve ajuda a manter os pes confortaveis em casa.',
-              'Uma opcao pratica para acompanhar o pijama nos dias de temperatura mais baixa.'
-            ],
-            details: [
-              '<strong>Cor:</strong> Cinza mescla',
-              '<strong>Modelo:</strong> Fechado na frente',
-              '<strong>Acabamento:</strong> Interior acolchoado',
-              '<strong>Categoria:</strong> Pantufa masculina'
-            ]
-          },
-          {
-            name: 'Pantufa Masculina Azul Marinho',
-            images: ['masc/7.jpg'],
-            priceOld: 'R$ 89,90',
-            price: 'R$ 69,90',
-            installment: 'Macia e confortavel',
-            badge: '-22%',
-            description: [
-              'Pantufa masculina azul-marinho com frente aberta e acabamento matelassado.',
-              'A modelagem facilita o calce e oferece conforto para a rotina dentro de casa.',
-              'O tom classico combina facilmente com os conjuntos masculinos da colecao.'
-            ],
-            details: [
-              '<strong>Cor:</strong> Azul-marinho',
-              '<strong>Modelo:</strong> Frente aberta',
-              '<strong>Acabamento:</strong> Matelassado',
-              '<strong>Categoria:</strong> Pantufa masculina'
-            ]
           }
         ]
       },
@@ -4362,6 +4347,112 @@
     });
 
     collectionData.push({
+      trackId: 'acessoriosTrack',
+      products: [
+        {
+          name: 'Kit Corações',
+          images: ['acessorios/2.jpg', 'acessorios/3.jpg', 'acessorios/8.jpg', 'acessorios/9.jpg'],
+          installment: 'Consulte o valor pelo WhatsApp',
+          description: ['Kit em tons neutros com pantufas matelassadas e nécessaire de corações.'],
+          details: ['<strong>Estampa:</strong> Corações', '<strong>Itens:</strong> Pantufas e nécessaire', '<strong>Categoria:</strong> Kit de acessórios']
+        },
+        {
+          name: 'Pantufa Xadrez Azul',
+          images: ['acessorios/5.jpg'],
+          price: 'R$ 69,90',
+          installment: 'Macia e confortável',
+          description: ['Pantufa xadrez azul com acabamento escuro e delicado laço frontal.'],
+          details: ['<strong>Estampa:</strong> Xadrez azul', '<strong>Modelo:</strong> Fechado na frente', '<strong>Categoria:</strong> Pantufa']
+        },
+        {
+          name: 'Nécessaire Pom Pom',
+          images: ['acessorios/nece/Necessaire%20Pom%20Pom.jpg'],
+          price: 'R$ 39,90',
+          installment: 'Compacta e delicada',
+          description: ['Nécessaire compacta em xadrez azul com detalhe de pom pom lateral.'],
+          details: ['<strong>Estampa:</strong> Xadrez azul', '<strong>Modelo:</strong> Compacto', '<strong>Categoria:</strong> Nécessaire']
+        },
+        {
+          name: 'Nécessaire Box P',
+          images: ['acessorios/nece/boxp.jpg'],
+          price: 'R$ 49,90',
+          installment: 'Tamanho pequeno',
+          description: ['Nécessaire box pequena com estrutura retangular, zíper superior e estampa xadrez azul.'],
+          details: ['<strong>Estampa:</strong> Xadrez azul', '<strong>Tamanho:</strong> P', '<strong>Categoria:</strong> Nécessaire box']
+        },
+        {
+          name: 'Nécessaire Box com Zíper',
+          images: ['acessorios/nece/Necessaire%20Box%20com%20z%C3%ADper.jpg'],
+          price: 'R$ 69,90',
+          installment: 'Prática e espaçosa',
+          description: ['Nécessaire box xadrez azul com abertura frontal em zíper e alça lateral.'],
+          details: ['<strong>Estampa:</strong> Xadrez azul', '<strong>Fechamento:</strong> Zíper frontal', '<strong>Categoria:</strong> Nécessaire box']
+        },
+        {
+          name: 'Nécessaire Multiuso',
+          images: [
+            'acessorios/nece/Necessaire%20multiuso%201.jpg',
+            'acessorios/nece/Necessaire%20multiuso%202.jpg'
+          ],
+          price: 'R$ 79,90',
+          installment: 'Organização para sua rotina',
+          description: ['Nécessaire multiuso xadrez azul com divisórias para organizar diferentes itens.'],
+          details: ['<strong>Estampa:</strong> Xadrez azul', '<strong>Modelo:</strong> Multiuso com divisórias', '<strong>Categoria:</strong> Nécessaire']
+        },
+        {
+          name: 'Pantufa Preta',
+          images: ['acessorios/10.jpg'],
+          price: 'R$ 69,90',
+          installment: 'Macia e confortável',
+          description: ['Pantufa preta fechada, macia e prática para manter os pés aquecidos em casa.'],
+          details: ['<strong>Cor:</strong> Preto', '<strong>Modelo:</strong> Fechado na frente', '<strong>Categoria:</strong> Pantufa']
+        },
+        {
+          name: 'Pantufa Cinza Mescla',
+          images: ['acessorios/11.jpg'],
+          price: 'R$ 69,90',
+          installment: 'Macia e confortável',
+          description: ['Pantufa cinza mescla com formato fechado e interior acolchoado para os dias mais frios.'],
+          details: ['<strong>Cor:</strong> Cinza mescla', '<strong>Modelo:</strong> Fechado na frente', '<strong>Categoria:</strong> Pantufa']
+        },
+        {
+          name: 'Pantufa Azul Marinho',
+          images: ['acessorios/12.jpg'],
+          priceOld: 'R$ 89,90',
+          price: 'R$ 69,90',
+          badge: '-22%',
+          installment: 'Macia e confortável',
+          description: ['Pantufa azul-marinho com frente aberta e acabamento matelassado para facilitar o calce.'],
+          details: ['<strong>Cor:</strong> Azul-marinho', '<strong>Modelo:</strong> Frente aberta', '<strong>Acabamento:</strong> Matelassado', '<strong>Categoria:</strong> Pantufa']
+        },
+        {
+          name: 'Pantufa Azul',
+          images: ['acessorios/13.jpg'],
+          price: 'R$ 69,90',
+          installment: 'Macia e confortável',
+          description: ['Pantufa azul fechada com toque macio e visual leve para acompanhar sua rotina de descanso.'],
+          details: ['<strong>Cor:</strong> Azul', '<strong>Modelo:</strong> Fechado na frente', '<strong>Categoria:</strong> Pantufa']
+        },
+        {
+          name: 'Pantufa Arco-íris',
+          images: ['acessorios/14.jpg'],
+          price: 'R$ 69,90',
+          installment: 'Macia e confortável',
+          description: ['Pantufa aberta com estampa delicada de arco-íris e acabamento rosa.'],
+          details: ['<strong>Estampa:</strong> Arco-íris', '<strong>Modelo:</strong> Frente aberta', '<strong>Categoria:</strong> Pantufa']
+        },
+        {
+          name: 'Pantufa Floral',
+          images: ['acessorios/15.jpg'],
+          price: 'R$ 69,90',
+          installment: 'Macia e confortável',
+          description: ['Pantufa aberta com estampa floral suave e acabamento vermelho contrastante.'],
+          details: ['<strong>Estampa:</strong> Floral', '<strong>Modelo:</strong> Frente aberta', '<strong>Categoria:</strong> Pantufa']
+        }
+      ]
+    });
+
+    collectionData.push({
       trackId: 'colecoesTrack',
       products: [
         {
@@ -4405,6 +4496,22 @@
             'pijamas%20feminimos/colecoes/11.jpg'
           ],
           installment: 'Malha suede'
+        },
+        {
+          name: 'Coleção Casal',
+          images: [
+            'casal/1.jpg',
+            'casal/2.jpg'
+          ],
+          installment: 'Modelos combinando para compartilhar conforto a dois'
+        },
+        {
+          name: 'Coleção Dia das Avós',
+          images: [
+            'vos/1.jpg',
+            'vos/2.jpg'
+          ],
+          installment: 'Uma coleção especial feita com carinho e conforto'
         }
       ]
     });
@@ -4623,6 +4730,61 @@
         const diff = lastX - startX;
         if (diff < -50 && step < maxStep()) step++;
         else if (diff > 50 && step > 0)     step--;
+        updateUI();
+      });
+
+      window.addEventListener('resize', updateUI);
+      updateUI();
+    })();
+
+    // ── Acessórios carousel ──
+    (function () {
+      const viewport = document.getElementById('acessoriosViewport');
+      const track = document.getElementById('acessoriosTrack');
+      const fill = document.getElementById('acessoriosFill');
+      const btnPrev = document.getElementById('acessoriosPrev');
+      const btnNext = document.getElementById('acessoriosNext');
+      if (!track || !track.children.length) return;
+
+      const cards = Array.from(track.children);
+      let step = 0, startX = 0, lastX = 0, dragging = false;
+
+      function visibleCount() { return window.innerWidth <= 900 ? 1 : 4; }
+      function cardW() { return cards[0].offsetWidth + 16; }
+      function maxStep() { return Math.max(0, cards.length - visibleCount()); }
+
+      function updateUI() {
+        step = Math.min(step, maxStep());
+        track.style.transform = `translateX(${-step * cardW()}px)`;
+        fill.style.width = (maxStep() ? (step / maxStep()) * 100 : 0) + '%';
+        btnPrev.disabled = step === 0;
+        btnNext.disabled = step >= maxStep();
+      }
+
+      btnNext.addEventListener('click', () => { if (step < maxStep()) { step++; updateUI(); } });
+      btnPrev.addEventListener('click', () => { if (step > 0) { step--; updateUI(); } });
+
+      viewport.addEventListener('touchstart', event => {
+        dragging = true;
+        startX = lastX = event.touches[0].clientX;
+        track.style.transition = 'none';
+      }, { passive: true });
+
+      viewport.addEventListener('touchmove', event => {
+        if (!dragging) return;
+        lastX = event.touches[0].clientX;
+        const diff = lastX - startX;
+        if (Math.abs(diff) > 8) event.preventDefault();
+        track.style.transform = `translateX(${-step * cardW() + diff}px)`;
+      }, { passive: false });
+
+      viewport.addEventListener('touchend', () => {
+        if (!dragging) return;
+        dragging = false;
+        track.style.transition = 'transform 0.55s cubic-bezier(0.25, 1, 0.5, 1)';
+        const diff = lastX - startX;
+        if (diff < -50 && step < maxStep()) step++;
+        else if (diff > 50 && step > 0) step--;
         updateUI();
       });
 
@@ -5436,7 +5598,7 @@
 
       // 8. Nav link ativo conforme seção visível
       const navLinkEls = document.querySelectorAll('.nav-links a, .drawer-nav a[href^="#"]');
-      const sectIds    = ['inicio', 'pijamas-americanos', 'baby-dolls', 'alcinhas', 'colecoes', 'pijamas-infantil', 'tech-modal', 'sob-medida', 'faq', 'contato'];
+      const sectIds    = ['inicio', 'pijamas-americanos', 'baby-dolls', 'alcinhas', 'colecoes', 'pijamas-infantil', 'tech-modal', 'acessorios', 'sob-medida', 'faq', 'contato'];
 
       window.addEventListener('scroll', () => {
         let current = '';
