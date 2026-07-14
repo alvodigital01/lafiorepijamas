@@ -4,6 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>La Fiore Pijamas</title>
+  <meta name="description" content="Pijamas premium de fabricação própria em Londrina/PR. Coleções femininas, masculinas, infantis, pet lovers e peças sob medida. Peça pelo WhatsApp com entrega para todo o Brasil." />
+  <link rel="canonical" href="https://www.lafiorepijamas.com.br/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="La Fiore Pijamas" />
+  <meta property="og:url" content="https://www.lafiorepijamas.com.br/" />
+  <meta property="og:title" content="La Fiore Pijamas" />
+  <meta property="og:description" content="Pijamas premium de fabricação própria em Londrina/PR. Coleções femininas, masculinas, infantis, pet lovers e peças sob medida. Peça pelo WhatsApp com entrega para todo o Brasil." />
+  <meta property="og:image" content="https://www.lafiorepijamas.com.br/bannerpc.jpg" />
+  <meta property="og:locale" content="pt_BR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="La Fiore Pijamas" />
+  <meta name="twitter:description" content="Pijamas premium de fabricação própria em Londrina/PR. Coleções femininas, masculinas, infantis, pet lovers e peças sob medida." />
+  <meta name="twitter:image" content="https://www.lafiorepijamas.com.br/bannerpc.jpg" />
+
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
@@ -76,6 +92,10 @@
 
     body {
       padding-top: calc(var(--announcement-height) + var(--nav-height-desktop));
+    }
+
+    section[id] {
+      scroll-margin-top: calc(var(--announcement-height) + var(--nav-height-desktop) + 12px);
     }
 
     .nav-inner {
@@ -486,6 +506,11 @@
       padding-left: 28px;
     }
 
+    .drawer-nav li a.nav-active {
+      background: rgba(45, 16, 24, 0.08);
+      font-weight: 700;
+    }
+
     .drawer-nav .favoritos a {
       display: flex;
       align-items: center;
@@ -669,6 +694,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      margin-top: 20px;
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: 100px;
       padding: 13px 28px;
@@ -789,6 +815,16 @@
       font-weight: 600;
     }
 
+    .hero-microcopy {
+      font-family: 'Barlow', sans-serif;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.6);
+      max-width: 420px;
+      line-height: 1.6;
+      text-align: center;
+      animation: fadeUp 0.9s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 900px) {
       .nav-links { display: none; }
@@ -809,6 +845,10 @@
 
       body {
         padding-top: calc(var(--announcement-height) + var(--nav-height-mobile));
+      }
+
+      section[id] {
+        scroll-margin-top: calc(var(--announcement-height) + var(--nav-height-mobile) + 10px);
       }
 
       .hero {
@@ -969,6 +1009,15 @@
 
     .footer-credit strong {
       color: #5a2030;
+    }
+
+    .footer-legal {
+      width: 100%;
+      font-family: 'Barlow', sans-serif;
+      font-size: 11px;
+      line-height: 1.6;
+      color: #999;
+      margin-bottom: 4px;
     }
 
     @media (max-width: 900px) {
@@ -1550,6 +1599,13 @@
 
     .nav-wa:hover { opacity: 0.85; transform: translateY(-1px); }
     .nav-wa svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+    @media (min-width: 901px) and (max-width: 1080px) {
+      .nav-inner { padding-inline: 14px; gap: 8px; }
+      .nav-links a { padding-inline: 5px; font-size: 12px; }
+      .nav-wa { width: 38px; height: 38px; padding: 0; justify-content: center; font-size: 0; gap: 0; }
+      .nav-wa svg { width: 18px; height: 18px; }
+    }
 
     @media (max-width: 900px) { .nav-wa { display: none; } }
 
@@ -2650,51 +2706,38 @@
 
     /* ─── CTA FINAL ─── */
     .cta-section {
+      background: #fff;
+      padding: 104px 24px 100px;
+      text-align: center;
       position: relative;
-      min-height: 640px;
-      display: flex;
-      align-items: center;
-      padding: 100px 24px;
       overflow: hidden;
-      isolation: isolate;
     }
 
-    .cta-media {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-
-    .cta-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 22%;
-    }
-
-    .cta-media::after {
+    .cta-section::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(105deg, rgba(22,7,11,0.96) 0%, rgba(45,16,24,0.92) 30%, rgba(45,16,24,0.62) 52%, rgba(45,16,24,0.3) 70%, rgba(45,16,24,0.55) 100%);
+      background: radial-gradient(ellipse 80% 50% at 50% 100%, rgba(45,16,24,0.04) 0%, transparent 70%);
+      pointer-events: none;
     }
 
     .cta-inner {
+      max-width: 680px;
+      margin: 0 auto;
       position: relative;
       z-index: 2;
-      max-width: 560px;
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 22px;
+      align-items: center;
+      gap: 24px;
     }
 
     .cta-urgency {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(45,16,24,0.08);
+      border: 1px solid rgba(45,16,24,0.2);
       border-radius: 100px;
       padding: 8px 18px;
       font-family: 'Barlow Condensed', sans-serif;
@@ -2702,7 +2745,7 @@
       font-size: 12px;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: #FCE4DD;
+      color: #2D1018;
     }
 
     .cta-urgency-dot {
@@ -2721,30 +2764,32 @@
 
     .cta-title {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(44px, 6.4vw, 78px);
+      font-size: clamp(52px, 8vw, 96px);
       font-weight: 900;
       text-transform: uppercase;
-      line-height: 0.98;
-      color: #fff;
-      letter-spacing: -1.5px;
+      line-height: 0.92;
+      color: #000;
+      letter-spacing: -2px;
     }
 
-    .cta-title-accent {
-      color: #F4B7A8;
+    .cta-title-outline {
+      display: block;
+      color: #E2231A;
+      white-space: nowrap;
     }
 
     .cta-sub {
       font-family: 'Barlow', sans-serif;
       font-size: 16px;
-      color: rgba(255,255,255,0.82);
+      color: #5a2030;
       line-height: 1.65;
-      max-width: 420px;
+      max-width: 440px;
     }
 
     .cta-trust {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       gap: 18px;
       flex-wrap: wrap;
     }
@@ -2755,14 +2800,14 @@
       gap: 6px;
       font-family: 'Barlow', sans-serif;
       font-size: 12px;
-      color: rgba(255,255,255,0.85);
+      color: #2D1018;
       white-space: nowrap;
     }
 
     .cta-trust-item svg {
       width: 14px;
       height: 14px;
-      stroke: #F4B7A8;
+      stroke: #2D1018;
       fill: none;
       stroke-width: 1.8;
       stroke-linecap: round;
@@ -2771,7 +2816,7 @@
     }
 
     .cta-trust-sep {
-      color: rgba(255,255,255,0.3);
+      color: rgba(45,16,24,0.3);
       font-size: 18px;
       line-height: 1;
     }
@@ -2779,18 +2824,17 @@
     .cta-btns {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
-      margin-top: 6px;
     }
 
     .cta-wa-btn {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      background: #FCE4DD;
-      color: #2D1018;
+      background: #2D1018;
+      color: #FCE4DD;
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 16px;
       font-weight: 700;
@@ -2804,9 +2848,9 @@
     }
 
     .cta-wa-btn:hover {
-      opacity: 0.92;
+      opacity: 0.9;
       transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+      box-shadow: 0 12px 40px rgba(45,16,24,0.2);
     }
 
     .cta-wa-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
@@ -2816,8 +2860,8 @@
       align-items: center;
       gap: 8px;
       background: transparent;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.45);
+      color: #2D1018;
+      border: 1px solid rgba(45,16,24,0.4);
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 16px;
       font-weight: 600;
@@ -2833,7 +2877,8 @@
     }
 
     .cta-btn-secondary:hover {
-      border-color: #fff;
+      border-color: rgba(45,16,24,0.7);
+      color: #2D1018;
       transform: translateY(-2px);
     }
 
@@ -2851,7 +2896,6 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-top: 8px;
     }
 
     .cta-avatars {
@@ -2863,7 +2907,8 @@
       width: 30px;
       height: 30px;
       border-radius: 50%;
-      border: 2px solid rgba(45,16,24,0.9);
+      border: 2px solid #FCE4DD;
+      background: #2D1018;
       margin-left: -8px;
       display: flex;
       align-items: center;
@@ -2871,7 +2916,7 @@
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
       font-size: 11px;
-      color: #fff;
+      color: #FCE4DD;
       flex-shrink: 0;
       text-transform: uppercase;
     }
@@ -2881,22 +2926,20 @@
     .cta-social-text {
       font-family: 'Barlow', sans-serif;
       font-size: 13px;
-      color: rgba(255,255,255,0.85);
+      color: #2D1018;
     }
 
     .cta-social-text strong {
-      color: #f4c150;
+      color: #f59e0b;
       font-weight: 600;
     }
 
     @media (max-width: 900px) {
-      .cta-section { padding: 72px 20px 68px; align-items: flex-end; min-height: 580px; }
-      .cta-media::after { background: linear-gradient(to top, rgba(20,7,10,0.97) 12%, rgba(45,16,24,0.85) 45%, rgba(45,16,24,0.35) 100%); }
-      .cta-inner { max-width: 100%; }
+      .cta-section { padding: 72px 20px 68px; }
     }
 
     @media (max-width: 480px) {
-      .cta-title { font-size: 42px; }
+      .cta-title { font-size: 58px; }
       .cta-sub { font-size: 14px; }
       .cta-btns { flex-direction: column; width: 100%; }
       .cta-wa-btn, .cta-btn-secondary { width: 100%; justify-content: center; }
@@ -3014,12 +3057,12 @@
       </button>
 
       <!-- Logo desktop -->
-      <a href="#" class="logo" aria-label="La Fiore Pijamas">
+      <a href="#inicio" class="logo" aria-label="Ir para o início">
         <img src="logofiore.png" alt="La Fiore Pijamas" />
       </a>
 
       <!-- Logo mobile (centered) -->
-      <a href="#" class="logo logo-mobile" aria-label="La Fiore Pijamas">
+      <a href="#inicio" class="logo logo-mobile" aria-label="Ir para o início">
         <img src="logofiore.png" alt="La Fiore Pijamas" style="height:38px;" />
       </a>
 
@@ -3027,8 +3070,11 @@
       <ul class="nav-links">
         <li><a href="#pijamas-americanos">Americanos</a></li>
         <li><a href="#baby-dolls">Baby Dolls</a></li>
-        <li><a href="#pijamas-infantil">Infantil</a></li>
+        <li><a href="#alcinhas">Alcinhas</a></li>
+        <li><a href="#colecoes">Coleções</a></li>
+        <li><a href="#pijamas-infantil">Pet Lovers</a></li>
         <li><a href="#tech-modal">Masculinos</a></li>
+        <li><a href="#sob-medida">Sob Medida</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
@@ -3080,8 +3126,11 @@
     <ul class="drawer-nav">
       <li><a href="#pijamas-americanos">Americanos</a></li>
       <li><a href="#baby-dolls">Baby Dolls</a></li>
-      <li><a href="#pijamas-infantil">Infantil</a></li>
+      <li><a href="#alcinhas">Alcinhas</a></li>
+      <li><a href="#colecoes">Coleções</a></li>
+      <li><a href="#pijamas-infantil">Pet Lovers</a></li>
       <li><a href="#tech-modal">Masculinos</a></li>
+      <li><a href="#sob-medida">Sob Medida</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contato">Contato</a></li>
       <li>
@@ -3098,7 +3147,7 @@
   <!-- ══════════════════════════════════════
        HERO SECTION
   ══════════════════════════════════════ -->
-  <section class="hero">
+  <section class="hero" id="inicio">
     <div class="hero-bg">
       <picture>
         <source media="(max-width: 900px)" srcset="bannermobile.jpg" />
@@ -3109,17 +3158,7 @@
     <div class="hero-content">
       <p class="hero-subtitle">Pijamas feitos para você<br class="hero-subtitle-mobile-break"> viver bem em casa</p>
 
-      <h1 class="hero-title">Pijamas</h1>
-
-      <!-- Price card -->
-      <div class="price-card">
-        <p class="price-label">A partir de</p>
-        <div class="price-value">
-          <span class="price-currency">R$</span>
-          <span class="price-main">69</span>
-          <span class="price-cents">,90</span>
-        </div>
-      </div>
+      <h1 class="hero-title">Pijamas que<br>abraçam você</h1>
 
       <!-- CTA pill -->
       <a href="https://wa.me/554398570720?text=Ol%C3%A1%2C%20La%20Fiore%21%20Quero%20aproveitar%20a%20oferta%20dos%20pijamas." class="hero-cta" target="_blank" rel="noopener">
@@ -3133,6 +3172,9 @@
           <polyline points="6 9 12 15 18 9"/>
         </svg>
       </a>
+
+      <!-- Próximos passos -->
+      <p class="hero-microcopy">Fabricação própria em Londrina/PR · Fale direto com a gente no WhatsApp, resposta em poucos minutos com tamanhos, cores e prazo de entrega.</p>
 
     </div>
   </section>
@@ -3654,19 +3696,13 @@
        CTA FINAL
   ══════════════════════════════════════ -->
   <section class="cta-section" id="contato">
-    <div class="cta-media" aria-hidden="true">
-      <img src="pijamas feminimos/5.jpg" alt="" loading="lazy">
-    </div>
     <div class="cta-inner">
 
-      <!-- Eyebrow -->
-      <p class="cta-urgency">
-        <span class="cta-urgency-dot"></span>
-        Atendimento agora no WhatsApp
-      </p>
-
       <!-- Title -->
-      <h2 class="cta-title">Conforto que <span class="cta-title-accent">você merece</span></h2>
+      <h2 class="cta-title">
+        CONFORTO QUE
+        <span class="cta-title-outline">VOCÊ MERECE!</span>
+      </h2>
 
       <!-- Sub -->
       <p class="cta-sub">Pijamas feitos com cuidado, para acompanhar cada momento do seu dia, em casa ou em família.</p>
@@ -3736,10 +3772,7 @@
       <div class="footer-col">
         <h4 class="footer-col-title">Nossas Redes Sociais</h4>
         <div class="footer-socials">
-          <a href="#" class="social-btn" aria-label="Facebook">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-          </a>
-          <a href="#" class="social-btn" aria-label="Instagram">
+          <a href="https://www.instagram.com/lafiore_pijamas/" class="social-btn" aria-label="Instagram" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           </a>
           <a href="https://wa.me/554398570720?text=Ol%C3%A1%2C%20La%20Fiore%21%20Quero%20conhecer%20os%20pijamas." class="social-btn" aria-label="WhatsApp" target="_blank" rel="noopener">
@@ -3784,6 +3817,7 @@
     <div class="footer-divider"></div>
 
     <div class="footer-bottom">
+      <p class="footer-legal">Ana Silvia Martins de Sousa Tatesuji — CNPJ 39.470.477/0001-76</p>
       <p class="footer-copy">La Fiore Pijamas ® — Todos os direitos reservados.</p>
 
       <p class="footer-credit">Criado por: <strong>Nicolas Dev</strong></p>
@@ -3810,7 +3844,7 @@
 
       <!-- Informações -->
       <div class="modal-info">
-        <h1 class="modal-title" id="modalTitle"></h1>
+        <h2 class="modal-title" id="modalTitle"></h2>
 
         <div class="modal-meta">
           <div class="modal-stars">★★★★★ <b>4.9/5</b></div>
@@ -4788,6 +4822,9 @@
     hamburgerBtn.addEventListener('click', openDrawer);
     drawerClose.addEventListener('click', closeDrawer);
     drawerOverlay.addEventListener('click', closeDrawer);
+    drawer.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', closeDrawer);
+    });
 
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') closeDrawer();
@@ -5370,8 +5407,8 @@
       }
 
       // 8. Nav link ativo conforme seção visível
-      const navLinkEls = document.querySelectorAll('.nav-links a');
-      const sectIds    = ['pijamas-americanos', 'baby-dolls', 'alcinhas', 'colecoes', 'pijamas-infantil', 'tech-modal', 'faq', 'contato'];
+      const navLinkEls = document.querySelectorAll('.nav-links a, .drawer-nav a[href^="#"]');
+      const sectIds    = ['inicio', 'pijamas-americanos', 'baby-dolls', 'alcinhas', 'colecoes', 'pijamas-infantil', 'tech-modal', 'sob-medida', 'faq', 'contato'];
 
       window.addEventListener('scroll', () => {
         let current = '';
