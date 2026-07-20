@@ -1279,6 +1279,23 @@
     }
 
     /* ─── PRODUTOS ─── */
+    .catalog-sections {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #pijamas-americanos { order: 1; }
+    #baby-dolls { order: 2; }
+    #conjuntos-tshirts { order: 3; }
+    #conjuntos-suede { order: 4; }
+    #pijamas-infantil { order: 5; }
+    #tech-modal { order: 6; }
+    #colecoes { order: 7; }
+    #acessorios { order: 8; }
+    #alcinhas { order: 9; }
+    #conjuntos-capris { order: 10; }
+    #sob-medida { order: 11; }
+
     .products-section {
       background: #FCE4DD;
       padding: 56px 0 40px;
@@ -3079,13 +3096,14 @@
       <!-- Desktop nav links -->
       <ul class="nav-links">
         <li><a href="#pijamas-americanos">Americanos</a></li>
-        <li><a href="#baby-dolls">Baby Dolls</a></li>
-        <li><a href="#alcinhas">Alcinhas</a></li>
-        <li><a href="#colecoes">Coleções</a></li>
-        <li><a href="#pijamas-infantil">Pet Lovers</a></li>
+        <li><a href="#baby-dolls">Short Dolls</a></li>
+        <li><a href="#conjuntos-tshirts">T-shirts</a></li>
+        <li><a href="#conjuntos-suede">Suede</a></li>
+        <li><a href="#pijamas-infantil">Infantil</a></li>
         <li><a href="#tech-modal">Masculinos</a></li>
+        <li><a href="#colecoes">Coleção Família</a></li>
         <li><a href="#acessorios">Acessórios</a></li>
-        <li><a href="#sob-medida">Sob Medida</a></li>
+        <li><a href="#sob-medida">Personalizados</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
@@ -3136,13 +3154,14 @@
 
     <ul class="drawer-nav">
       <li><a href="#pijamas-americanos">Americanos</a></li>
-      <li><a href="#baby-dolls">Baby Dolls</a></li>
-      <li><a href="#alcinhas">Alcinhas</a></li>
-      <li><a href="#colecoes">Coleções</a></li>
-      <li><a href="#pijamas-infantil">Pet Lovers</a></li>
+      <li><a href="#baby-dolls">Short Dolls</a></li>
+      <li><a href="#conjuntos-tshirts">T-shirts</a></li>
+      <li><a href="#conjuntos-suede">Suede</a></li>
+      <li><a href="#pijamas-infantil">Infantil</a></li>
       <li><a href="#tech-modal">Masculinos</a></li>
+      <li><a href="#colecoes">Coleção Família</a></li>
       <li><a href="#acessorios">Acessórios</a></li>
-      <li><a href="#sob-medida">Sob Medida</a></li>
+      <li><a href="#sob-medida">Personalizados</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contato">Contato</a></li>
       <li>
@@ -3194,6 +3213,7 @@
   <!-- ══════════════════════════════════════
        PRODUTOS — Pijamas
   ══════════════════════════════════════ -->
+  <div class="catalog-sections">
   <section class="products-section" id="pijamas-americanos">
 
   <div class="products-header">
@@ -3232,7 +3252,7 @@
 <section class="products-section collection-section--white" id="baby-dolls">
 
   <div class="products-header">
-    <h2 class="products-title">PIJAMAS BABY DOLLS</h2>
+    <h2 class="products-title">SHORT DOLLS</h2>
     <p class="products-subtitle">Modelos leves em malha liganete com renda, feitos para noites confortaveis e delicadas.</p>
   </div>
 
@@ -3271,7 +3291,7 @@
 
 </section>
 
-<section class="products-section collection-section--white" id="colecoes">
+<section class="products-section" id="colecoes">
 
   <div class="products-header">
     <h2 class="products-title">COLEÇÃO FAMÍLIA</h2>
@@ -3295,8 +3315,8 @@
 <section class="products-section" id="pijamas-infantil">
 
   <div class="products-header">
-    <h2 class="products-title">PIJAMAS PET LOVERS</h2>
-    <p class="products-subtitle">Pijamas para toda a familia com estampas divertidas inspiradas nos nossos melhores amigos.</p>
+    <h2 class="products-title">INFANTIL</h2>
+    <p class="products-subtitle">Conjuntos infantis confortáveis e personalizados, disponíveis do tamanho 02 ao 14.</p>
   </div>
 
   <div class="products-viewport" id="infantilViewport">
@@ -3334,7 +3354,7 @@
 
 </section>
 
-<section class="products-section" id="acessorios">
+<section class="products-section collection-section--white" id="acessorios">
   <div class="products-header">
     <h2 class="products-title">PANTUFAS E NÉCESSAIRES</h2>
     <p class="products-subtitle">Pantufas, kits e detalhes especiais para deixar seus momentos de descanso ainda mais confortáveis.</p>
@@ -3353,7 +3373,7 @@
   </div>
 </section>
 
-<section class="products-section collection-section--white" id="conjuntos-tshirts">
+<section class="products-section" id="conjuntos-tshirts">
   <div class="products-header">
     <h2 class="products-title">CONJUNTO T-SHIRTS</h2>
   </div>
@@ -3371,7 +3391,7 @@
   </div>
 </section>
 
-<section class="products-section" id="conjuntos-suede">
+<section class="products-section collection-section--white" id="conjuntos-suede">
   <div class="products-header">
     <h2 class="products-title">CONJUNTO SUEDE</h2>
   </div>
@@ -3450,6 +3470,8 @@
     </article>
   </div>
 </section>
+
+  </div>
 
 <section class="reviews-section">
 
@@ -4193,40 +4215,6 @@
         trackId: 'techTrack',
         products: [
           {
-            name: 'Conjunto Manga Longa Masculino',
-            images: ['assets/images/produtos/masculinos/1.webp'],
-            price: 'R$ 179,90',
-            installment: 'Disponivel P e XG',
-            description: [
-              'Conjunto masculino preto pensado para noites frias e momentos de descanso.',
-              'A blusa de manga longa possui acabamento contrastante na gola, trazendo um visual discreto e elegante.',
-              'A calca comprida acompanha a modelagem confortavel do conjunto e permite liberdade de movimento.'
-            ],
-            details: [
-              '<strong>Cor:</strong> Preto',
-              '<strong>Modelagem:</strong> Blusa de manga longa e calca comprida',
-              '<strong>Tamanhos disponiveis:</strong> P e XG',
-              '<strong>Categoria:</strong> Conjunto masculino'
-            ]
-          },
-          {
-            name: 'Conjunto Manga Longa Bordo',
-            images: ['assets/images/produtos/masculinos/2.webp'],
-            price: 'R$ 179,90',
-            installment: 'Conforto para noites mais frias',
-            description: [
-              'Conjunto masculino que combina blusa bordo de manga longa com calca xadrez em tons neutros.',
-              'A composicao equilibra conforto e estilo para dormir, relaxar ou aproveitar momentos tranquilos em casa.',
-              'A modelagem soltinha oferece um caimento agradavel sem limitar os movimentos.'
-            ],
-            details: [
-              '<strong>Cor da blusa:</strong> Bordo',
-              '<strong>Estampa da calca:</strong> Xadrez',
-              '<strong>Modelagem:</strong> Manga longa e calca comprida',
-              '<strong>Categoria:</strong> Conjunto masculino'
-            ]
-          },
-          {
             name: 'Masculino - Pinheiro',
             images: ['assets/images/produtos/masculinos/3.webp'],
             priceOld: 'R$ 139,90',
@@ -4285,6 +4273,20 @@
       {
         trackId: 'infantilTrack',
         products: [
+          {
+            name: 'Coleção Infantil Noite Clássica',
+            images: [
+              'assets/images/produtos/femininos/colecoes/10.webp',
+              'assets/images/produtos/femininos/colecoes/11.webp'
+            ],
+            price: 'A partir de R$ 89,90',
+            installment: 'Tamanhos 02 ao 14',
+            details: [
+              '<strong>Categoria:</strong> Conjuntos infantis',
+              '<strong>Tamanhos disponíveis:</strong> 02 ao 14',
+              '<strong>Personalização:</strong> Consulte as opções disponíveis'
+            ]
+          },
           {
             name: 'Pijama Familia Pet Lovers',
             images: ['assets/images/produtos/pet/1.webp', 'assets/images/produtos/pet/2.webp', 'assets/images/produtos/pet/3.webp'],
@@ -4373,12 +4375,6 @@
           price: 'R$ 119,90',
           installment: 'Ate 12x de R$ 12,97',
           badge: '-20%'
-        },
-        {
-          name: 'Baby Doll - Verde Água',
-          images: ['assets/images/produtos/femininos/baby/5.webp'],
-          price: 'R$ 119,90',
-          installment: 'Ate 12x de R$ 12,97'
         },
         {
           name: 'Baby Doll - Vermelho',
@@ -4681,18 +4677,12 @@
           priceOnRequest: true
         },
         {
-          name: 'Coleção Noite Clássica',
-          images: [
-            'assets/images/produtos/femininos/colecoes/10.webp',
-            'assets/images/produtos/femininos/colecoes/11.webp'
-          ],
-          installment: 'Malha suede',
-          priceOnRequest: true
-        },
-        {
           name: 'Coleção Casal - Marrom',
           images: ['assets/images/produtos/casal/1.webp'],
-          price: 'A partir de R$ 149,90',
+          prices: [
+            { label: 'Masculino', value: 'R$ 149,90' },
+            { label: 'Feminino', value: 'R$ 179,90' }
+          ],
           installment: 'Tamanhos P ao GG',
           description: [
             'Conjuntos coordenados em marrom para compartilhar conforto a dois.'
@@ -4706,14 +4696,17 @@
         {
           name: 'Coleção Casal - Corações',
           images: ['assets/images/produtos/casal/2.webp'],
-          price: 'A partir de R$ 189,90',
+          prices: [
+            { label: 'Masculino', value: 'R$ 149,90' },
+            { label: 'Feminino', value: 'R$ 179,90' }
+          ],
           installment: 'Tamanhos P ao GG',
           description: [
             'Conjunto masculino de manga longa coordenado com americano feminino de corações.'
           ],
           details: [
-            '<strong>Masculino:</strong> R$ 189,90 · Camiseta em algodão com elastano e calça em malha PV',
-            '<strong>Americano Corações:</strong> R$ 249,90 · Malha de algodão com elastano',
+            '<strong>Masculino:</strong> R$ 149,90 · Camiseta em algodão com elastano e calça em malha PV',
+            '<strong>Feminino:</strong> R$ 179,90 · Americano em malha de algodão com elastano',
             '<strong>Tamanhos disponíveis:</strong> P ao GG'
           ]
         },
@@ -4750,9 +4743,11 @@
         const badge = product.badge || collection.badge || '';
         const priceOldHtml = oldPrice ? `<s>${oldPrice}</s> ` : '';
         const displayPrice = product.price || (product.priceOnRequest ? 'Consulte o preço' : '');
-        const priceHtml = displayPrice
-          ? `<p class="prod-price">${priceOldHtml}<strong>${displayPrice}</strong></p>`
-          : '';
+        const priceHtml = Array.isArray(product.prices)
+          ? product.prices.map(item => `<p class="prod-price"><span>${item.label}: </span><strong>${item.value}</strong></p>`).join('')
+          : displayPrice
+            ? `<p class="prod-price">${priceOldHtml}<strong>${displayPrice}</strong></p>`
+            : '';
 
         return `
           <div class="prod-card"
@@ -4782,7 +4777,7 @@
     };
 
     reorderCollectionProducts('productsTrack', product => product.name.includes('Curto - Preto'), 'start');
-    reorderCollectionProducts('colecoesTrack', product => Boolean(product.price), 'start');
+    reorderCollectionProducts('colecoesTrack', product => Boolean(product.price || product.prices?.length), 'start');
     reorderCollectionProducts('infantilTrack', product => product.name.includes('Familia Pet Lovers'), 'end');
 
     const accessoriesCollection = collectionData.find(item => item.trackId === 'acessoriosTrack');
@@ -5833,7 +5828,7 @@
 
       // 8. Nav link ativo conforme seção visível
       const navLinkEls = document.querySelectorAll('.nav-links a, .drawer-nav a[href^="#"]');
-      const sectIds    = ['inicio', 'pijamas-americanos', 'baby-dolls', 'alcinhas', 'colecoes', 'pijamas-infantil', 'tech-modal', 'acessorios', 'conjuntos-tshirts', 'conjuntos-suede', 'conjuntos-capris', 'sob-medida', 'faq', 'contato'];
+      const sectIds    = ['inicio', 'pijamas-americanos', 'baby-dolls', 'conjuntos-tshirts', 'conjuntos-suede', 'pijamas-infantil', 'tech-modal', 'colecoes', 'acessorios', 'alcinhas', 'conjuntos-capris', 'sob-medida', 'faq', 'contato'];
 
       window.addEventListener('scroll', () => {
         let current = '';
