@@ -4620,13 +4620,37 @@
       trackId: 'colecoesTrack',
       products: [
         {
-          name: 'Coleção Confy',
-          images: [
-            'assets/images/produtos/femininos/colecoes/1.webp',
-            'assets/images/produtos/femininos/colecoes/2.webp',
-            'assets/images/produtos/femininos/colecoes/3.webp'
-          ],
-          installment: 'Malha viscolycra'
+          name: 'Coleção Comfy - Off White',
+          images: ['assets/images/produtos/femininos/colecoes/1.webp'],
+          price: 'R$ 179,90',
+          installment: 'Algodão com elastano · P ao GG',
+          details: [
+            '<strong>Cor:</strong> Off White',
+            '<strong>Material:</strong> Malha de algodão com elastano',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Coleção Comfy - Azul',
+          images: ['assets/images/produtos/femininos/colecoes/2.webp'],
+          price: 'R$ 179,90',
+          installment: 'Malha viscolycra · P ao GG',
+          details: [
+            '<strong>Cor:</strong> Azul',
+            '<strong>Material:</strong> Malha viscolycra',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Coleção Comfy - Marrom',
+          images: ['assets/images/produtos/femininos/colecoes/3.webp'],
+          price: 'R$ 179,90',
+          installment: 'Algodão com elastano · P ao GG',
+          details: [
+            '<strong>Cor:</strong> Marrom',
+            '<strong>Material:</strong> Malha de algodão com elastano',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
         },
         {
           name: 'Coleção Sonhos em Família',
@@ -4634,7 +4658,8 @@
             'assets/images/produtos/femininos/colecoes/4.webp',
             'assets/images/produtos/femininos/colecoes/5.webp'
           ],
-          installment: 'Pijama em malha suede com elastano'
+          installment: 'Pijama em malha suede com elastano',
+          priceOnRequest: true
         },
         {
           name: 'Coleção Família',
@@ -4643,7 +4668,8 @@
             'assets/images/produtos/femininos/colecoes/7.webp',
             'assets/images/produtos/femininos/colecoes/fam.webp'
           ],
-          installment: 'Malha suede para toda a família'
+          installment: 'Malha suede para toda a família',
+          priceOnRequest: true
         },
         {
           name: 'Coleção Essencial',
@@ -4651,7 +4677,8 @@
             'assets/images/produtos/femininos/colecoes/8.webp',
             'assets/images/produtos/femininos/colecoes/9.webp'
           ],
-          installment: 'Malha suede'
+          installment: 'Malha suede',
+          priceOnRequest: true
         },
         {
           name: 'Coleção Noite Clássica',
@@ -4659,23 +4686,45 @@
             'assets/images/produtos/femininos/colecoes/10.webp',
             'assets/images/produtos/femininos/colecoes/11.webp'
           ],
-          installment: 'Malha suede'
+          installment: 'Malha suede',
+          priceOnRequest: true
         },
         {
-          name: 'Coleção Casal',
-          images: [
-            'assets/images/produtos/casal/1.webp',
-            'assets/images/produtos/casal/2.webp'
+          name: 'Coleção Casal - Marrom',
+          images: ['assets/images/produtos/casal/1.webp'],
+          price: 'A partir de R$ 149,90',
+          installment: 'Tamanhos P ao GG',
+          description: [
+            'Conjuntos coordenados em marrom para compartilhar conforto a dois.'
           ],
-          installment: 'Modelos combinando para compartilhar conforto a dois'
+          details: [
+            '<strong>Masculino:</strong> R$ 149,90 · Malha de algodão com elastano',
+            '<strong>Feminino:</strong> R$ 179,90 · Malha de algodão com elastano',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
         },
         {
-          name: 'Coleção Dia das Avós',
+          name: 'Coleção Casal - Corações',
+          images: ['assets/images/produtos/casal/2.webp'],
+          price: 'A partir de R$ 189,90',
+          installment: 'Tamanhos P ao GG',
+          description: [
+            'Conjunto masculino de manga longa coordenado com americano feminino de corações.'
+          ],
+          details: [
+            '<strong>Masculino:</strong> R$ 189,90 · Camiseta em algodão com elastano e calça em malha PV',
+            '<strong>Americano Corações:</strong> R$ 249,90 · Malha de algodão com elastano',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Coleção Abraço de Vó',
           images: [
             'assets/images/produtos/avos/1.webp',
             'assets/images/produtos/avos/2.webp'
           ],
-          installment: 'Uma coleção especial feita com carinho e conforto'
+          installment: 'Porque o abraço dos avós é o lugar mais aconchegante do mundo.',
+          priceOnRequest: true
         }
       ]
     });
@@ -4700,8 +4749,9 @@
         const oldPrice = product.priceOld || '';
         const badge = product.badge || collection.badge || '';
         const priceOldHtml = oldPrice ? `<s>${oldPrice}</s> ` : '';
-        const priceHtml = product.price
-          ? `<p class="prod-price">${priceOldHtml}<strong>${product.price}</strong></p>`
+        const displayPrice = product.price || (product.priceOnRequest ? 'Consulte o preço' : '');
+        const priceHtml = displayPrice
+          ? `<p class="prod-price">${priceOldHtml}<strong>${displayPrice}</strong></p>`
           : '';
 
         return `
@@ -4732,7 +4782,7 @@
     };
 
     reorderCollectionProducts('productsTrack', product => product.name.includes('Curto - Preto'), 'start');
-    reorderCollectionProducts('colecoesTrack', product => product.name.includes('Confy'), 'end');
+    reorderCollectionProducts('colecoesTrack', product => Boolean(product.price), 'start');
     reorderCollectionProducts('infantilTrack', product => product.name.includes('Familia Pet Lovers'), 'end');
 
     const accessoriesCollection = collectionData.find(item => item.trackId === 'acessoriosTrack');
