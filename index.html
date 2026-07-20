@@ -1289,12 +1289,13 @@
     #conjuntos-tshirts { order: 3; }
     #conjuntos-suede { order: 4; }
     #pijamas-infantil { order: 5; }
-    #tech-modal { order: 6; }
-    #colecoes { order: 7; }
-    #acessorios { order: 8; }
-    #alcinhas { order: 9; }
-    #conjuntos-capris { order: 10; }
-    #sob-medida { order: 11; }
+    #produtos-personalizados { order: 6; }
+    #tech-modal { order: 7; }
+    #colecoes { order: 8; }
+    #acessorios { order: 9; }
+    #alcinhas { order: 10; }
+    #conjuntos-capris { order: 11; }
+    #sob-medida { order: 12; }
 
     .products-section {
       background: #FCE4DD;
@@ -3103,7 +3104,7 @@
         <li><a href="#tech-modal">Masculinos</a></li>
         <li><a href="#colecoes">Coleção Família</a></li>
         <li><a href="#acessorios">Acessórios</a></li>
-        <li><a href="#sob-medida">Personalizados</a></li>
+        <li><a href="#produtos-personalizados">Personalizados</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#contato">Contato</a></li>
       </ul>
@@ -3161,7 +3162,7 @@
       <li><a href="#tech-modal">Masculinos</a></li>
       <li><a href="#colecoes">Coleção Família</a></li>
       <li><a href="#acessorios">Acessórios</a></li>
-      <li><a href="#sob-medida">Personalizados</a></li>
+      <li><a href="#produtos-personalizados">Personalizados</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#contato">Contato</a></li>
       <li>
@@ -3270,7 +3271,7 @@
 
 </section>
 
-<section class="products-section" id="alcinhas">
+<section class="products-section collection-section--white" id="alcinhas">
 
   <div class="products-header">
     <h2 class="products-title">PIJAMAS DE ALCINHAS</h2>
@@ -3291,7 +3292,7 @@
 
 </section>
 
-<section class="products-section" id="colecoes">
+<section class="products-section collection-section--white" id="colecoes">
 
   <div class="products-header">
     <h2 class="products-title">COLEÇÃO FAMÍLIA</h2>
@@ -3333,7 +3334,7 @@
 
 </section>
 
-<section class="products-section collection-section--white" id="tech-modal">
+<section class="products-section" id="tech-modal">
 
   <div class="products-header">
     <h2 class="products-title">Pijamas Masculinos</h2>
@@ -3354,7 +3355,7 @@
 
 </section>
 
-<section class="products-section collection-section--white" id="acessorios">
+<section class="products-section" id="acessorios">
   <div class="products-header">
     <h2 class="products-title">PANTUFAS E NÉCESSAIRES</h2>
     <p class="products-subtitle">Pantufas, kits e detalhes especiais para deixar seus momentos de descanso ainda mais confortáveis.</p>
@@ -3409,7 +3410,26 @@
   </div>
 </section>
 
-<section class="products-section collection-section--white" id="conjuntos-capris">
+<section class="products-section collection-section--white" id="produtos-personalizados">
+  <div class="products-header">
+    <h2 class="products-title">PRODUTOS PERSONALIZADOS</h2>
+    <p class="products-subtitle">Peças criadas para famílias, grupos, empresas, homenagens e momentos especiais.</p>
+  </div>
+
+  <div class="products-viewport" id="personalizadosViewport">
+    <div class="products-track" id="personalizadosTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="personalizadosFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="personalizadosPrev" aria-label="Produto personalizado anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="personalizadosNext" aria-label="Próximo produto personalizado"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section class="products-section" id="conjuntos-capris">
   <div class="products-header">
     <h2 class="products-title">CONJUNTOS CAPRIS</h2>
   </div>
@@ -4613,6 +4633,90 @@
     });
 
     collectionData.push({
+      trackId: 'personalizadosTrack',
+      products: [
+        {
+          name: 'Pijama Personalizado - Nossa História',
+          images: ['assets/images/produtos/personalisados/1.jpg'],
+          priceOnRequest: true,
+          installment: 'Personalização com fotos do casal'
+        },
+        {
+          name: 'Pijama Personalizado - Juntas até o Céu',
+          images: ['assets/images/produtos/personalisados/2.jpg'],
+          priceOnRequest: true,
+          installment: 'Homenagem personalizada'
+        },
+        {
+          name: 'Pijama Personalizado - Amigas para Sempre',
+          images: ['assets/images/produtos/personalisados/3.jpg'],
+          priceOnRequest: true,
+          installment: 'Conjuntos coordenados para grupos'
+        },
+        {
+          name: 'Camisola Personalizada - Festa do Pijama',
+          images: ['assets/images/produtos/personalisados/4.jpg'],
+          priceOnRequest: true,
+          installment: 'Modelos infantis para grupos'
+        },
+        {
+          name: 'Pijama Personalizado - Família Xadrez',
+          images: ['assets/images/produtos/personalisados/5.jpg'],
+          priceOnRequest: true,
+          installment: 'Conjuntos combinando para a família'
+        },
+        {
+          name: 'Pijama Personalizado - Turma Especial',
+          images: ['assets/images/produtos/personalisados/6.jpg'],
+          priceOnRequest: true,
+          installment: 'Estampa personalizada com nomes'
+        },
+        {
+          name: 'Pijama Personalizado - Meus Pets',
+          images: ['assets/images/produtos/personalisados/7.jpg'],
+          priceOnRequest: true,
+          installment: 'Estampa criada com seus animais'
+        },
+        {
+          name: 'Pijama Personalizado - Bulldog',
+          images: ['assets/images/produtos/personalisados/8.jpg'],
+          priceOnRequest: true,
+          installment: 'Estampa exclusiva do seu pet'
+        },
+        {
+          name: 'Kit Personalizado - Amor pelos Pets',
+          images: ['assets/images/produtos/personalisados/9.jpg'],
+          priceOnRequest: true,
+          installment: 'Camiseta e almofada personalizadas'
+        },
+        {
+          name: 'Pijama Personalizado - Retratos Pet',
+          images: ['assets/images/produtos/personalisados/10.jpg'],
+          priceOnRequest: true,
+          installment: 'Estampa personalizada com nomes dos pets'
+        },
+        {
+          name: 'Camiseta Personalizada - Equipe e Evento',
+          images: ['assets/images/produtos/personalisados/11.jpg'],
+          priceOnRequest: true,
+          installment: 'Personalização institucional frente e costas'
+        },
+        {
+          name: 'Pijama Personalizado - Bordado com Nome',
+          images: ['assets/images/produtos/personalisados/12.jpg'],
+          priceOnRequest: true,
+          installment: 'Conjunto e nécessaire personalizados'
+        },
+        {
+          name: 'Pijama Personalizado - Natal em Família',
+          images: ['assets/images/produtos/personalisados/13.jpg'],
+          priceOnRequest: true,
+          installment: 'Estampa natalina personalizada'
+        }
+      ]
+    });
+
+    collectionData.push({
       trackId: 'colecoesTrack',
       products: [
         {
@@ -5094,6 +5198,7 @@
     initAmericanProductsCarousel('longProductsViewport', 'longProductsTrack', 'longProductsFill', 'longProductsPrev', 'longProductsNext');
     initAmericanProductsCarousel('tshirtsViewport', 'tshirtsTrack', 'tshirtsFill', 'tshirtsPrev', 'tshirtsNext');
     initAmericanProductsCarousel('suedeViewport', 'suedeTrack', 'suedeFill', 'suedePrev', 'suedeNext');
+    initAmericanProductsCarousel('personalizadosViewport', 'personalizadosTrack', 'personalizadosFill', 'personalizadosPrev', 'personalizadosNext');
 
     // Baby Dolls carousel
     (function () {
@@ -5828,7 +5933,7 @@
 
       // 8. Nav link ativo conforme seção visível
       const navLinkEls = document.querySelectorAll('.nav-links a, .drawer-nav a[href^="#"]');
-      const sectIds    = ['inicio', 'pijamas-americanos', 'baby-dolls', 'conjuntos-tshirts', 'conjuntos-suede', 'pijamas-infantil', 'tech-modal', 'colecoes', 'acessorios', 'alcinhas', 'conjuntos-capris', 'sob-medida', 'faq', 'contato'];
+      const sectIds    = ['inicio', 'pijamas-americanos', 'baby-dolls', 'conjuntos-tshirts', 'conjuntos-suede', 'pijamas-infantil', 'produtos-personalizados', 'tech-modal', 'colecoes', 'acessorios', 'alcinhas', 'conjuntos-capris', 'sob-medida', 'faq', 'contato'];
 
       window.addEventListener('scroll', () => {
         let current = '';
