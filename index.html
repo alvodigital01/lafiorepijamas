@@ -3353,6 +3353,48 @@
   </div>
 </section>
 
+<section class="products-section collection-section--white" id="conjuntos-tshirts">
+  <div class="products-header">
+    <h2 class="products-title">CONJUNTO T-SHIRTS</h2>
+  </div>
+
+  <div class="products-viewport" id="tshirtsViewport">
+    <div class="products-track" id="tshirtsTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="tshirtsFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="tshirtsPrev" aria-label="Conjunto T-shirt anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="tshirtsNext" aria-label="Próximo conjunto T-shirt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section class="products-section" id="conjuntos-suede">
+  <div class="products-header">
+    <h2 class="products-title">CONJUNTO SUEDE</h2>
+  </div>
+
+  <div class="products-viewport" id="suedeViewport">
+    <div class="products-track" id="suedeTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="suedeFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="suedePrev" aria-label="Conjunto Suede anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="suedeNext" aria-label="Próximo conjunto Suede"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section class="products-section collection-section--white" id="conjuntos-capris">
+  <div class="products-header">
+    <h2 class="products-title">CONJUNTOS CAPRIS</h2>
+  </div>
+</section>
+
 <section class="custom-made-section" id="sob-medida" aria-labelledby="customMadeTitle">
   <div class="custom-made-inner">
     <div class="custom-made-copy">
@@ -4464,6 +4506,106 @@
     });
 
     collectionData.push({
+      trackId: 'tshirtsTrack',
+      products: [
+        {
+          name: 'Conjunto T-shirt - Pet Lovers',
+          images: ['assets/images/produtos/femininos/tshirts/1.jpg'],
+          price: 'R$ 109,90',
+          installment: 'Tamanhos P ao GG',
+          details: [
+            '<strong>Estampa:</strong> Cachorrinhos',
+            '<strong>Modelagem:</strong> T-shirt com shorts',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Conjunto T-shirt - Xadrez Vermelho',
+          images: ['assets/images/produtos/femininos/tshirts/2.jpg'],
+          price: 'R$ 109,90',
+          installment: 'Tamanhos P ao GG',
+          details: [
+            '<strong>Estampa:</strong> Xadrez vermelho e preto',
+            '<strong>Modelagem:</strong> T-shirt com shorts',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        }
+      ]
+    });
+
+    collectionData.push({
+      trackId: 'suedeTrack',
+      products: [
+        {
+          name: 'Conjunto Suede Light - Xadrez Azul',
+          images: ['assets/images/produtos/femininos/suede/1.jpg'],
+          price: 'R$ 169,90',
+          installment: 'Malha Suede Light · P ao GG',
+          details: [
+            '<strong>Estampa:</strong> Xadrez azul',
+            '<strong>Material:</strong> Malha Suede Light',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Conjunto Suede Light - Cachorrinhos Bege',
+          images: ['assets/images/produtos/femininos/suede/2.jpg', 'assets/images/produtos/femininos/suede/11.jpg', 'assets/images/produtos/femininos/suede/12.jpg'],
+          price: 'R$ 169,90',
+          installment: 'Malha Suede Light · P ao GG',
+          details: [
+            '<strong>Estampa:</strong> Cachorrinhos em fundo bege',
+            '<strong>Material:</strong> Malha Suede Light',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Conjunto Suede Light - Ursinhos e Balões',
+          images: ['assets/images/produtos/femininos/suede/3.jpg', 'assets/images/produtos/femininos/suede/4.jpg'],
+          price: 'R$ 169,90',
+          installment: 'Malha Suede Light · P ao GG',
+          details: [
+            '<strong>Estampa:</strong> Ursinhos e balões em fundo rosa',
+            '<strong>Material:</strong> Malha Suede Light',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Conjunto Suede Light - Poá Rosa',
+          images: ['assets/images/produtos/femininos/suede/7.jpg', 'assets/images/produtos/femininos/suede/5.jpg'],
+          price: 'R$ 169,90',
+          installment: 'Malha Suede Light · P ao GG',
+          details: [
+            '<strong>Estampa:</strong> Poá branco em fundo rosa',
+            '<strong>Material:</strong> Malha Suede Light',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Conjunto Suede Light - Xadrez Preto',
+          images: ['assets/images/produtos/femininos/suede/8.jpg'],
+          price: 'R$ 169,90',
+          installment: 'Malha Suede Light · P ao GG',
+          details: [
+            '<strong>Estampa:</strong> Xadrez preto e branco',
+            '<strong>Material:</strong> Malha Suede Light',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Conjunto Suede Light - Floral Preto',
+          images: ['assets/images/produtos/femininos/suede/9.jpg', 'assets/images/produtos/femininos/suede/10.jpg'],
+          price: 'R$ 169,90',
+          installment: 'Malha Suede Light · P ao GG',
+          details: [
+            '<strong>Estampa:</strong> Floral branco em fundo preto',
+            '<strong>Material:</strong> Malha Suede Light',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        }
+      ]
+    });
+
+    collectionData.push({
       trackId: 'colecoesTrack',
       products: [
         {
@@ -4894,6 +5036,8 @@
 
     initAmericanProductsCarousel('productsViewport', 'productsTrack', 'progressFill', 'prodPrev', 'prodNext');
     initAmericanProductsCarousel('longProductsViewport', 'longProductsTrack', 'longProductsFill', 'longProductsPrev', 'longProductsNext');
+    initAmericanProductsCarousel('tshirtsViewport', 'tshirtsTrack', 'tshirtsFill', 'tshirtsPrev', 'tshirtsNext');
+    initAmericanProductsCarousel('suedeViewport', 'suedeTrack', 'suedeFill', 'suedePrev', 'suedeNext');
 
     // Baby Dolls carousel
     (function () {
@@ -5628,7 +5772,7 @@
 
       // 8. Nav link ativo conforme seção visível
       const navLinkEls = document.querySelectorAll('.nav-links a, .drawer-nav a[href^="#"]');
-      const sectIds    = ['inicio', 'pijamas-americanos', 'baby-dolls', 'alcinhas', 'colecoes', 'pijamas-infantil', 'tech-modal', 'acessorios', 'sob-medida', 'faq', 'contato'];
+      const sectIds    = ['inicio', 'pijamas-americanos', 'baby-dolls', 'alcinhas', 'colecoes', 'pijamas-infantil', 'tech-modal', 'acessorios', 'conjuntos-tshirts', 'conjuntos-suede', 'conjuntos-capris', 'sob-medida', 'faq', 'contato'];
 
       window.addEventListener('scroll', () => {
         let current = '';
