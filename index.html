@@ -1321,6 +1321,10 @@
       max-width: 1100px;
     }
 
+    .products-group + .products-group {
+      margin-top: 48px;
+    }
+
     .products-viewport {
       overflow: hidden;
       padding: 0 24px;
@@ -3197,15 +3201,29 @@
     <p class="products-subtitle">Modelos macios, leves e bonitos para transformar a rotina de descanso em um momento especial.</p>
   </div>
 
-  <div class="products-viewport" id="productsViewport">
-    <div class="products-track" id="productsTrack"></div>
+  <div class="products-group">
+    <div class="products-viewport" id="productsViewport">
+      <div class="products-track" id="productsTrack"></div>
+    </div>
+    <div class="products-footer">
+      <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div></div>
+      <div class="products-arrows">
+        <button class="arrow-btn" id="prodPrev" aria-label="Americano curto anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="arrow-btn" id="prodNext" aria-label="Próximo americano curto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
+    </div>
   </div>
 
-  <div class="products-footer">
-    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div></div>
-    <div class="products-arrows">
-      <button class="arrow-btn" id="prodPrev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <button class="arrow-btn" id="prodNext" aria-label="Proximo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+  <div class="products-group">
+    <div class="products-viewport" id="longProductsViewport">
+      <div class="products-track" id="longProductsTrack"></div>
+    </div>
+    <div class="products-footer">
+      <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="longProductsFill"></div></div></div>
+      <div class="products-arrows">
+        <button class="arrow-btn" id="longProductsPrev" aria-label="Americano longo anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+        <button class="arrow-btn" id="longProductsNext" aria-label="Próximo americano longo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+      </div>
     </div>
   </div>
 
@@ -4038,18 +4056,6 @@
             badge: '-18%'
           },
           {
-            name: 'Americano Longo - Preto',
-            images: ['assets/images/produtos/femininos/americanos/1.jpg'],
-            price: 'R$ 209,90',
-            installment: 'Ate 12x de R$ 22,70'
-          },
-          {
-            name: 'Americano Longo - Azul Marinho',
-            images: ['assets/images/produtos/femininos/americanos/2.jpg'],
-            price: 'R$ 209,90',
-            installment: 'Ate 12x de R$ 22,70'
-          },
-          {
             name: 'Americano Curto - Rosa Bebê',
             images: ['assets/images/produtos/femininos/americanos/5.jpg'],
             price: 'R$ 169,90',
@@ -4067,13 +4073,77 @@
             price: 'R$ 169,90',
             installment: 'Ate 12x de R$ 18,37'
           },
+        ]
+      },
+      {
+        trackId: 'longProductsTrack',
+        products: [
           {
-            name: 'Americano Alcinha - Maçã Verde',
-            images: ['assets/images/produtos/femininos/americanos/alcinha.jpg'],
-            priceOld: 'R$ 119,90',
-            price: 'R$ 99,90',
-            installment: 'Ate 12x de R$ 10,81',
-            badge: '-17%'
+            name: 'Americano Longo - Preto',
+            images: ['assets/images/produtos/femininos/americanos/1.jpg'],
+            price: 'R$ 209,90',
+            installment: 'Ate 12x de R$ 22,70'
+          },
+          {
+            name: 'Americano Longo - Azul Marinho',
+            images: ['assets/images/produtos/femininos/americanos/2.jpg'],
+            price: 'R$ 209,90',
+            installment: 'Ate 12x de R$ 22,70'
+          },
+          {
+            name: 'Americano Longo em Viscolycra - Preto',
+            images: ['assets/images/produtos/femininos/americanos/novoslongos/1.jpg'],
+            price: 'R$ 199,90',
+            installment: 'Tamanhos P ao GG · Viscolycra',
+            details: [
+              '<strong>Cor:</strong> Preto',
+              '<strong>Material:</strong> Viscolycra',
+              '<strong>Tamanhos disponíveis:</strong> P ao GG'
+            ]
+          },
+          {
+            name: 'Americano Longo - Marrom',
+            images: ['assets/images/produtos/femininos/americanos/novoslongos/2.jpg'],
+            price: 'R$ 219,90',
+            installment: 'Tamanhos P ao GG · Algodão com elastano',
+            details: [
+              '<strong>Cor:</strong> Marrom',
+              '<strong>Material:</strong> Algodão com elastano',
+              '<strong>Tamanhos disponíveis:</strong> P ao GG'
+            ]
+          },
+          {
+            name: 'Americano Longo - Off White',
+            images: ['assets/images/produtos/femininos/americanos/novoslongos/3.jpg'],
+            price: 'R$ 219,90',
+            installment: 'Tamanhos P ao GG · Algodão com elastano',
+            details: [
+              '<strong>Cor:</strong> Off White',
+              '<strong>Material:</strong> Algodão com elastano',
+              '<strong>Tamanhos disponíveis:</strong> P ao GG'
+            ]
+          },
+          {
+            name: 'Americano Longo - Corações',
+            images: ['assets/images/produtos/femininos/americanos/novoslongos/4.jpg'],
+            price: 'R$ 249,90',
+            installment: 'Tamanhos P ao GG · Algodão com elastano',
+            details: [
+              '<strong>Estampa:</strong> Corações',
+              '<strong>Material:</strong> Algodão com elastano',
+              '<strong>Tamanhos disponíveis:</strong> P ao GG'
+            ]
+          },
+          {
+            name: 'Americano Longo - Xadrez',
+            images: ['assets/images/produtos/femininos/americanos/novoslongos/5.jpg'],
+            price: 'R$ 249,90',
+            installment: 'Tamanhos P ao GG · Algodão com elastano',
+            details: [
+              '<strong>Estampa:</strong> Xadrez',
+              '<strong>Material:</strong> Algodão com elastano',
+              '<strong>Tamanhos disponíveis:</strong> P ao GG'
+            ]
           }
         ]
       },
@@ -4265,10 +4335,26 @@
       trackId: 'babyTrack',
       products: [
         {
-          name: 'Baby Doll - Preto Bicolor',
+          name: 'Conjunto Plus Size - Preto com Renda',
           images: ['assets/images/produtos/femininos/baby/1.jpg', 'assets/images/produtos/femininos/baby/2.jpg'],
           price: 'R$ 139,90',
-          installment: 'Ate 12x de R$ 15,13'
+          installment: 'Tamanhos 50 ao 54',
+          details: [
+            '<strong>Cor:</strong> Preto com renda',
+            '<strong>Modelagem:</strong> Plus Size',
+            '<strong>Tamanhos disponíveis:</strong> 50 ao 54'
+          ]
+        },
+        {
+          name: 'Conjunto Plus Size - Azul Marinho',
+          images: ['assets/images/produtos/femininos/babydolls/1.jpg', 'assets/images/produtos/femininos/babydolls/2.jpg'],
+          price: 'R$ 139,90',
+          installment: 'Tamanhos 50 ao 54',
+          details: [
+            '<strong>Cor:</strong> Azul marinho',
+            '<strong>Modelagem:</strong> Plus Size',
+            '<strong>Tamanhos disponíveis:</strong> 50 ao 54'
+          ]
         },
         {
           name: 'Baby Doll - Frozen',
@@ -4793,13 +4879,13 @@
       updateUI();
     })();
 
-    // ── Produtos carousel ──
-    (function () {
-      const viewport   = document.getElementById('productsViewport');
-      const track      = document.getElementById('productsTrack');
-      const fill       = document.getElementById('progressFill');
-      const btnPrev    = document.getElementById('prodPrev');
-      const btnNext    = document.getElementById('prodNext');
+    // ── Carrosseis de pijamas americanos ──
+    function initAmericanProductsCarousel(viewportId, trackId, fillId, prevId, nextId) {
+      const viewport   = document.getElementById(viewportId);
+      const track      = document.getElementById(trackId);
+      const fill       = document.getElementById(fillId);
+      const btnPrev    = document.getElementById(prevId);
+      const btnNext    = document.getElementById(nextId);
       if (!track) return;
 
       const cards      = Array.from(track.children);
@@ -4818,7 +4904,7 @@
       }
 
       function maxStep() {
-        return total - visibleCount();
+        return Math.max(0, total - visibleCount());
       }
 
       function updateUI() {
@@ -4864,7 +4950,10 @@
 
       window.addEventListener('resize', updateUI);
       updateUI();
-    })();
+    }
+
+    initAmericanProductsCarousel('productsViewport', 'productsTrack', 'progressFill', 'prodPrev', 'prodNext');
+    initAmericanProductsCarousel('longProductsViewport', 'longProductsTrack', 'longProductsFill', 'longProductsPrev', 'longProductsNext');
 
     // Baby Dolls carousel
     (function () {
