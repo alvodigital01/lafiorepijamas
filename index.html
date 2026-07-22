@@ -4235,6 +4235,57 @@
         trackId: 'techTrack',
         products: [
           {
+            name: 'Conjunto Masculino Curto - Xadrez Azul',
+            images: ['assets/images/produtos/masculinos/novos/1.webp'],
+            price: 'R$ 149,90',
+            installment: 'Tamanhos P ao GG',
+            sizes: ['P', 'M', 'G', 'GG'],
+            description: [
+              'Conjunto masculino curto com camiseta azul-marinho e bermuda xadrez em tons de azul.',
+              'Uma combinacao classica e confortavel para noites tranquilas e momentos de descanso.'
+            ],
+            details: [
+              '<strong>Cores:</strong> Azul-marinho e xadrez azul',
+              '<strong>Modelagem:</strong> Camiseta de manga curta e bermuda',
+              '<strong>Tamanhos disponiveis:</strong> P ao GG',
+              '<strong>Categoria:</strong> Conjunto masculino curto'
+            ]
+          },
+          {
+            name: 'Conjunto Masculino Curto - Azul-Marinho',
+            images: ['assets/images/produtos/masculinos/novos/2.webp'],
+            price: 'R$ 149,90',
+            installment: 'Tamanhos P ao GG',
+            sizes: ['P', 'M', 'G', 'GG'],
+            description: [
+              'Conjunto masculino curto inteiramente azul-marinho, com visual versatil e minimalista.',
+              'Camiseta de manga curta e bermuda com elastico na cintura para mais conforto.'
+            ],
+            details: [
+              '<strong>Cor:</strong> Azul-marinho',
+              '<strong>Modelagem:</strong> Camiseta de manga curta e bermuda',
+              '<strong>Tamanhos disponiveis:</strong> P ao GG',
+              '<strong>Categoria:</strong> Conjunto masculino curto'
+            ]
+          },
+          {
+            name: 'Conjunto Masculino Curto - Off White e Caqui',
+            images: ['assets/images/produtos/masculinos/novos/3.webp'],
+            price: 'R$ 149,90',
+            installment: 'Tamanhos P ao GG',
+            sizes: ['P', 'M', 'G', 'GG'],
+            description: [
+              'Conjunto masculino curto com camiseta off white e bermuda caqui.',
+              'A combinacao de tons neutros traz um visual leve para noites e momentos de descanso.'
+            ],
+            details: [
+              '<strong>Cores:</strong> Off white e caqui',
+              '<strong>Modelagem:</strong> Camiseta de manga curta e bermuda',
+              '<strong>Tamanhos disponiveis:</strong> P ao GG',
+              '<strong>Categoria:</strong> Conjunto masculino curto'
+            ]
+          },
+          {
             name: 'Masculino - Pinheiro',
             images: ['assets/images/produtos/masculinos/3.webp'],
             priceOld: 'R$ 139,90',
@@ -4321,7 +4372,8 @@
             priceOld: 'R$ 159,90',
             price: 'R$ 99,90',
             installment: 'Malha suede light',
-            badge: '-38%'
+            badge: '-38%',
+            hidden: true
           },
           {
             name: 'Conjunto Infantil Bichinhos',
@@ -4329,7 +4381,8 @@
             priceOld: 'R$ 139,90',
             price: 'R$ 89,90',
             installment: 'Malha suede',
-            badge: '-36%'
+            badge: '-36%',
+            hidden: true
           },
           {
             name: 'Conjunto Infantil Cachorro Maluco',
@@ -4839,7 +4892,7 @@
         badge: collection.badge
       }));
 
-      track.innerHTML = products.map(product => {
+      track.innerHTML = products.filter(product => !product.hidden).map(product => {
         const productImages = product.images;
         const imageList = Array.isArray(productImages) ? productImages : [productImages];
         const img = imageList[0];
@@ -4857,7 +4910,8 @@
           <div class="prod-card"
                data-images='${JSON.stringify(imageList)}'
                data-description="${encodeURIComponent(JSON.stringify(product.description || []))}"
-               data-details="${encodeURIComponent(JSON.stringify(product.details || []))}">
+               data-details="${encodeURIComponent(JSON.stringify(product.details || []))}"
+               data-sizes="${encodeURIComponent(JSON.stringify(product.sizes || []))}">
             ${badge ? `<div class="prod-badge">${badge}</div>` : ''}
             <div class="prod-img"><img src="${img}" alt="${product.name}" /></div>
             <div class="prod-info">
@@ -4868,6 +4922,7 @@
           </div>
         `;
       }).join('');
+
     }
 
     const reorderCollectionProducts = (trackId, predicate, position) => {
@@ -5415,9 +5470,13 @@
         });
         thumbsEl.classList.toggle('has-multiple', images.length > 1);
 
-        selSizeEl.textContent = 'P';
+        const availableSizes = data.sizes?.length ? data.sizes : ['P', 'M', 'G', 'GG', 'XG'];
+        const initialSize = availableSizes[0];
+        selSizeEl.textContent = initialSize;
         document.querySelectorAll('.modal-size-btn').forEach(b => {
-          b.classList.toggle('active', b.dataset.size === 'P');
+          const isAvailable = availableSizes.includes(b.dataset.size);
+          b.hidden = !isAvailable;
+          b.classList.toggle('active', b.dataset.size === initialSize);
         });
         updateWhatsAppLink();
 
@@ -5495,7 +5554,8 @@
             };
             const description = readEncodedList(card.dataset.description);
             const details = readEncodedList(card.dataset.details);
-            openModal({ img: img?.src || '', images, name, priceOld: old, off: badge ? badge + ' OFF' : '', price, installments: inst, description, details });
+            const sizes = readEncodedList(card.dataset.sizes);
+            openModal({ img: img?.src || '', images, name, priceOld: old, off: badge ? badge + ' OFF' : '', price, installments: inst, description, details, sizes });
           });
         });
       }
