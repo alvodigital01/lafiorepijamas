@@ -1285,17 +1285,18 @@
     }
 
     #pijamas-americanos { order: 1; }
-    #baby-dolls { order: 2; }
-    #conjuntos-tshirts { order: 3; }
-    #conjuntos-suede { order: 4; }
-    #pijamas-infantil { order: 5; }
-    #produtos-personalizados { order: 6; }
-    #tech-modal { order: 7; }
-    #colecoes { order: 8; }
-    #acessorios { order: 9; }
-    #alcinhas { order: 10; }
-    #conjuntos-capris { order: 11; }
-    #sob-medida { order: 12; }
+    #abraco-de-vo { order: 2; }
+    #baby-dolls { order: 3; }
+    #conjuntos-tshirts { order: 4; }
+    #conjuntos-suede { order: 5; }
+    #pijamas-infantil { order: 6; }
+    #produtos-personalizados { order: 7; }
+    #tech-modal { order: 8; }
+    #colecoes { order: 9; }
+    #acessorios { order: 10; }
+    #alcinhas { order: 11; }
+    #conjuntos-capris { order: 12; }
+    #sob-medida { order: 13; }
 
     .products-section {
       background: #FCE4DD;
@@ -1353,6 +1354,20 @@
       gap: 16px;
       transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
       will-change: transform;
+    }
+
+    .collection-title-with-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .collection-title-heart {
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      fill: #5b3924;
     }
 
     .prod-card {
@@ -3097,6 +3112,7 @@
       <!-- Desktop nav links -->
       <ul class="nav-links">
         <li><a href="#pijamas-americanos">Americanos</a></li>
+        <li><a href="#abraco-de-vo">Abraço de Vó</a></li>
         <li><a href="#baby-dolls">Short Dolls</a></li>
         <li><a href="#conjuntos-tshirts">T-shirts</a></li>
         <li><a href="#conjuntos-suede">Suede</a></li>
@@ -3155,6 +3171,7 @@
 
     <ul class="drawer-nav">
       <li><a href="#pijamas-americanos">Americanos</a></li>
+      <li><a href="#abraco-de-vo">Abraço de Vó</a></li>
       <li><a href="#baby-dolls">Short Dolls</a></li>
       <li><a href="#conjuntos-tshirts">T-shirts</a></li>
       <li><a href="#conjuntos-suede">Suede</a></li>
@@ -3250,7 +3267,29 @@
 
 </section>
 
-<section class="products-section collection-section--white" id="baby-dolls">
+<section class="products-section collection-section--white" id="abraco-de-vo">
+  <div class="products-header">
+    <h2 class="products-title collection-title-with-icon">
+      <span>COLEÇÃO ABRAÇO DE VÓ</span>
+      <svg class="collection-title-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+    </h2>
+    <p class="products-subtitle">Porque o abraço dos avós é o lugar mais aconchegante do mundo.</p>
+  </div>
+
+  <div class="products-viewport" id="avosViewport">
+    <div class="products-track" id="avosTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="avosFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="avosPrev" aria-label="Produto Abraço de Vó anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="avosNext" aria-label="Próximo produto Abraço de Vó"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section class="products-section" id="baby-dolls">
 
   <div class="products-header">
     <h2 class="products-title">SHORT DOLLS</h2>
@@ -3271,7 +3310,7 @@
 
 </section>
 
-<section class="products-section collection-section--white" id="alcinhas">
+<section class="products-section" id="alcinhas">
 
   <div class="products-header">
     <h2 class="products-title">PIJAMAS DE ALCINHAS</h2>
@@ -3292,7 +3331,7 @@
 
 </section>
 
-<section class="products-section collection-section--white" id="colecoes">
+<section class="products-section" id="colecoes">
 
   <div class="products-header">
     <h2 class="products-title">COLEÇÃO FAMÍLIA</h2>
@@ -3313,7 +3352,7 @@
 
 </section>
 
-<section class="products-section" id="pijamas-infantil">
+<section class="products-section collection-section--white" id="pijamas-infantil">
 
   <div class="products-header">
     <h2 class="products-title">INFANTIL</h2>
@@ -3334,7 +3373,7 @@
 
 </section>
 
-<section class="products-section" id="tech-modal">
+<section class="products-section collection-section--white" id="tech-modal">
 
   <div class="products-header">
     <h2 class="products-title">Pijamas Masculinos</h2>
@@ -3355,7 +3394,7 @@
 
 </section>
 
-<section class="products-section" id="acessorios">
+<section class="products-section collection-section--white" id="acessorios">
   <div class="products-header">
     <h2 class="products-title">PANTUFAS E NÉCESSAIRES</h2>
     <p class="products-subtitle">Pantufas, kits e detalhes especiais para deixar seus momentos de descanso ainda mais confortáveis.</p>
@@ -3374,7 +3413,7 @@
   </div>
 </section>
 
-<section class="products-section" id="conjuntos-tshirts">
+<section class="products-section collection-section--white" id="conjuntos-tshirts">
   <div class="products-header">
     <h2 class="products-title">CONJUNTO T-SHIRTS</h2>
   </div>
@@ -3392,7 +3431,7 @@
   </div>
 </section>
 
-<section class="products-section collection-section--white" id="conjuntos-suede">
+<section class="products-section" id="conjuntos-suede">
   <div class="products-header">
     <h2 class="products-title">CONJUNTO SUEDE</h2>
   </div>
@@ -3410,7 +3449,7 @@
   </div>
 </section>
 
-<section class="products-section collection-section--white" id="produtos-personalizados">
+<section class="products-section" id="produtos-personalizados">
   <div class="products-header">
     <h2 class="products-title">PRODUTOS PERSONALIZADOS</h2>
     <p class="products-subtitle">Peças criadas para famílias, grupos, empresas, homenagens e momentos especiais.</p>
@@ -3429,9 +3468,22 @@
   </div>
 </section>
 
-<section class="products-section" id="conjuntos-capris">
+<section class="products-section collection-section--white" id="conjuntos-capris">
   <div class="products-header">
     <h2 class="products-title">CONJUNTOS CAPRIS</h2>
+    <p class="products-subtitle">Modelos confortáveis e leves para noites tranquilas, disponíveis do tamanho P ao GG.</p>
+  </div>
+
+  <div class="products-viewport" id="caprisViewport">
+    <div class="products-track" id="caprisTrack"></div>
+  </div>
+
+  <div class="products-footer">
+    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="caprisFill"></div></div></div>
+    <div class="products-arrows">
+      <button class="arrow-btn" id="caprisPrev" aria-label="Conjunto Capri anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="arrow-btn" id="caprisNext" aria-label="Próximo conjunto Capri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
   </div>
 </section>
 
@@ -4492,7 +4544,8 @@
           images: ['assets/images/produtos/acessorios/2.webp', 'assets/images/produtos/acessorios/3.webp', 'assets/images/produtos/acessorios/8.webp', 'assets/images/produtos/acessorios/9.webp'],
           installment: 'Consulte o valor pelo WhatsApp',
           description: ['Kit em tons neutros com pantufas matelassadas e nécessaire de corações.'],
-          details: ['<strong>Estampa:</strong> Corações', '<strong>Itens:</strong> Pantufas e nécessaire', '<strong>Categoria:</strong> Kit de acessórios']
+          details: ['<strong>Estampa:</strong> Corações', '<strong>Itens:</strong> Pantufas e nécessaire', '<strong>Categoria:</strong> Kit de acessórios'],
+          hidden: true
         },
         {
           name: 'Pantufa Xadrez Azul',
@@ -4679,6 +4732,124 @@
           details: [
             '<strong>Estampa:</strong> Autocuidado em fundo rosa-claro',
             '<strong>Material:</strong> Malha Suede Light',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        }
+      ]
+    });
+
+    collectionData.push({
+      trackId: 'avosTrack',
+      products: [
+        {
+          name: 'Conjunto Pijama Abraço de Vó',
+          images: ['assets/images/produtos/avos/5.webp'],
+          price: 'R$ 249,90',
+          installment: 'Tamanhos P ao GG',
+          sizes: ['P', 'M', 'G', 'GG'],
+          description: [
+            'Conjunto de pijama longo com estampa de corações, criado para envolver os momentos de descanso com carinho e aconchego.'
+          ],
+          details: [
+            '<strong>Estampa:</strong> Corações',
+            '<strong>Modelagem:</strong> Blusa de manga longa e calça comprida',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG',
+            '<strong>Coleção:</strong> Abraço de Vó'
+          ]
+        },
+        {
+          name: 'Pantufa Abraço de Vó',
+          images: ['assets/images/produtos/avos/4.webp'],
+          price: 'R$ 69,90',
+          installment: 'Coleção Abraço de Vó',
+          description: ['Pantufa com estampa de corações e delicado laço frontal.'],
+          details: [
+            '<strong>Estampa:</strong> Corações',
+            '<strong>Categoria:</strong> Pantufa',
+            '<strong>Coleção:</strong> Abraço de Vó'
+          ]
+        },
+        {
+          name: 'Nécessaire Multiuso Abraço de Vó',
+          images: ['assets/images/produtos/avos/1.webp'],
+          price: 'R$ 79,90',
+          installment: 'Coleção Abraço de Vó',
+          description: ['Nécessaire multiuso com divisórias internas e estampa de corações.'],
+          details: [
+            '<strong>Modelo:</strong> Multiuso com divisórias',
+            '<strong>Estampa:</strong> Corações',
+            '<strong>Coleção:</strong> Abraço de Vó'
+          ]
+        },
+        {
+          name: 'Nécessaire Box Abraço de Vó',
+          images: ['assets/images/produtos/avos/2.webp'],
+          price: 'R$ 69,90',
+          installment: 'Coleção Abraço de Vó',
+          description: ['Nécessaire box com bolso frontal, alça lateral e estampa de corações.'],
+          details: [
+            '<strong>Modelo:</strong> Box',
+            '<strong>Estampa:</strong> Corações',
+            '<strong>Coleção:</strong> Abraço de Vó'
+          ]
+        },
+        {
+          name: 'Nécessaire Pom Pom Abraço de Vó',
+          images: ['assets/images/produtos/avos/3.webp'],
+          price: 'R$ 39,90',
+          installment: 'Coleção Abraço de Vó',
+          description: ['Nécessaire compacta com laço e estampa de corações.'],
+          details: [
+            '<strong>Modelo:</strong> Compacta com laço',
+            '<strong>Estampa:</strong> Corações',
+            '<strong>Coleção:</strong> Abraço de Vó'
+          ]
+        }
+      ]
+    });
+
+    collectionData.push({
+      trackId: 'caprisTrack',
+      products: [
+        {
+          name: 'Conjunto Capri Tiffany',
+          images: ['assets/images/produtos/capris/1.webp'],
+          priceOnRequest: true,
+          installment: 'Malha suede · Tamanhos P ao GG',
+          sizes: ['P', 'M', 'G', 'GG'],
+          description: ['Conjunto Capri Tiffany em malha suede, com toque macio e modelagem confortável.'],
+          details: [
+            '<strong>Cor:</strong> Tiffany',
+            '<strong>Material:</strong> Malha suede',
+            '<strong>Modelagem:</strong> Blusa de manga curta e calça Capri',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Conjunto Capri Preto',
+          images: ['assets/images/produtos/capris/2.webp'],
+          price: 'R$ 119,90',
+          installment: 'Liganete · Tamanhos P ao GG',
+          sizes: ['P', 'M', 'G', 'GG'],
+          description: ['Conjunto Capri preto em liganete, leve e confortável para os momentos de descanso.'],
+          details: [
+            '<strong>Cor:</strong> Preto',
+            '<strong>Material:</strong> Liganete',
+            '<strong>Modelagem:</strong> Blusa de manga curta e calça Capri',
+            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+          ]
+        },
+        {
+          name: 'Conjunto Capri Azul',
+          images: ['assets/images/produtos/capris/3.webp'],
+          price: 'R$ 119,90',
+          installment: 'Liganete · Tamanhos P ao GG',
+          sizes: ['P', 'M', 'G', 'GG'],
+          description: ['Conjunto Capri azul em liganete, com caimento leve e visual clássico.'],
+          details: [
+            '<strong>Cor:</strong> Azul',
+            '<strong>Material:</strong> Liganete',
+            '<strong>Modelagem:</strong> Blusa de manga curta e calça Capri',
             '<strong>Tamanhos disponíveis:</strong> P ao GG'
           ]
         }
@@ -4874,7 +5045,8 @@
             'assets/images/produtos/avos/2.webp'
           ],
           installment: 'Porque o abraço dos avós é o lugar mais aconchegante do mundo.',
-          priceOnRequest: true
+          priceOnRequest: true,
+          hidden: true
         }
       ]
     });
@@ -5253,6 +5425,8 @@
     initAmericanProductsCarousel('longProductsViewport', 'longProductsTrack', 'longProductsFill', 'longProductsPrev', 'longProductsNext');
     initAmericanProductsCarousel('tshirtsViewport', 'tshirtsTrack', 'tshirtsFill', 'tshirtsPrev', 'tshirtsNext');
     initAmericanProductsCarousel('suedeViewport', 'suedeTrack', 'suedeFill', 'suedePrev', 'suedeNext');
+    initAmericanProductsCarousel('avosViewport', 'avosTrack', 'avosFill', 'avosPrev', 'avosNext');
+    initAmericanProductsCarousel('caprisViewport', 'caprisTrack', 'caprisFill', 'caprisPrev', 'caprisNext');
     initAmericanProductsCarousel('personalizadosViewport', 'personalizadosTrack', 'personalizadosFill', 'personalizadosPrev', 'personalizadosNext');
 
     // Baby Dolls carousel
