@@ -1295,7 +1295,6 @@
     #colecoes { order: 9; }
     #acessorios { order: 10; }
     #alcinhas { order: 11; }
-    #conjuntos-capris { order: 12; }
     #sob-medida { order: 13; }
 
     .products-section {
@@ -3468,25 +3467,6 @@
   </div>
 </section>
 
-<section class="products-section collection-section--white" id="conjuntos-capris">
-  <div class="products-header">
-    <h2 class="products-title">CONJUNTOS CAPRIS</h2>
-    <p class="products-subtitle">Modelos confortáveis e leves para noites tranquilas, disponíveis do tamanho P ao GG.</p>
-  </div>
-
-  <div class="products-viewport" id="caprisViewport">
-    <div class="products-track" id="caprisTrack"></div>
-  </div>
-
-  <div class="products-footer">
-    <div class="progress-bar-wrap"><div class="progress-bar-bg"><div class="progress-bar-fill" id="caprisFill"></div></div></div>
-    <div class="products-arrows">
-      <button class="arrow-btn" id="caprisPrev" aria-label="Conjunto Capri anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
-      <button class="arrow-btn" id="caprisNext" aria-label="Próximo conjunto Capri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
-    </div>
-  </div>
-</section>
-
 <section class="custom-made-section" id="sob-medida" aria-labelledby="customMadeTitle">
   <div class="custom-made-inner">
     <div class="custom-made-copy">
@@ -4804,13 +4784,7 @@
             '<strong>Estampa:</strong> Corações',
             '<strong>Coleção:</strong> Abraço de Vó'
           ]
-        }
-      ]
-    });
-
-    collectionData.push({
-      trackId: 'caprisTrack',
-      products: [
+        },
         {
           name: 'Conjunto Capri Tiffany',
           images: ['assets/images/produtos/capris/1.webp'],
@@ -4822,35 +4796,40 @@
             '<strong>Cor:</strong> Tiffany',
             '<strong>Material:</strong> Malha suede',
             '<strong>Modelagem:</strong> Blusa de manga curta e calça Capri',
-            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+            '<strong>Tamanhos disponíveis:</strong> P ao GG',
+            '<strong>Coleção:</strong> Abraço de Vó'
           ]
         },
         {
-          name: 'Conjunto Capri Preto',
+          name: 'Conjunto Capri Preto Poá',
           images: ['assets/images/produtos/capris/2.webp'],
           price: 'R$ 119,90',
           installment: 'Liganete · Tamanhos P ao GG',
           sizes: ['P', 'M', 'G', 'GG'],
-          description: ['Conjunto Capri preto em liganete, leve e confortável para os momentos de descanso.'],
+          description: ['Conjunto Capri preto poá em liganete, leve e confortável para os momentos de descanso.'],
           details: [
             '<strong>Cor:</strong> Preto',
+            '<strong>Estampa:</strong> Poá',
             '<strong>Material:</strong> Liganete',
             '<strong>Modelagem:</strong> Blusa de manga curta e calça Capri',
-            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+            '<strong>Tamanhos disponíveis:</strong> P ao GG',
+            '<strong>Coleção:</strong> Abraço de Vó'
           ]
         },
         {
-          name: 'Conjunto Capri Azul',
+          name: 'Conjunto Capri Azul Poá',
           images: ['assets/images/produtos/capris/3.webp'],
           price: 'R$ 119,90',
           installment: 'Liganete · Tamanhos P ao GG',
           sizes: ['P', 'M', 'G', 'GG'],
-          description: ['Conjunto Capri azul em liganete, com caimento leve e visual clássico.'],
+          description: ['Conjunto Capri azul poá em liganete, com caimento leve e visual clássico.'],
           details: [
             '<strong>Cor:</strong> Azul',
+            '<strong>Estampa:</strong> Poá',
             '<strong>Material:</strong> Liganete',
             '<strong>Modelagem:</strong> Blusa de manga curta e calça Capri',
-            '<strong>Tamanhos disponíveis:</strong> P ao GG'
+            '<strong>Tamanhos disponíveis:</strong> P ao GG',
+            '<strong>Coleção:</strong> Abraço de Vó'
           ]
         }
       ]
@@ -5426,7 +5405,6 @@
     initAmericanProductsCarousel('tshirtsViewport', 'tshirtsTrack', 'tshirtsFill', 'tshirtsPrev', 'tshirtsNext');
     initAmericanProductsCarousel('suedeViewport', 'suedeTrack', 'suedeFill', 'suedePrev', 'suedeNext');
     initAmericanProductsCarousel('avosViewport', 'avosTrack', 'avosFill', 'avosPrev', 'avosNext');
-    initAmericanProductsCarousel('caprisViewport', 'caprisTrack', 'caprisFill', 'caprisPrev', 'caprisNext');
     initAmericanProductsCarousel('personalizadosViewport', 'personalizadosTrack', 'personalizadosFill', 'personalizadosPrev', 'personalizadosNext');
 
     // Baby Dolls carousel
@@ -6167,7 +6145,7 @@
 
       // 8. Nav link ativo conforme seção visível
       const navLinkEls = document.querySelectorAll('.nav-links a, .drawer-nav a[href^="#"]');
-      const sectIds    = ['inicio', 'pijamas-americanos', 'baby-dolls', 'conjuntos-tshirts', 'conjuntos-suede', 'pijamas-infantil', 'produtos-personalizados', 'tech-modal', 'colecoes', 'acessorios', 'alcinhas', 'conjuntos-capris', 'sob-medida', 'faq', 'contato'];
+      const sectIds    = ['inicio', 'pijamas-americanos', 'abraco-de-vo', 'baby-dolls', 'conjuntos-tshirts', 'conjuntos-suede', 'pijamas-infantil', 'produtos-personalizados', 'tech-modal', 'colecoes', 'acessorios', 'alcinhas', 'sob-medida', 'faq', 'contato'];
 
       window.addEventListener('scroll', () => {
         let current = '';
