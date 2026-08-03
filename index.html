@@ -4283,6 +4283,19 @@
         trackId: 'techTrack',
         products: [
           {
+            name: 'Conjunto Masculino Curto - Listrado Bege',
+            images: ['assets/images/produtos/masculinos/novos/listrado-bege.jpg'],
+            price: 'R$ 149,90',
+            installment: 'Preço demonstrativo · confirme pelo WhatsApp',
+            sizes: ['P', 'M', 'G', 'GG'],
+            description: ['Conjunto masculino curto com camiseta e bermuda em listras bege e brancas.'],
+            details: [
+              '<strong>Estampa:</strong> Listras bege e brancas',
+              '<strong>Modelagem:</strong> Camiseta de manga curta e bermuda',
+              '<strong>Preço:</strong> Demonstrativo; confirme antes de comprar'
+            ]
+          },
+          {
             name: 'Conjunto Masculino Curto - Xadrez Azul',
             images: ['assets/images/produtos/masculinos/novos/1.webp'],
             price: 'R$ 149,90',
@@ -4354,7 +4367,10 @@
           },
           {
             name: 'Masculino - Xadrez Preto',
-            images: ['assets/images/produtos/masculinos/4.webp'],
+            images: [
+              'assets/images/produtos/masculinos/4.webp',
+              'assets/images/produtos/masculinos/novos/xadrez-preto.jpg'
+            ],
             price: 'R$ 139,90',
             installment: 'Em malha suede',
             description: [
@@ -4581,6 +4597,48 @@
       trackId: 'acessoriosTrack',
       products: [
         {
+          name: 'Kit de Acessórios Pet Lovers - Patinhas',
+          images: ['assets/images/produtos/acessorios/novos/kit-patinhas.jpg'],
+          price: 'R$ 149,90',
+          installment: 'Preço demonstrativo · confirme pelo WhatsApp',
+          description: ['Linha coordenada de acessórios com estampa de patinhas e ossinhos.'],
+          details: [
+            '<strong>Estampa:</strong> Patinhas e ossinhos',
+            '<strong>Categoria:</strong> Acessórios Pet Lovers',
+            '<strong>Preço:</strong> Demonstrativo; confirme antes de comprar'
+          ]
+        },
+        {
+          name: 'Kit de Acessórios Pet Lovers - Golden Retriever',
+          images: [
+            'assets/images/produtos/acessorios/novos/golden-retriever-kit.jpg',
+            'assets/images/produtos/acessorios/novos/golden-retriever-bolsa.jpg'
+          ],
+          price: 'R$ 149,90',
+          installment: 'Preço demonstrativo · confirme pelo WhatsApp',
+          description: ['Linha coordenada de nécessaires e bolsa com estampa de Golden Retriever.'],
+          details: [
+            '<strong>Estampa:</strong> Golden Retriever e flores',
+            '<strong>Categoria:</strong> Acessórios Pet Lovers',
+            '<strong>Preço:</strong> Demonstrativo; confirme antes de comprar'
+          ]
+        },
+        {
+          name: 'Kit de Acessórios Pet Lovers - Listrado Bege',
+          images: [
+            'assets/images/produtos/acessorios/novos/listrado-kit.jpg',
+            'assets/images/produtos/acessorios/novos/listrado-necessaires.jpg'
+          ],
+          price: 'R$ 149,90',
+          installment: 'Preço demonstrativo · confirme pelo WhatsApp',
+          description: ['Linha coordenada de nécessaires em listras bege e brancas.'],
+          details: [
+            '<strong>Estampa:</strong> Listras bege e brancas',
+            '<strong>Categoria:</strong> Kit de acessórios',
+            '<strong>Preço:</strong> Demonstrativo; confirme antes de comprar'
+          ]
+        },
+        {
           name: 'Kit Corações',
           images: ['assets/images/produtos/acessorios/2.webp', 'assets/images/produtos/acessorios/3.webp', 'assets/images/produtos/acessorios/8.webp', 'assets/images/produtos/acessorios/9.webp'],
           installment: 'Consulte o valor pelo WhatsApp',
@@ -4671,6 +4729,40 @@
     collectionData.push({
       trackId: 'tshirtsTrack',
       products: [
+        {
+          name: 'Conjunto T-shirt Pet Lovers - Golden Retriever',
+          images: [
+            'assets/images/produtos/femininos/tshirts/golden-retriever-modelo.jpg',
+            'assets/images/produtos/femininos/tshirts/golden-retriever-conjunto.jpg'
+          ],
+          price: 'R$ 119,90',
+          installment: 'Preço demonstrativo · confirme pelo WhatsApp',
+          sizes: ['P', 'M', 'G', 'GG'],
+          description: ['Conjunto feminino com T-shirt e shorts estampados com Golden Retrievers e flores.'],
+          details: [
+            '<strong>Estampa:</strong> Golden Retriever e flores',
+            '<strong>Modelagem:</strong> T-shirt com shorts',
+            '<strong>Preço:</strong> Demonstrativo; confirme antes de comprar'
+          ]
+        },
+        {
+          name: 'Conjunto T-shirt Pet Lovers - Listrado Bege',
+          images: [
+            'assets/images/produtos/femininos/tshirts/listrado-modelo.jpg',
+            'assets/images/produtos/femininos/tshirts/listrado-shorts-detalhe.jpg',
+            'assets/images/produtos/femininos/tshirts/listrado-coracao-pet.jpg',
+            'assets/images/produtos/femininos/tshirts/listrado-patinha.jpg'
+          ],
+          price: 'R$ 119,90',
+          installment: 'Preço demonstrativo · confirme pelo WhatsApp',
+          sizes: ['P', 'M', 'G', 'GG'],
+          description: ['Conjunto feminino listrado com detalhes Pet Lovers e shorts coordenado.'],
+          details: [
+            '<strong>Estampa:</strong> Listras bege com detalhes de patinha',
+            '<strong>Modelagem:</strong> T-shirt com shorts',
+            '<strong>Preço:</strong> Demonstrativo; confirme antes de comprar'
+          ]
+        },
         {
           name: 'Conjunto T-shirt em Suede - Rosa',
           images: ['assets/images/produtos/novos-alcinhasetshitsconj/1.jpg'],
@@ -5214,7 +5306,7 @@
 
     const accessoriesCollection = collectionData.find(item => item.trackId === 'acessoriosTrack');
     if (accessoriesCollection?.products) {
-      const heartKits = accessoriesCollection.products.filter(product => product.name.includes('Kit Corações'));
+      const kits = accessoriesCollection.products.filter(product => product.name.startsWith('Kit'));
       const slippers = accessoriesCollection.products.filter(product => product.name.startsWith('Pantufa'));
       const necessaires = accessoriesCollection.products.filter(product => product.name.startsWith('Nécessaire'));
       const mixedAccessories = [];
@@ -5225,7 +5317,7 @@
         if (necessaires[index]) mixedAccessories.push(necessaires[index]);
       }
 
-      accessoriesCollection.products = [...mixedAccessories, ...heartKits];
+      accessoriesCollection.products = [...kits, ...mixedAccessories];
     }
 
     collectionData.forEach(renderCollectionCards);
