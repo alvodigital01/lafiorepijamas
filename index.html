@@ -12,13 +12,13 @@
   <meta property="og:url" content="https://www.lafiorepijamas.com.br/" />
   <meta property="og:title" content="La Fiore Pijamas" />
   <meta property="og:description" content="Pijamas premium de fabricação própria em Londrina/PR. Coleções femininas, masculinas, infantis, pet lovers e peças sob medida. Peça pelo WhatsApp com entrega para todo o Brasil." />
-  <meta property="og:image" content="https://www.lafiorepijamas.com.br/assets/images/banners/bannerpc.webp" />
+  <meta property="og:image" content="https://www.lafiorepijamas.com.br/assets/images/banners/bannerpc.jpg" />
   <meta property="og:locale" content="pt_BR" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="La Fiore Pijamas" />
   <meta name="twitter:description" content="Pijamas premium de fabricação própria em Londrina/PR. Coleções femininas, masculinas, infantis, pet lovers e peças sob medida." />
-  <meta name="twitter:image" content="https://www.lafiorepijamas.com.br/assets/images/banners/bannerpc.webp" />
+  <meta name="twitter:image" content="https://www.lafiorepijamas.com.br/assets/images/banners/bannerpc.jpg" />
 
   <link rel="icon" href="assets/images/branding/favicon.ico" sizes="any" />
   <link rel="icon" type="image/webp" href="assets/images/branding/favicon-32x32.webp" sizes="32x32" />
@@ -88,10 +88,6 @@
       right: 0;
       z-index: 999;
       border-bottom: 1px solid rgba(45, 16, 24, 0.18);
-    }
-
-    body {
-      padding-top: calc(var(--announcement-height) + var(--nav-height-desktop));
     }
 
     section[id] {
@@ -534,6 +530,7 @@
     /* ─── HERO ─── */
     .hero {
       position: relative;
+      margin-top: calc(var(--announcement-height) + var(--nav-height-desktop));
       min-height: calc(100vh - var(--announcement-height) - var(--nav-height-desktop));
       display: flex;
       align-items: center;
@@ -847,15 +844,12 @@
         position: relative;
       }
 
-      body {
-        padding-top: calc(var(--announcement-height) + var(--nav-height-mobile));
-      }
-
       section[id] {
         scroll-margin-top: calc(var(--announcement-height) + var(--nav-height-mobile) + 10px);
       }
 
       .hero {
+        margin-top: calc(var(--announcement-height) + var(--nav-height-mobile));
         min-height: 60vh;
       }
 
@@ -3198,8 +3192,8 @@
   <section class="hero" id="inicio">
     <div class="hero-bg">
       <picture>
-        <source media="(max-width: 900px)" srcset="assets/images/banners/bannermobile.webp" />
-        <img src="assets/images/banners/bannerpc.webp" alt="Hero La Fiore Pijamas" />
+        <source media="(max-width: 900px)" srcset="assets/images/banners/bannermobile.jpg" />
+        <img src="assets/images/banners/bannerpc.jpg" alt="Hero La Fiore Pijamas" />
       </picture>
     </div>
 
