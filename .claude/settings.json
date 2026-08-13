@@ -8,7 +8,10 @@
       "Bash(mkdir -p \"C:/Users/nicolas/AppData/Local/Temp/claude/c--Users-nicolas-Documents-GitHub-lafiorepijamas/d6e7f1ff-6d83-4f3b-9621-00e64ddf65f0/scratchpad\")",
       "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --screenshot=\"C:/Users/nicolas/AppData/Local/Temp/claude/c--Users-nicolas-Documents-GitHub-lafiorepijamas/d6e7f1ff-6d83-4f3b-9621-00e64ddf65f0/scratchpad/shot1920.png\" --window-size=1920,900 \"file:///c:/Users/nicolas/Documents/GitHub/lafiorepijamas/index.html\")",
       "Bash(git stash *)",
-      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --screenshot=\"C:/Users/nicolas/AppData/Local/Temp/claude/c--Users-nicolas-Documents-GitHub-lafiorepijamas/d6e7f1ff-6d83-4f3b-9621-00e64ddf65f0/scratchpad/orig_1080.png\" --window-size=1080,700 \"file:///c:/Users/nicolas/Documents/GitHub/lafiorepijamas/index.html\")"
+      "Bash(\"/c/Program Files/Google/Chrome/Application/chrome.exe\" --headless --disable-gpu --screenshot=\"C:/Users/nicolas/AppData/Local/Temp/claude/c--Users-nicolas-Documents-GitHub-lafiorepijamas/d6e7f1ff-6d83-4f3b-9621-00e64ddf65f0/scratchpad/orig_1080.png\" --window-size=1080,700 \"file:///c:/Users/nicolas/Documents/GitHub/lafiorepijamas/index.html\")",
+      "Bash('/c/Program Files/Google/Chrome/Application/chrome.exe' --headless --disable-gpu --remote-debugging-port=9222 --user-data-dir=C:/Users/nicolas/AppData/Local/Temp/claude/c--Users-nicolas-Documents-GitHub-lafiorepijamas/d6e7f1ff-6d83-4f3b-9621-00e64ddf65f0/scratchpad/chrome-profile --no-first-run --window-size=1440,900 file:///c:/Users/nicolas/Documents/GitHub/lafiorepijamas/index.html)",
+      "Bash(curl -s http://localhost:9222/json)",
+      "Bash(python C:/Users/nicolas/AppData/Local/Temp/claude/c--Users-nicolas-Documents-GitHub-lafiorepijamas/d6e7f1ff-6d83-4f3b-9621-00e64ddf65f0/scratchpad/cdp_shot.py ws://localhost:9222/devtools/page/9ACAF35E2E787457729B07FD21263A63 '#pijamas-infantil' C:/Users/nicolas/AppData/Local/Temp/claude/c--Users-nicolas-Documents-GitHub-lafiorepijamas/d6e7f1ff-6d83-4f3b-9621-00e64ddf65f0/scratchpad/cdp_infantil.png)"
     ]
   }
 }
